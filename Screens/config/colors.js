@@ -1,0 +1,21 @@
+export default {
+  primary: '#1779ba',
+  primaryDark: '#1D6FC4',
+  TextLabel: '#1C6FC4',
+  TextValue: '#141414',
+  IconValue: '#505050',
+  Divider: '#e4e4e4',
+  secondary: '#4ecdc4',
+  black: '#000',
+  white: '#fff',
+  mediumgray: '#6e6969',
+  lightgray: '#f8f4f4',
+  danger: '#ff5252',
+  darkgray: '#0c0c0c',
+  yellow: '#ffd700',
+  //Drawer Content
+  DRAWER_DATA_COLOR: '#505050',
+  // DRAWER_ICON_COLOR: CLICK_ACTION,
+  DRAWER_EMAIL_COLOR: '#A3A3A3',
+  DRAWER_DIVIDER_COLOR: '#E1E1E1',
+};
