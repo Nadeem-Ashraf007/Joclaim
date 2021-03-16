@@ -4,10 +4,10 @@ import Sacreen from './Components/Sacreen';
 import Header from './Components/Header';
 import colors from './config/colors';
 
-const Demands = () => {
+const Demands = ({navigation}) => {
   return (
     <Sacreen style={styles.screen}>
-      <Header title="Demands" />
+      <Header title="Demands" navigation={navigation} />
       <Text>have demands yet</Text>
     </Sacreen>
   );

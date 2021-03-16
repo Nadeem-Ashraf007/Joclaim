@@ -125,7 +125,7 @@ const Login = ({navigation}) => {
             title="Login"
             onPress={() => {
               if (validate()) {
-                navigation.navigate('Demands');
+                navigation.navigate('drawer');
                 // Signin()
               }
             }}
