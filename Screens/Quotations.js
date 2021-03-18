@@ -2,10 +2,10 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import Header from './Components/Header';
 
-const Quotations = () => {
+const Quotations = ({navigation}) => {
   return (
     <View>
-      <Header title="Quotations" />
+      <Header title="Quotations" navigation={navigation} />
       <Text>Quotations</Text>
     </View>
   );
