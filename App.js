@@ -1,10 +1,5 @@
 import React from 'react';
-
-import Routes from './Screens/navigations/Routes';
-// import {NavigationContainer} from '@react-navigation/native';
-// // import Routes from './Screens/navigations/Routes';
-// // import TabNavigator from './Screens/navigations/TabNavigator';
-// import DrawerNavigator from './Screens/navigations/DrawerNavigator';
+import Routes from './app/Screens/navigations/Routes';
 const App = () => {
   return <Routes />;
 };
