@@ -78,41 +78,27 @@ const AccidentsTopNav = () => {
 
 const styles = StyleSheet.create({
   openicon: {
-    // backgroundColor: colors.white,
-    // flexDirection: 'row',
-    // height: 20,
-    // width: 20,
-    borderRadius: 10,
     position: 'absolute',
     top: 29,
     left: 60,
   },
   closeicon: {
-    // backgroundColor: colors.white,
-    // height: 20,
-    // width: 20,
-    // flexDirection: 'row',
     position: 'absolute',
     top: 29,
     left: 44,
   },
   deleteicon: {
-    // backgroundColor: colors.white,
-    // height: 20,
-    // width: 20,
-    // borderRadius: 10,
     position: 'absolute',
     top: 29,
     left: 48,
   },
   badgeicontext: {
     backgroundColor: colors.white,
-    width: 25,
-    borderRadius: 10,
+    borderRadius: 7,
     color: colors.primary,
-    textAlign: 'center',
-    fontSize: 15,
+    fontSize: 14,
     fontWeight: 'bold',
+    // padding: 1,
   },
 });
 export default AccidentsTopNav;
