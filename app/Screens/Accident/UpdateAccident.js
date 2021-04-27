@@ -14,23 +14,21 @@ import {RadioButton} from 'react-native-paper';
 import colors from '../config/colors';
 import {Global} from '../Components/Global';
 import AccidentDetail from '../Accident/AccidentDetail';
-const UpdateAccident = ({navigation, route, style, MakeName}) => {
+import AccidentNote from '../Accident/AccidentNote';
+const UpdateAccident = ({route, style}) => {
   const [data, setdata] = useState([]);
   const [marker, setmarker] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [text, settext] = useState(0);
-
+  const [note, setnote] = useState([]);
   const accidentid = route.params.id;
 
   // const companyid = route.params.companyid;
   // alert(text);
 
   useEffect(() => {
-    (async () => {
-      getData();
-    })();
-  });
-  const getData = async () => {
+    getData();
+  }, []);
+  const getData = () => {
     try {
       fetch(
         'https://qapi.joclaims.com/api/Company/GetSingleAccident?AccidentID=' +
@@ -51,6 +49,7 @@ const UpdateAccident = ({navigation, route, style, MakeName}) => {
           const responce = responseJson;
           setdata(responce.Accident);
           setmarker(responce.AccidentMarkers);
+          setnote(responce.Notes);
           setLoading(false);
         });
     } catch (e) {
@@ -297,6 +296,21 @@ const UpdateAccident = ({navigation, route, style, MakeName}) => {
             dissable={item.IsDamage}
           />
         )}
+      />
+
+      <Text
+        style={{
+          fontSize: 16,
+          fontWeight: 'bold',
+          color: colors.primary,
+        }}>
+        Accident Container
+      </Text>
+
+      <FlatList
+        data={note}
+        keyExtractor={(notes) => notes.NoteID.toString()}
+        renderItem={({item}) => <AccidentNote TextValue={item.TextValue} />}
       />
     </View>
   );

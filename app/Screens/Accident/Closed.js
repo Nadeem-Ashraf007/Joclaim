@@ -12,16 +12,14 @@ import {Global} from '../Components/Global';
 // import CardAccident from '../Parts/CardRequests';
 import CardAccident from './CardAccident';
 import colors from '../config/colors';
-const Opened = ({navigation}) => {
+const Closed = ({navigation}) => {
   const [loading, setLoadng] = useState(true);
-  const [accident, setAccident] = useState([]);
-  const [badge, setbadge] = useState();
-  const [loader, setloader] = useState();
-  Global.Openbadge = badge;
+  const [closed, setClosed] = useState([]);
+  const [Closebadge, setClosebadge] = useState(0);
+  Global.Closebadge = Closebadge;
   useEffect(() => {
     getData();
   }, []);
-
   const getData = () => {
     try {
       fetch(
@@ -43,10 +41,10 @@ const Opened = ({navigation}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson.Accidents.filter(
-            (r) => r.StatusID == 20,
+            (r) => r.StatusID == 21,
           );
-          setAccident(responce);
-          setbadge(responce.length);
+          setClosed(responce);
+          setClosebadge(responce.length);
           setLoadng(false);
         });
     } catch (e) {
@@ -60,7 +58,6 @@ const Opened = ({navigation}) => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-
           borderRadius: 10,
         }}>
         <ActivityIndicator size="large" color={colors.secondary} />
@@ -71,13 +68,10 @@ const Opened = ({navigation}) => {
   return (
     <View>
       <FlatList
-        data={accident}
-        keyExtractor={(accidents) => accidents.AccidentID.toString()}
-        initialNumToRender={10}
-        // ItemSeparatorComponent={ListItemSeperator}
+        data={closed}
+        keyExtractor={(close) => close.AccidentID.toString()}
         renderItem={({item}) => (
           <CardAccident
-            style={styles.card}
             image={item.ImgURL}
             YearCode={item.YearCode}
             ModelCode={item.ModelCode}
@@ -118,9 +112,5 @@ const Opened = ({navigation}) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
-  },
-});
-export default Opened;
+
+export default Closed;

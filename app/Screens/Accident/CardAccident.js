@@ -30,19 +30,18 @@ const CardAccident = ({
 }) => {
   return (
     <View style={[styles.card, style]}>
-      <View>
-        <Text
-          style={{
-            color: colors.white,
-            padding: 3,
-            fontSize: 15,
-            borderRadius: 8,
-            width: '23%',
-            backgroundColor: colors.secondary,
-          }}>
-          {PlateNo}
-        </Text>
-      </View>
+      <Text
+        style={{
+          backgroundColor: colors.secondary,
+          color: colors.white,
+          padding: 3,
+          fontSize: 15,
+          borderRadius: 8,
+          width: '30%',
+          textAlign: 'center',
+        }}>
+        {PlateNo}
+      </Text>
 
       <View style={{flexDirection: 'row'}}>
         {image && (

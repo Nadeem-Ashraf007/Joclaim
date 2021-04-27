@@ -2,9 +2,9 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Canceled from '../Cancelled';
-import Closed from '../Closed';
+import Closed from '../Accident/Closed';
 import colors from '../config/colors';
-import Deleted from '../Deleted';
+import Deleted from '../Accident/Deleted';
 const TopTab = createMaterialTopTabNavigator();
 const HistoryTopNav = () => {
   return (

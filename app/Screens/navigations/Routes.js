@@ -11,6 +11,7 @@ import colors from '../config/colors';
 import Auth from './Auth';
 import Splash from '../Splash';
 import PaidAccident from './PaidAccident';
+import UpdateAccidents from './UpdateAccidents';
 import {AuthContext} from '../Components/context';
 import {
   Provider as PaperProvider,
@@ -25,7 +26,6 @@ import Paid from '../Requests/Paid';
 import CardAccident from '../Accident/CardAccident';
 import OpenAccident from '../Accident/OpenAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
-import UpdateAccident from '../Accident/UpdateAccident';
 import PaidAccidentDetails from '../Requests/PaidAccidentDetails';
 const Stack = createStackNavigator();
 const Routes = () => {
@@ -120,8 +120,8 @@ const Routes = () => {
             <Stack.Screen name="Paid" component={Paid} />
 
             <Stack.Screen
-              name="UpdateAccident"
-              component={UpdateAccident}
+              name="UpdateAccidents"
+              component={UpdateAccidents}
               options={{
                 title: 'Update Accident',
                 headerStyle: {

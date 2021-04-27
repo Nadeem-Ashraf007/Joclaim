@@ -2,13 +2,13 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Opened from '../Accident/Opened';
-import Closed from '../Closed';
+import Closed from '../Accident/Closed';
 import colors from '../config/colors';
-import Deleted from '../Deleted';
+import Deleted from '../Accident/Deleted';
 import {Global} from '../Components/Global';
 const TopTab = createMaterialTopTabNavigator();
 const AccidentsTopNav = () => {
-  const [badge, setbadge] = React.useState(Global.badge);
+  const [badge, setbadge] = React.useState();
   return (
     <TopTab.Navigator
       tabBarOptions={{
@@ -38,7 +38,7 @@ const AccidentsTopNav = () => {
           tabBarIcon: () => (
             <View style={styles.openicon}>
               <Text style={styles.badgeicontext}>
-                {Global.badge ? Global.badge : 0}
+                {Global.Openbadge ? Global.Openbadge : 0}
               </Text>
             </View>
           ),
@@ -51,7 +51,9 @@ const AccidentsTopNav = () => {
           tabBarLabel: 'Closed',
           tabBarIcon: () => (
             <View style={styles.closeicon}>
-              <Text style={styles.badgeicontext}>0</Text>
+              <Text style={styles.badgeicontext}>
+                {Global.Closebadge ? Global.Closebadge : 0}
+              </Text>
             </View>
           ),
         }}
@@ -63,7 +65,9 @@ const AccidentsTopNav = () => {
           tabBarLabel: 'Deleted',
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
-              <Text style={styles.badgeicontext}>0</Text>
+              <Text style={styles.badgeicontext}>
+                {Global.Deletebadge ? Global.Deletebadge : 0}
+              </Text>
             </View>
           ),
         }}

@@ -1,26 +1,21 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import OrderParts from '../Requests/OrderParts';
-import RecycledParts from '../Requests/RecycledParts';
-import AccidentDetails from '../Requests/AccidentDetails';
-import TaskDetail from '../Requests/TaskDetail';
-import colors from '../config/colors';
-import Paid from '../Requests/Paid';
-import PaidAccidentDetails from '../Requests/PaidAccidentDetails';
+import UpdateAccident from '../Accident/UpdateAccident';
+import WorkshhopFinding from '../Accident/WorkshhopFinding';
+import check from '../Accident/check';
 import {Global} from '../Components/Global';
+import colors from '../config/colors';
 const TopTab = createMaterialTopTabNavigator();
 const UpdateAccidents = ({route, navigation, position, state}) => {
   const [badge, setbadge] = React.useState(Global.badge);
   return (
     <TopTab.Navigator
-      initialRouteName="PaidAccidentDetails"
       tabBarOptions={{
         scrollEnabled: true,
         showIcon: true,
         tabStyle: {
           alignSelf: 'center',
-          height: 55,
-          paddingBottom: '22%',
+          // paddingBottom: '22%',
         },
         activeTintColor: colors.primary,
         inactiveTintColor: colors.white,
@@ -34,10 +29,10 @@ const UpdateAccidents = ({route, navigation, position, state}) => {
         },
       }}>
       <TopTab.Screen
-        name="PaidAccidentDetails"
-        component={PaidAccidentDetails}
+        name="check"
+        component={check}
         options={{
-          tabBarLabel: 'View Details',
+          tabBarLabel: 'Update Accidents',
           //   tabBarIcon: () => (
           //     <View style={styles.deleteicon}>
           //       <Text style={styles.badgeicontext}>0</Text>
@@ -47,52 +42,28 @@ const UpdateAccidents = ({route, navigation, position, state}) => {
       />
 
       <TopTab.Screen
-        name="OrderParts"
-        component={OrderParts}
+        name="UpdateAccident"
+        component={UpdateAccident}
         options={{
-          tabBarLabel: 'Order Parts',
+          tabBarLabel: 'Update Accidents',
+          //   tabBarIcon: () => (
+          //     <View style={styles.deleteicon}>
+          //       <Text style={styles.badgeicontext}>0</Text>
+          //     </View>
+          //   ),
+        }}
+      />
+
+      <TopTab.Screen
+        name="WorkshhopFinding"
+        component={WorkshhopFinding}
+        options={{
+          tabBarLabel: 'Workshhop Findig',
           //   tabBarIcon: () => (
           //     <View style={styles.openicon}>
           //       <Text style={styles.badgeicontext}>
           //         {Global.badge ? Global.badge : 0}
           //       </Text>
-          //     </View>
-          //   ),
-        }}
-      />
-      <TopTab.Screen
-        name="RecycledParts"
-        component={RecycledParts}
-        options={{
-          tabBarLabel: 'Recycled Parts',
-          //   tabBarIcon: () => (
-          //     <View style={styles.closeicon}>
-          //       <Text style={styles.badgeicontext}>0</Text>
-          //     </View>
-          //   ),
-        }}
-      />
-      <TopTab.Screen
-        name="AccidentDetail"
-        component={AccidentDetails}
-        options={{
-          tabBarLabel: 'Accident Detail',
-          //   tabBarIcon: () => (
-          //     <View style={styles.deleteicon}>
-          //       <Text style={styles.badgeicontext}>0</Text>
-          //     </View>
-          //   ),
-        }}
-      />
-
-      <TopTab.Screen
-        name="TaskDetail"
-        component={TaskDetail}
-        options={{
-          tabBarLabel: 'Task Detail',
-          //   tabBarIcon: () => (
-          //     <View style={styles.deleteicon}>
-          //       <Text style={styles.badgeicontext}>0</Text>
           //     </View>
           //   ),
         }}

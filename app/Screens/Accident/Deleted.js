@@ -12,16 +12,17 @@ import {Global} from '../Components/Global';
 // import CardAccident from '../Parts/CardRequests';
 import CardAccident from './CardAccident';
 import colors from '../config/colors';
-const Opened = ({navigation}) => {
+const Deleted = () => {
   const [loading, setLoadng] = useState(true);
-  const [accident, setAccident] = useState([]);
-  const [badge, setbadge] = useState();
-  const [loader, setloader] = useState();
-  Global.Openbadge = badge;
+  const [Delete, setDelete] = useState([]);
+  const [Deletebadge, setDeletebadge] = useState(0);
+
+  useEffect(() => {
+    Global.Deletebadge = Deletebadge;
+  });
   useEffect(() => {
     getData();
   }, []);
-
   const getData = () => {
     try {
       fetch(
@@ -43,10 +44,10 @@ const Opened = ({navigation}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson.Accidents.filter(
-            (r) => r.StatusID == 20,
+            (r) => r.IsDeleted == true,
           );
-          setAccident(responce);
-          setbadge(responce.length);
+          setDelete(responce);
+          setDeletebadge(responce.length);
           setLoadng(false);
         });
     } catch (e) {
@@ -60,7 +61,6 @@ const Opened = ({navigation}) => {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-
           borderRadius: 10,
         }}>
         <ActivityIndicator size="large" color={colors.secondary} />
@@ -71,13 +71,10 @@ const Opened = ({navigation}) => {
   return (
     <View>
       <FlatList
-        data={accident}
-        keyExtractor={(accidents) => accidents.AccidentID.toString()}
-        initialNumToRender={10}
-        // ItemSeparatorComponent={ListItemSeperator}
+        data={Delete}
+        keyExtractor={(deleted) => deleted.AccidentID.toString()}
         renderItem={({item}) => (
           <CardAccident
-            style={styles.card}
             image={item.ImgURL}
             YearCode={item.YearCode}
             ModelCode={item.ModelCode}
@@ -92,35 +89,31 @@ const Opened = ({navigation}) => {
             VehicleOwnerName={item.VehicleOwnerName}
             VIN={item.VIN}
             PlateNo={item.PlateNo}
-            onPress={() => navigation.navigate('Request')}
-            onpress={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
-            summary={() =>
-              navigation.navigate('ClearanceSummary', {
-                id: item.AccidentID,
-                companyid: item.CompanyID,
-              })
-            }
-            updateAccident={() =>
-              navigation.navigate('UpdateAccidents', {
-                params: {
-                  id: item.AccidentID,
-                },
-                screen: 'UpdateAccident',
-              })
-            }
+            // onPress={() => navigation.navigate('Request')}
+            // onpress={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
+            // summary={() =>
+            //   navigation.navigate('ClearanceSummary', {
+            //     id: item.AccidentID,
+            //     companyid: item.CompanyID,
+            //   })
+            // }
+            // updateAccident={() =>
+            //   navigation.navigate('UpdateAccidents', {
+            //     params: {
+            //       id: item.AccidentID,
+            //     },
+            //     screen: 'UpdateAccident',
+            //   })
+            // }
           />
         )}
       />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  card: {
-    marginVertical: 5,
-  },
-});
-export default Opened;
+
+export default Deleted;

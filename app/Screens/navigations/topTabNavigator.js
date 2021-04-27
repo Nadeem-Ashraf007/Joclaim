@@ -5,8 +5,8 @@ import OrderPlaced from '../OrderPlaced';
 import Delivered from '../Delivered';
 import Paid from '../Requests/Paid';
 import Cancelled from '../Cancelled';
-import Closed from '../Closed';
-import Deleted from '../Deleted';
+import Closed from '../Accident/Closed';
+import Deleted from '../Accident/Deleted';
 import colors from '../config/colors';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Badge, Text} from 'react-native-elements';
@@ -75,7 +75,9 @@ const topTabNavigator = () => {
           tabBarLabel: Strings.paid,
           tabBarIcon: () => (
             <View style={styles.paidicon}>
-              <Text style={styles.badgeicontext}>{Global.badgeicon}</Text>
+              <Text style={styles.badgeicontext}>
+                {Global.badgeicon ? Global.badgeicon : 0}
+              </Text>
             </View>
           ),
         }}
