@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
+import {connect} from 'react-redux';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Opened from '../Accident/Opened';
 import Closed from '../Accident/Closed';
@@ -7,8 +8,13 @@ import colors from '../config/colors';
 import Deleted from '../Accident/Deleted';
 import {Global} from '../Components/Global';
 const TopTab = createMaterialTopTabNavigator();
-const AccidentsTopNav = () => {
-  const [badge, setbadge] = React.useState();
+const AccidentsTopNav = ({userData}) => {
+  const data = userData.users.filter((r) => r.StatusID == 21);
+  const opened = userData.users.filter((r) => r.StatusID == 20);
+  const Delete = userData.users.filter((r) => r.IsDeleted == true);
+  const closeIcon = data.length;
+  const openedIcon = opened.length;
+  const deleteIcon = Delete.length;
   return (
     <TopTab.Navigator
       tabBarOptions={{
@@ -38,7 +44,7 @@ const AccidentsTopNav = () => {
           tabBarIcon: () => (
             <View style={styles.openicon}>
               <Text style={styles.badgeicontext}>
-                {Global.Openbadge ? Global.Openbadge : 0}
+                {openedIcon ? openedIcon : 0}
               </Text>
             </View>
           ),
@@ -52,7 +58,7 @@ const AccidentsTopNav = () => {
           tabBarIcon: () => (
             <View style={styles.closeicon}>
               <Text style={styles.badgeicontext}>
-                {Global.Closebadge ? Global.Closebadge : 0}
+                {closeIcon ? closeIcon : 0}
               </Text>
             </View>
           ),
@@ -66,7 +72,7 @@ const AccidentsTopNav = () => {
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
               <Text style={styles.badgeicontext}>
-                {Global.Deletebadge ? Global.Deletebadge : 0}
+                {deleteIcon ? deleteIcon : 0}
               </Text>
             </View>
           ),
@@ -80,7 +86,7 @@ const styles = StyleSheet.create({
   openicon: {
     position: 'absolute',
     top: 29,
-    left: 60,
+    left: 45,
   },
   closeicon: {
     position: 'absolute',
@@ -101,4 +107,14 @@ const styles = StyleSheet.create({
     // padding: 1,
   },
 });
-export default AccidentsTopNav;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AccidentsTopNav);

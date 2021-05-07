@@ -2,22 +2,23 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import OrderPlaced from '../OrderPlaced';
+import {connect} from 'react-redux';
 import Delivered from '../Delivered';
 import Paid from '../Requests/Paid';
 import Cancelled from '../Cancelled';
 import Closed from '../Accident/Closed';
 import Deleted from '../Accident/Deleted';
 import colors from '../config/colors';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Badge, Text} from 'react-native-elements';
-
+import {Text} from 'react-native-elements';
 import {Global} from '../Components/Global';
 import Strings from '../pages/LocalizedString';
-import AsyncStorage from '@react-native-community/async-storage';
 const TopTab = createMaterialTopTabNavigator();
-const topTabNavigator = () => {
+const topTabNavigator = ({userData}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
-  // const BadgedIcon = withBadge(1)(Icon);
+  const data = userData.users.filter((r) => r.StatusID == 21);
+  const Delete = userData.users.filter((r) => r.IsDeleted == true);
+  const closeIcon = data.length;
+  const deleteIcon = Delete.length;
   return (
     <TopTab.Navigator
       initialRouteName={!changeView ? 'Delete' : 'OrderPlace'}
@@ -101,7 +102,9 @@ const topTabNavigator = () => {
           tabBarLabel: Strings.closed,
           tabBarIcon: () => (
             <View style={styles.closeicon}>
-              <Text style={styles.badgeicontext}>0</Text>
+              <Text style={styles.badgeicontext}>
+                {closeIcon ? closeIcon : 0}
+              </Text>
             </View>
           ),
         }}
@@ -113,7 +116,9 @@ const topTabNavigator = () => {
           tabBarLabel: Strings.deleted,
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
-              <Text style={styles.badgeicontext}>0</Text>
+              <Text style={styles.badgeicontext}>
+                {deleteIcon ? deleteIcon : 0}
+              </Text>
             </View>
           ),
         }}
@@ -163,27 +168,15 @@ const styles = StyleSheet.create({
     // padding: 1,
   },
 });
-export default topTabNavigator;
 
-{
-  /* <FlatList
-  style={{flexGrow: 0}}
-  data={this.state.newOrders}
-  showsVerticalScrollIndicator={false}
-  keyExtractor={({index}) => index}
-  renderItem={({item}) => {
-    return (
-      <NewOrder
-        name={item.user.name}
-        orderNo={`Order No ` + item.id}
-        onPress={() =>
-          navigation.navigate('OrderDetailScreen', {
-            id: item.id,
-            onSave: getOrders,
-          })
-        }
-      />
-    );
-  }}
-/>; */
-}
+const mapStateToProps = (state) => {
+  return {
+    userData: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(topTabNavigator);

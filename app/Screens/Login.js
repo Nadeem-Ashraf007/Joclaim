@@ -45,7 +45,10 @@ const Login = ({navigation}) => {
       changeLanguage('ar');
     }
   };
-
+  const mobileid = 64;
+  const appversion = 15;
+  const companyid = 15;
+  const workshopId = 1;
   const storeToken = async (
     accessToken,
     workshopId,
@@ -54,6 +57,9 @@ const Login = ({navigation}) => {
     statusId,
     employeeid,
     accidentid,
+    parameter,
+    mobileid,
+    appversion,
   ) => {
     try {
       await AsyncStorage.multiSet(
@@ -65,6 +71,9 @@ const Login = ({navigation}) => {
           ['statusId', statusId],
           ['employeeid', employeeid],
           ['accidentid', accidentid],
+          ['parameter', parameter],
+          ['mobileid', mobileid],
+          ['appversion', appversion],
         ],
         (res) => {
           console.log('login store token func:' + res);
@@ -95,9 +104,9 @@ const Login = ({navigation}) => {
         '&mobileNotificationToken=' +
         parameter +
         '&MobileTypeID=' +
-        64 +
+        mobileid +
         '&AppVersion=' +
-        15,
+        appversion,
     })
       .then((response) => response.json())
       .then((responseJson) => {

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {useState, useEffect} from 'react';
+import {connect} from 'react-redux';
 import {
   View,
   Text,
@@ -8,70 +9,33 @@ import {
   Modal,
   ActivityIndicator,
 } from 'react-native';
-import {Global} from '../Components/Global';
+import {fetchUsers} from '../redux/accident/accidentAction';
 // import CardAccident from '../Parts/CardRequests';
 import CardAccident from './CardAccident';
 import colors from '../config/colors';
-const Opened = ({navigation}) => {
-  const [loading, setLoadng] = useState(true);
-  const [accident, setAccident] = useState([]);
-  const [badge, setbadge] = useState();
-  const [loader, setloader] = useState();
-  Global.Openbadge = badge;
+const Opened = ({navigation, userData, fetchUsers}) => {
+  // const [data, setdata] = useState();
+  const data = userData.users.filter((r) => r.StatusID == 20);
   useEffect(() => {
-    getData();
+    fetchUsers();
   }, []);
 
-  const getData = () => {
-    try {
-      fetch(
-        'https://qapi.joclaims.com/api/Company/GetCompanyAccidents?CompanyID=' +
-          Global.companyid +
-          '&WorkshopID=' +
-          Global.workshopId,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authorization: Global.accessToken
-              ? `Bearer ${Global.accessToken}`
-              : '',
-          },
-        },
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          const responce = responseJson.Accidents.filter(
-            (r) => r.StatusID == 20,
-          );
-          setAccident(responce);
-          setbadge(responce.length);
-          setLoadng(false);
-        });
-    } catch (e) {
-      alert(e);
-    }
-  };
-  if (loading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-
-          borderRadius: 10,
-        }}>
-        <ActivityIndicator size="large" color={colors.secondary} />
-      </View>
-    );
-  }
-
-  return (
+  return userData.loading ? (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}>
+      <ActivityIndicator size="large" color={colors.secondary} />
+    </View>
+  ) : userData.error ? (
+    <Text>{userData.error}</Text>
+  ) : (
     <View>
       <FlatList
-        data={accident}
+        data={data}
         keyExtractor={(accidents) => accidents.AccidentID.toString()}
         initialNumToRender={10}
         // ItemSeparatorComponent={ListItemSeperator}
@@ -118,9 +82,20 @@ const Opened = ({navigation}) => {
     </View>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    userData: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
 const styles = StyleSheet.create({
   card: {
     marginVertical: 5,
   },
 });
-export default Opened;
+
+export default connect(mapStateToProps, mapDispatchToProps)(Opened);

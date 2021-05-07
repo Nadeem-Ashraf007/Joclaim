@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Image, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import {connect} from 'react-redux';
 import {Global} from './Components/Global';
 import Strings from './pages/LocalizedString';
 const getToken = async () => {
@@ -11,12 +12,18 @@ const getToken = async () => {
       'companyid',
       'language',
       'employeeid',
+      'parameter',
+      'mobileid',
+      'appversion',
     ]).then((response) => {
       Global.accessToken = response[0][1];
       Global.workshopId = response[1][1];
       Global.companyid = response[2][1];
       Global.changeView = response[3][1];
       Global.employeeid = response[4][1];
+      Global.parameter = response[5][1];
+      Global.mobileid = response[6][1];
+      Global.appversion = response[7][1];
     });
   } catch (error) {
     console.log('something went wrong' + error);
@@ -52,6 +59,17 @@ const Splash = ({navigation}) => {
     </ImageBackground>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    userData: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
+
 const styles = StyleSheet.create({
   background: {
     flex: 1,
@@ -66,4 +84,4 @@ const styles = StyleSheet.create({
     color: 'white',
   },
 });
-export default Splash;
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);

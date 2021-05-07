@@ -12,5 +12,11 @@ export const Global = {
   employeeid: null,
   statusId: null,
   accident: null,
+  closedApi: null,
+  deleteApi: null,
+  parameter: null,
+  appversion: null,
+  mobileid: null,
+
   apiurl: 'https://qapi.joclaims.com/',
 };

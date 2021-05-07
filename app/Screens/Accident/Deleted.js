@@ -1,74 +1,28 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Modal,
-  ActivityIndicator,
-} from 'react-native';
-import {Global} from '../Components/Global';
-// import CardAccident from '../Parts/CardRequests';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import CardAccident from './CardAccident';
 import colors from '../config/colors';
-const Deleted = () => {
-  const [loading, setLoadng] = useState(true);
-  const [Delete, setDelete] = useState([]);
-  const [Deletebadge, setDeletebadge] = useState(0);
-
+import {fetchUsers} from '../redux/accident/accidentAction';
+const Deleted = ({userData, fetchUsers}) => {
+  const Delete = userData.users.filter((r) => r.IsDeleted == true);
   useEffect(() => {
-    Global.Deletebadge = Deletebadge;
-  });
-  useEffect(() => {
-    getData();
+    fetchUsers();
   }, []);
-  const getData = () => {
-    try {
-      fetch(
-        'https://qapi.joclaims.com/api/Company/GetCompanyAccidents?CompanyID=' +
-          Global.companyid +
-          '&WorkshopID=' +
-          Global.workshopId,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authorization: Global.accessToken
-              ? `Bearer ${Global.accessToken}`
-              : '',
-          },
-        },
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          const responce = responseJson.Accidents.filter(
-            (r) => r.IsDeleted == true,
-          );
-          setDelete(responce);
-          setDeletebadge(responce.length);
-          setLoadng(false);
-        });
-    } catch (e) {
-      alert(e);
-    }
-  };
-  if (loading) {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          borderRadius: 10,
-        }}>
-        <ActivityIndicator size="large" color={colors.secondary} />
-      </View>
-    );
-  }
 
-  return (
+  return userData.loading ? (
+    <View
+      style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+      }}>
+      <ActivityIndicator size="large" color={colors.secondary} />
+    </View>
+  ) : userData.error ? (
+    <Text>{userData.error}</Text>
+  ) : (
     <View>
       <FlatList
         data={Delete}
@@ -89,31 +43,20 @@ const Deleted = () => {
             VehicleOwnerName={item.VehicleOwnerName}
             VIN={item.VIN}
             PlateNo={item.PlateNo}
-            // onPress={() => navigation.navigate('Request')}
-            // onpress={() =>
-            //   navigation.navigate('OpenAccident', {
-            //     id: item.AccidentID,
-            //   })
-            // }
-            // summary={() =>
-            //   navigation.navigate('ClearanceSummary', {
-            //     id: item.AccidentID,
-            //     companyid: item.CompanyID,
-            //   })
-            // }
-            // updateAccident={() =>
-            //   navigation.navigate('UpdateAccidents', {
-            //     params: {
-            //       id: item.AccidentID,
-            //     },
-            //     screen: 'UpdateAccident',
-            //   })
-            // }
           />
         )}
       />
     </View>
   );
 };
-
-export default Deleted;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUsers: () => dispatch(fetchUsers()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Deleted);

@@ -2,12 +2,11 @@ import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import UpdateAccident from '../Accident/UpdateAccident';
 import WorkshhopFinding from '../Accident/WorkshhopFinding';
-import check from '../Accident/check';
+
 import {Global} from '../Components/Global';
 import colors from '../config/colors';
 const TopTab = createMaterialTopTabNavigator();
-const UpdateAccidents = ({route, navigation, position, state}) => {
-  const [badge, setbadge] = React.useState(Global.badge);
+const UpdateAccidents = () => {
   return (
     <TopTab.Navigator
       tabBarOptions={{
@@ -28,19 +27,6 @@ const UpdateAccidents = ({route, navigation, position, state}) => {
           textTransform: 'none',
         },
       }}>
-      <TopTab.Screen
-        name="check"
-        component={check}
-        options={{
-          tabBarLabel: 'Update Accidents',
-          //   tabBarIcon: () => (
-          //     <View style={styles.deleteicon}>
-          //       <Text style={styles.badgeicontext}>0</Text>
-          //     </View>
-          //   ),
-        }}
-      />
-
       <TopTab.Screen
         name="UpdateAccident"
         component={UpdateAccident}

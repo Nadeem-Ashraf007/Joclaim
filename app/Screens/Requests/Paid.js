@@ -18,7 +18,6 @@ const Paid = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [badgeicon, setBadgeicon] = useState(Global.badgeicon);
   Global.badgeicon = badgeicon;
-  // alert(Global.badgeicon);
   useEffect(() => {
     getData();
   }, []);
