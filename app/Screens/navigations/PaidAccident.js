@@ -1,12 +1,12 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import OrderParts from '../Requests/OrderParts';
-import RecycledParts from '../Requests/RecycledParts';
-import AccidentDetails from '../Requests/AccidentDetails';
-import TaskDetail from '../Requests/TaskDetail';
+import OrderParts from '../Requests/accidentDetails/OrderParts';
+import RecycledParts from '../Requests/accidentDetails/RecycledParts';
+import AccidentDetails from '../Requests/accidentDetails/AccidentDetails';
+import TaskDetail from '../Requests/accidentDetails/TaskDetail';
 import colors from '../config/colors';
 import Paid from '../Requests/Paid';
-import PaidAccidentDetails from '../Requests/PaidAccidentDetails';
+import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
 import {Global} from '../Components/Global';
 const TopTab = createMaterialTopTabNavigator();
 const PaidAccident = ({route, navigation, position, state}) => {

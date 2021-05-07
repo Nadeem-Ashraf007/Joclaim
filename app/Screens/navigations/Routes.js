@@ -26,7 +26,7 @@ import Paid from '../Requests/Paid';
 import CardAccident from '../Accident/CardAccident';
 import OpenAccident from '../Accident/OpenAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
-import PaidAccidentDetails from '../Requests/PaidAccidentDetails';
+import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
 const Stack = createStackNavigator();
 const Routes = () => {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);

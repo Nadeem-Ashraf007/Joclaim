@@ -2,8 +2,8 @@ import React from 'react';
 import {Alert} from 'react-native';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Global} from '../Components/Global';
-import colors from '../config/colors';
+import {Global} from '../../Components/Global';
+import colors from '../../config/colors';
 
 const PaiddetailCard = ({
   style,
@@ -23,7 +23,7 @@ const PaiddetailCard = ({
   return (
     <View style={[styles.card, style]}>
       <View style={{flexDirection: 'row'}}>
-        <Image style={styles.imag} source={require('../images/ICON.png')} />
+        <Image style={styles.imag} source={require('../../images/ICON.png')} />
 
         <View style={{marginHorizontal: 10}}>
           <View style={{flexDirection: 'row'}}>

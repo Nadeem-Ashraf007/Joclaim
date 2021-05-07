@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  ActivityIndicator,
   StyleSheet,
   FlatList,
+  ActivityIndicator,
+  Image,
 } from 'react-native';
-import colors from '../config/colors';
-import AccidentDetail from '../Accident/AccidentDetail';
-import {Global} from '../Components/Global';
-const AccidentDetails = ({route, style}) => {
-  const [additionalRequest, setadditionalRequest] = useState([]);
+import colors from '../../config/colors';
+import {Global} from '../../Components/Global';
+
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+const OrderParts = () => {
   const [Request, setRequest] = useState([]);
   const [loading, setLoadng] = useState(true);
-  // const RequestID = route.params.id;
-
   useEffect(() => {
     getAccidentDetails();
   }, []);
@@ -38,9 +38,9 @@ const AccidentDetails = ({route, style}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson;
-          // const markers = responseJson.AccidentMarkers;
-          setadditionalRequest(responce);
-          setRequest(responce.AccidentMarkers);
+
+          setRequest(responce.Request);
+          // alert(Request.ESignatureURL);
           // alert(responce.RequestedParts[0].AutomotivePartName);
           // setPartDetail(responce.RequestedParts);
           // setPartApprove(responce.PartsApprovedBySignatures);
@@ -64,31 +64,23 @@ const AccidentDetails = ({route, style}) => {
   }
 
   return (
-    <View>
-      <Text
-        style={{
-          fontSize: 20,
-          marginHorizontal: 7,
-          color: colors.primary,
-          fontWeight: 'bold',
-        }}>
-        Markers
+    <View style={{marginHorizontal: 10}}>
+      <Text style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
+        Approval info
       </Text>
-      <FlatList
-        // inverted
-        data={Request}
-        keyExtractor={(markers) => markers.DamagePointID.toString()}
-        initialNumToRender={10}
-        // ItemSeparatorComponent={ListItemSeperator}
-        renderItem={({item}) => (
-          <AccidentDetail
-            DamagePointID={item.DamagePointID}
-            PointName={item.PointName}
-          />
-        )}
+
+      <Image
+        style={{width: 200, height: 50, resizeMode: 'cover'}}
+        source={{uri: Global.apiurl + Request.ESignatureURL}}
       />
+      <View style={{flexDirection: 'row'}}>
+        <Text>{Request.UserName}</Text>
+        <Icon name="check" size={20} />
+        <Text>Approved</Text>
+      </View>
+      <Text>{Request.CreatedOn}</Text>
     </View>
   );
 };
 
-export default AccidentDetails;
+export default OrderParts;

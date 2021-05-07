@@ -6,9 +6,9 @@ import {
   FlatList,
   ActivityIndicator,
 } from 'react-native';
-import PaiddetailCard from '../Requests/PaiddetailCard';
-import colors from '../config/colors';
-import {Global} from '../Components/Global';
+import PaiddetailCard from './PaiddetailCard';
+import colors from '../../config/colors';
+import {Global} from '../../Components/Global';
 const PaidAccidentDetails = ({route, style}) => {
   const [additionalRequest, setadditionalRequest] = useState([]);
   const [Request, setRequest] = useState([]);
