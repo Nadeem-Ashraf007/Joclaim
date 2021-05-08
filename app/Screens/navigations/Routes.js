@@ -26,6 +26,7 @@ import Paid from '../Requests/Paid';
 import CardAccident from '../Accident/CardAccident';
 import OpenAccident from '../Accident/OpenAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
+import UserProfile from '../Profile/UserProfile';
 import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
 const Stack = createStackNavigator();
 const Routes = () => {
@@ -100,6 +101,14 @@ const Routes = () => {
               //   headerTitle: () => <Header navigation={navigation} />,
               // })}
             />
+            {/* <Stack.Screen
+              name="UserProfile"
+              component={UserProfile}
+              // options={{headerShown: false}}
+              // options={({navigation}) => ({
+              //   headerTitle: () => <Header navigation={navigation} />,
+              // })}
+            /> */}
             <Stack.Screen
               name="OpenAccident"
               component={OpenAccident}

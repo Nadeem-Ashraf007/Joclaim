@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import {View, StyleSheet, ActivityIndicator} from 'react-native';
 import {Global} from '../Constants/Global';
+import colors from '../Constants/colors';
 import UserCard from './UserCard';
 const UserProfile = () => {
   const [profile, setProfile] = useState([]);
-  // const [badge, setbadge] = useState(Global.badge);
-  // Global.badge = badge;
+  const [loading, setloading] = useState(true);
   useEffect(() => {
     (async () => {
       getData();
@@ -36,20 +36,24 @@ const UserProfile = () => {
         .then((responseJson) => {
           const responce = responseJson.EmployeeObj;
           setProfile(responce);
-          // alert(JSON.stringify(profile));
-          // alert('badge' + JSON.stringify(badge));
-          // console.log('Nadeem' + JSON.stringify(profile));
-
-          // console.log('Nadeem ' + JSON.stringify(responseJson));
-          // setData(responseJson);
-          // console.log('global' + Global.companyId);
-          // console.log('Request' + JSON.stringify(responseJson));
+          setloading(false);
         });
     } catch (e) {
       alert(e);
     }
   };
-
+  if (loading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator size="large" color={colors.secondary} />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <UserCard
