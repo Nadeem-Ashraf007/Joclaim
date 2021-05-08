@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
-import colors from '../config/colors';
-import {Global} from '../Components/Global';
+import colors from '../Constants/colors';
+import {Global} from '../Constants/Global';
 import {WebView} from 'react-native-webview';
 
 const ClearanceSummary = ({route}) => {

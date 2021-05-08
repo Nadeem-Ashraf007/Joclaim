@@ -10,8 +10,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 
-import colors from '../config/colors';
-import {Global} from '../Components/Global';
+import colors from '../Constants/colors';
+import {Global} from '../Constants/Global';
 import AccidentDetail from './AccidentDetail';
 
 // import UCard from '../UserCard';
@@ -49,17 +49,6 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
           setdata(responce.Accident);
           setMarker(responce.AccidentMarkers);
           setLoadng(false);
-          // alert(marker);
-
-          // console.log('check itt  ttt' + JSON.stringify(marker));
-
-          // alert('badge' + JSON.stringify(badge));
-          // console.log('Nadeem' + JSON.stringify(accident));
-          // alert('Nadeem' + JSON.stringify(accident));
-          // console.log('Nadeem ' + JSON.stringify(responseJson));
-          // setData(responseJson);
-          // console.log('global' + Global.companyId);
-          // console.log('Request' + JSON.stringify(responseJson));
         });
     } catch (e) {
       alert(e);

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text} from 'react-native';
-import colors from './config/colors';
+import colors from './Constants/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Screen from './Components/Sacreen';
-import Header from './Components/Header';
+import Screen from './Constants/Sacreen';
+import Header from './Constants/Header';
 const Request = ({navigation}) => {
   const getData = async () => {
     try {

@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Opened from '../Accident/Opened';
 import Closed from '../Accident/Closed';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import Deleted from '../Accident/Deleted';
-import {Global} from '../Components/Global';
+import {Global} from '../Constants/Global';
 const TopTab = createMaterialTopTabNavigator();
 const AccidentsTopNav = ({userData}) => {
   const data = userData.users.filter((r) => r.StatusID == 21);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, View, StyleSheet, Image, Alert} from 'react-native';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import {
   useTheme,
   Avatar,
@@ -21,10 +21,10 @@ import {
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
-import {AuthContext} from '../Components/context';
+import {AuthContext} from '../Constants/context';
 
-import {Global} from '../Components/Global';
-import Strings from '../pages/LocalizedString';
+import {Global} from '../Constants/Global';
+import Strings from '../localization/LocalizedString';
 
 const CustomSidebarMenu = (props) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);

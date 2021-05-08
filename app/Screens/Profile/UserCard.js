@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
-import {Global} from '../Components/Global';
-import colors from '../config/colors';
+import {Global} from '../Constants/Global';
+import colors from '../Constants/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const UserCard = ({style, FirstName, PhoneNumber, Email, image}) => {
   return (

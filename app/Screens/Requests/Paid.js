@@ -1,17 +1,9 @@
-import React, {useState, useLayoutEffect, useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  ActivityIndicator,
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, StyleSheet, FlatList, ActivityIndicator} from 'react-native';
 import CardRequests from './CardRequests';
-import colors from '../config/colors';
-import Screen from '../Components/Sacreen';
-import {Global} from '../Components/Global';
-import AsyncStorage from '@react-native-community/async-storage';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import colors from '../Constants/colors';
+import Screen from '../Constants/Sacreen';
+import {Global} from '../Constants/Global';
 
 const Paid = ({navigation}) => {
   const [Make, setMake] = useState([]);
@@ -21,7 +13,7 @@ const Paid = ({navigation}) => {
   useEffect(() => {
     getData();
   }, []);
-  console.log(Make);
+
   const getData = () => {
     try {
       fetch(
@@ -46,17 +38,9 @@ const Paid = ({navigation}) => {
             (r) => r.StatusID == 17,
           );
           setMake(paidResponce);
-          console.log('Responce' + Make);
+
           setBadgeicon(paidResponce.length);
           setLoading(false);
-          // alert(badgeicon);
-          // alert(JSON.stringify(Make[0].ArabicMakeName));
-          // console.log('Nadeem ' + JSON.stringify(responseJson));
-          // setData(responseJson);
-          // console.log('global' + Global.companyId);
-          // console.log('Request' + JSON.stringify(responseJson));
-
-          // console.log('Fetch Data Responce', responseJson);
         });
     } catch (e) {
       alert(e);
@@ -135,13 +119,3 @@ const styles = StyleSheet.create({
   },
 });
 export default Paid;
-
-{
-  /* <FlatList
-          data={data}
-          renderItem={({item}) => (
-            <Cards style={styles.card}>{item.RequestID}</Cards>
-          )}
-          keyExtractor={(index) => index}
-        /> */
-}

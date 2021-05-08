@@ -3,8 +3,8 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 import UpdateAccident from '../Accident/UpdateAccident';
 import WorkshhopFinding from '../Accident/WorkshhopFinding';
 
-import {Global} from '../Components/Global';
-import colors from '../config/colors';
+import {Global} from '../Constants/Global';
+import colors from '../Constants/colors';
 const TopTab = createMaterialTopTabNavigator();
 const UpdateAccidents = () => {
   return (

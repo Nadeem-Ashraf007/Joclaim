@@ -11,8 +11,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
-import colors from '../config/colors';
-import {Global} from '../Components/Global';
+import colors from '../Constants/colors';
+import {Global} from '../Constants/Global';
 import AccidentDetail from '../Accident/AccidentDetail';
 import AccidentNote from '../Accident/AccidentNote';
 const UpdateAccident = ({route, style}) => {

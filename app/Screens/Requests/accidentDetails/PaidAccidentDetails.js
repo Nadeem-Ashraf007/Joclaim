@@ -7,8 +7,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import PaiddetailCard from './PaiddetailCard';
-import colors from '../../config/colors';
-import {Global} from '../../Components/Global';
+import colors from '../../Constants/colors';
+import {Global} from '../../Constants/Global';
 const PaidAccidentDetails = ({route, style}) => {
   const [additionalRequest, setadditionalRequest] = useState([]);
   const [Request, setRequest] = useState([]);

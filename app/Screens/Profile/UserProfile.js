@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
-import {Global} from '../Components/Global';
+import {Global} from '../Constants/Global';
 import UserCard from './UserCard';
 const UserProfile = () => {
   const [profile, setProfile] = useState([]);

@@ -7,8 +7,8 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
-import colors from '../../config/colors';
-import {Global} from '../../Components/Global';
+import colors from '../../Constants/colors';
+import {Global} from '../../Constants/Global';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 

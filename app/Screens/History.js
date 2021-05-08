@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Sacreen from './Components/Sacreen';
-import Header from './Components/Header';
-import colors from './config/colors';
+import Sacreen from './Constants/Sacreen';
+import Header from './Constants/Header';
+import colors from './Constants/colors';
 
 const History = ({navigation}) => {
   React.useLayoutEffect(() => {

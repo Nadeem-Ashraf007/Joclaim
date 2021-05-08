@@ -9,14 +9,14 @@ import {
   TouchableWithoutFeedback,
   Text,
 } from 'react-native';
-import colors from './config/colors';
-import Header from './Components/Header';
+import colors from './Constants/colors';
+import Header from './Constants/Header';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-community/async-storage';
-import Opacity from './Components/Opacity';
+import Opacity from './Constants/Opacity';
 import Toast from 'react-native-simple-toast';
-import {Global} from './Components/Global';
-import Strings from './pages/LocalizedString';
+import {Global} from './Constants/Global';
+import Strings from './localization/LocalizedString';
 const ForgetPassword = ({route}) => {
   const validate = () => {
     let reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;

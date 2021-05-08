@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 
 const Opacity = ({onPress, title, style, icon}) => {
   return (

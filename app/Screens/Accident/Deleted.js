@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {View, Text, FlatList, ActivityIndicator} from 'react-native';
 import CardAccident from './CardAccident';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import {fetchUsers} from '../redux/accident/accidentAction';
 const Deleted = ({userData, fetchUsers}) => {
   const Delete = userData.users.filter((r) => r.IsDeleted == true);

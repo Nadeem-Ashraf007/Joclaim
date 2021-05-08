@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import colors from '../config/colors';
-import {Global} from '../Components/Global';
+import colors from '../Constants/colors';
+import {Global} from '../Constants/Global';
 const CardRequests = ({
   style,
   makename,

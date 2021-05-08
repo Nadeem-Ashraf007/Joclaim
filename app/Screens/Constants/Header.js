@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Header = ({title, navigation}) => {

@@ -2,9 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {View, FlatList, ActivityIndicator, Text} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchUsers} from '../redux/accident/accidentAction';
-import {Global} from '../Components/Global';
 import CardAccident from './CardAccident';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 const Closed = ({userData, fetchUsers, navigation}) => {
   const close = userData.users.filter((r) => r.StatusID == 21);
   useEffect(() => {

@@ -6,9 +6,9 @@ import {
   StyleSheet,
   FlatList,
 } from 'react-native';
-import colors from '../../config/colors';
+import colors from '../../Constants/colors';
 import AccidentDetail from '../../Accident/AccidentDetail';
-import {Global} from '../../Components/Global';
+import {Global} from '../../Constants/Global';
 const AccidentDetails = ({route, style}) => {
   const [additionalRequest, setadditionalRequest] = useState([]);
   const [Request, setRequest] = useState([]);

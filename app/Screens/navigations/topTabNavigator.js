@@ -8,10 +8,10 @@ import Paid from '../Requests/Paid';
 import Cancelled from '../Cancelled';
 import Closed from '../Accident/Closed';
 import Deleted from '../Accident/Deleted';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import {Text} from 'react-native-elements';
-import {Global} from '../Components/Global';
-import Strings from '../pages/LocalizedString';
+import {Global} from '../Constants/Global';
+import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const topTabNavigator = ({userData}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);

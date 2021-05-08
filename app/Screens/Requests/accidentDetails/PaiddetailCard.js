@@ -1,9 +1,8 @@
 import React from 'react';
-import {Alert} from 'react-native';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Global} from '../../Components/Global';
-import colors from '../../config/colors';
+import {Global} from '../../Constants/Global';
+import colors from '../../Constants/colors';
 
 const PaiddetailCard = ({
   style,

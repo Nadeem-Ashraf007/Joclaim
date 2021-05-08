@@ -3,7 +3,7 @@ import {
   FETCH_USERS_SUCCESS,
   FETCH_USERS_FAILURE,
 } from '../accident/accidentTypes';
-import {Global} from '../../Components/Global';
+import {Global} from '../../Constants/Global';
 export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(fetchUsersRequest());

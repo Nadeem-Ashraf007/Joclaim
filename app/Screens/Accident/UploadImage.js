@@ -10,7 +10,7 @@ import {
 import ImagePicker from 'react-native-image-crop-picker';
 
 import Icon from 'react-native-vector-icons/Ionicons';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 // import {
 //   ImagePicker,
 //   launchCamera,

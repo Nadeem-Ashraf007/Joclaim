@@ -15,13 +15,13 @@ import {
   Button,
 } from 'react-native';
 import Auth from './navigations/Auth';
-import Opacity from './Components/Opacity';
-import colors from './config/colors';
+import Opacity from './Constants/Opacity';
+import colors from './Constants/colors';
 import Icon from 'react-native-vector-icons/Entypo';
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from '@react-native-community/async-storage';
-import Strings from './pages/LocalizedString';
-import {Global} from './Components/Global';
+import Strings from './localization/LocalizedString';
+import {Global} from './Constants/Global';
 const Login = ({navigation}) => {
   const [email, setemail] = React.useState('wo1@joclaims.com');
   const [password, setPassword] = React.useState('123456');

@@ -7,12 +7,12 @@ import {
 } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import DrawerNavigator from './DrawerNavigator';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import Auth from './Auth';
 import Splash from '../Splash';
 import PaidAccident from './PaidAccident';
 import UpdateAccidents from './UpdateAccidents';
-import {AuthContext} from '../Components/context';
+import {AuthContext} from '../Constants/context';
 import {
   Provider as PaperProvider,
   DarkTheme as PaperDarkTheme,

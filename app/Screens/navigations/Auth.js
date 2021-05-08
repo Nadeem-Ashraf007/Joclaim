@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from '../Login';
 import ForgetPassword from '../ForgetPassword';
-import Strings from '../pages/LocalizedString';
+import Strings from '../localization/LocalizedString';
 const Stack = createStackNavigator();
 const Auth = () => {
   return (

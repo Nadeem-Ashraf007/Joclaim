@@ -4,10 +4,10 @@ import OrderParts from '../Requests/accidentDetails/OrderParts';
 import RecycledParts from '../Requests/accidentDetails/RecycledParts';
 import AccidentDetails from '../Requests/accidentDetails/AccidentDetails';
 import TaskDetail from '../Requests/accidentDetails/TaskDetail';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 import Paid from '../Requests/Paid';
 import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
-import {Global} from '../Components/Global';
+import {Global} from '../Constants/Global';
 const TopTab = createMaterialTopTabNavigator();
 const PaidAccident = ({route, navigation, position, state}) => {
   const [badge, setbadge] = React.useState(Global.badge);

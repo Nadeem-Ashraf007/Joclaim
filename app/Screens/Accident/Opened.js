@@ -1,5 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
   View,
@@ -10,11 +9,9 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {fetchUsers} from '../redux/accident/accidentAction';
-// import CardAccident from '../Parts/CardRequests';
 import CardAccident from './CardAccident';
-import colors from '../config/colors';
+import colors from '../Constants/colors';
 const Opened = ({navigation, userData, fetchUsers}) => {
-  // const [data, setdata] = useState();
   const data = userData.users.filter((r) => r.StatusID == 20);
   useEffect(() => {
     fetchUsers();

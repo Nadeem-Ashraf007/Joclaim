@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Image, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
-import {Global} from './Components/Global';
-import Strings from './pages/LocalizedString';
+import {Global} from './Constants/Global';
+import Strings from './localization/LocalizedString';
 const getToken = async () => {
   try {
     AsyncStorage.multiGet([
