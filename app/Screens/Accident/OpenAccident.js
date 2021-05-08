@@ -12,7 +12,7 @@ import {
 
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
-import AccidentDetail from './AccidentDetail';
+import AccidentDetail from '../Accident/updateAccident/AccidentDetail';
 
 // import UCard from '../UserCard';
 const OpenAccident = ({navigation, route, style, MakeName}) => {

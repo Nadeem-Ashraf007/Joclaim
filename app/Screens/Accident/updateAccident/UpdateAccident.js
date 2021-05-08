@@ -11,10 +11,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
-import colors from '../Constants/colors';
-import {Global} from '../Constants/Global';
-import AccidentDetail from '../Accident/AccidentDetail';
-import AccidentNote from '../Accident/AccidentNote';
+import colors from '../../Constants/colors';
+import {Global} from '../../Constants/Global';
+import AccidentDetail from './AccidentDetail';
+import AccidentNote from '../AccidentNote';
 const UpdateAccident = ({route, style}) => {
   const [data, setdata] = useState([]);
   const [marker, setmarker] = useState([]);

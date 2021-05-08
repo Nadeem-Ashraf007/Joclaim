@@ -13,11 +13,11 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from 'react-native';
-import UploadImage from '../Accident/UploadImage';
+import UploadImage from './UploadImage';
 import {RadioButton} from 'react-native-paper';
-import colors from '../Constants/colors';
-import {Global} from '../Constants/Global';
-import CardAccident from '../Accident/CardAccident';
+import colors from '../../Constants/colors';
+import {Global} from '../../Constants/Global';
+import CardAccident from '../CardAccident';
 import {CustomPicker} from 'react-native-custom-picker';
 import icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const WorkshhopFinding = () => {

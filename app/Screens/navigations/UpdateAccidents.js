@@ -1,8 +1,7 @@
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import UpdateAccident from '../Accident/UpdateAccident';
-import WorkshhopFinding from '../Accident/WorkshhopFinding';
-
+import UpdateAccident from '../Accident/updateAccident/UpdateAccident';
+import WorkshhopFinding from '../Accident/updateAccident/WorkshhopFinding';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
 const TopTab = createMaterialTopTabNavigator();

@@ -7,7 +7,7 @@ import {
   FlatList,
 } from 'react-native';
 import colors from '../../Constants/colors';
-import AccidentDetail from '../../Accident/AccidentDetail';
+import AccidentDetail from '../../Accident/updateAccident/AccidentDetail';
 import {Global} from '../../Constants/Global';
 const AccidentDetails = ({route, style}) => {
   const [additionalRequest, setadditionalRequest] = useState([]);
