@@ -1,4 +1,6 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {fetchUser} from '../redux/request/requestAction';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../Constants/colors';
@@ -22,7 +24,13 @@ const CardRequests = ({
   viewAccident,
   SerialNo,
   RequestRowNumber,
+  userData,
+  viewQutationsummary,
+  printAllOffers,
+  viewRequestLog,
+  ready,
 }) => {
+  const Delive = userData.request.filter((r) => r.StatusID == 17);
   return (
     <View style={[styles.card, style]}>
       <View>{/* <Text>palte numbert</Text> */}</View>
@@ -51,6 +59,22 @@ const CardRequests = ({
           </View>
         </View>
       </View> */}
+      <View>
+        {ready && (
+          <Text
+            style={{
+              backgroundColor: colors.primaryDark,
+              color: colors.white,
+              padding: 5,
+              width: '40%',
+              textAlign: 'center',
+              fontSize: 15,
+              borderRadius: 5,
+            }}>
+            Car is Ready
+          </Text>
+        )}
+      </View>
 
       <View style={{flexDirection: 'row'}}>
         {image && (
@@ -198,6 +222,36 @@ const CardRequests = ({
                 size={24}
               />
             </TouchableOpacity>
+            {viewQutationsummary && (
+              <TouchableOpacity onPress={viewQutationsummary}>
+                <Icon
+                  name="file-document-outline"
+                  style={{marginHorizontal: 10}}
+                  color={colors.opacity}
+                  size={24}
+                />
+              </TouchableOpacity>
+            )}
+            {printAllOffers && (
+              <TouchableOpacity onPress={printAllOffers}>
+                <Icon
+                  name="arrange-send-backward"
+                  style={{marginHorizontal: 10}}
+                  color={colors.opacity}
+                  size={24}
+                />
+              </TouchableOpacity>
+            )}
+            {viewRequestLog && (
+              <TouchableOpacity onPress={viewRequestLog}>
+                <Icon
+                  name="clock-check"
+                  style={{marginHorizontal: 10}}
+                  color={colors.opacity}
+                  size={24}
+                />
+              </TouchableOpacity>
+            )}
           </View>
         </View>
       </View>
@@ -223,7 +277,7 @@ const styles = StyleSheet.create({
   },
   imag: {
     width: '35%',
-    height: 100,
+    height: 90,
     resizeMode: 'cover',
     borderRadius: 30,
   },
@@ -237,5 +291,14 @@ const styles = StyleSheet.create({
     borderTopColor: colors.darkgray,
   },
 });
-
-export default CardRequests;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.reques,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUser: () => dispatch(fetchUser()),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(CardRequests);

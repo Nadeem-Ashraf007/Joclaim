@@ -5,14 +5,15 @@ import {
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import colors from '../Constants/colors';
 import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Paid = ({navigation, userData, fetchUser}) => {
-  const paid = userData.request.filter((r) => r.StatusID == 17);
+const Delivered = ({navigation, userData, fetchUser}) => {
+  const Deliver = userData.request.filter((r) => r.StatusID == 11);
   useEffect(() => {
     fetchUser();
   }, []);
@@ -31,7 +32,7 @@ const Paid = ({navigation, userData, fetchUser}) => {
   ) : (
     <View style={styles.container}>
       <FlatList
-        data={paid}
+        data={Deliver}
         keyExtractor={(delivers) => delivers.RequestID.toString()}
         initialNumToRender={10}
         // ItemSeparatorComponent={ListItemSeperator}
@@ -39,6 +40,7 @@ const Paid = ({navigation, userData, fetchUser}) => {
           <CardRequests
             style={styles.card}
             image={item.ImgURL}
+            ready
             YearCode={item.YearCode}
             MakeName={item.MakeName}
             ModelCode={item.ModelCode}
@@ -63,6 +65,16 @@ const Paid = ({navigation, userData, fetchUser}) => {
               })
             }
             viewAccident={() =>
+              navigation.navigate('OpenAccident', {
+                id: item.AccidentID,
+              })
+            }
+            viewQutationsummary={() =>
+              navigation.navigate('OpenAccident', {
+                id: item.AccidentID,
+              })
+            }
+            printAllOffers={() =>
               navigation.navigate('OpenAccident', {
                 id: item.AccidentID,
               })
@@ -97,4 +109,4 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Paid);
+export default connect(mapStateToProps, mapDispatchToProps)(Delivered);

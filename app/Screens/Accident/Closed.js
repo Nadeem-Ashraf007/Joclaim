@@ -5,7 +5,6 @@ import {fetchUsers} from '../redux/accident/accidentAction';
 import CardAccident from './CardAccident';
 import colors from '../Constants/colors';
 const Closed = ({userData, fetchUsers, navigation}) => {
-  const [state, setstate] = useState(initialState);
   const close = userData.users.filter((r) => r.StatusID == 21);
   useEffect(() => {
     fetchUsers();

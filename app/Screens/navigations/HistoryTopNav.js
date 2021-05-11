@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Canceled from '../Cancelled';
+import Canceled from '../Requests/Cancelled';
 import Closed from '../Accident/Closed';
 import colors from '../Constants/colors';
 import Deleted from '../Accident/Deleted';

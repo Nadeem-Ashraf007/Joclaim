@@ -1,23 +1,29 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import OrderPlaced from '../OrderPlaced';
+import OrderPlaced from '../Requests/OrderPlaced';
 import {connect} from 'react-redux';
-import Delivered from '../Delivered';
+import Delivered from '../Requests/Delivered';
 import Paid from '../Requests/Paid';
-import Cancelled from '../Cancelled';
+import Cancelled from '../Requests/Cancelled';
 import Closed from '../Accident/Closed';
 import Deleted from '../Accident/Deleted';
+import RequetClosed from '../Requests/RequestClosed';
+import RequestDeleted from '../Requests/RequestDeleted';
 import colors from '../Constants/colors';
 import {Text} from 'react-native-elements';
 import {Global} from '../Constants/Global';
 import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
-const topTabNavigator = ({userData}) => {
+const topTabNavigator = ({userData, userRequest}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
-  const data = userData.users.filter((r) => r.StatusID == 21);
-  const Delete = userData.users.filter((r) => r.IsDeleted == true);
-  const closeIcon = data.length;
+  const paid = userRequest.request.filter((r) => r.StatusID == 17);
+  const Delete = userRequest.request.filter((r) => r.IsDeleted == true);
+  const Delivers = userRequest.request.filter((r) => r.StatusID == 11);
+  const requestClosed = userRequest.request.filter((r) => r.StatusID == 18);
+  const close = requestClosed.length;
+  const deliver = Delivers.length;
+  const RequestPaid = paid.length;
   const deleteIcon = Delete.length;
   return (
     <TopTab.Navigator
@@ -63,7 +69,7 @@ const topTabNavigator = ({userData}) => {
           tabBarLabel: Strings.delivered,
           tabBarIcon: () => (
             <View style={styles.Delivericon}>
-              <Text style={styles.badgeicontext}>0</Text>
+              <Text style={styles.badgeicontext}>{deliver ? deliver : 0}</Text>
             </View>
           ),
         }}
@@ -77,7 +83,7 @@ const topTabNavigator = ({userData}) => {
           tabBarIcon: () => (
             <View style={styles.paidicon}>
               <Text style={styles.badgeicontext}>
-                {Global.badgeicon ? Global.badgeicon : 0}
+                {RequestPaid ? RequestPaid : 0}
               </Text>
             </View>
           ),
@@ -97,21 +103,19 @@ const topTabNavigator = ({userData}) => {
       />
       <TopTab.Screen
         name="Closed"
-        component={Closed}
+        component={RequetClosed}
         options={{
           tabBarLabel: Strings.closed,
           tabBarIcon: () => (
             <View style={styles.closeicon}>
-              <Text style={styles.badgeicontext}>
-                {closeIcon ? closeIcon : 0}
-              </Text>
+              <Text style={styles.badgeicontext}>{close ? close : 0}</Text>
             </View>
           ),
         }}
       />
       <TopTab.Screen
         name="Delete"
-        component={Deleted}
+        component={RequestDeleted}
         options={{
           tabBarLabel: Strings.deleted,
           tabBarIcon: () => (
@@ -172,11 +176,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     userData: state.user,
+    userRequest: state.reques,
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchUsers: () => dispatch(fetchUsers()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(topTabNavigator);
+
+export default connect(mapStateToProps)(topTabNavigator);

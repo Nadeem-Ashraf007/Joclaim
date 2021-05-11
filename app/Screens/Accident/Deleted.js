@@ -5,7 +5,6 @@ import CardAccident from './CardAccident';
 import colors from '../Constants/colors';
 import {fetchUsers} from '../redux/accident/accidentAction';
 const Deleted = ({userData, fetchUsers}) => {
-  const [state, setstate] = useState(initialState);
   const Delete = userData.users.filter((r) => r.IsDeleted == true);
   useEffect(() => {
     fetchUsers();

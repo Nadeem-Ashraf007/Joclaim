@@ -11,8 +11,8 @@ import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const Paid = ({navigation, userData, fetchUser}) => {
-  const paid = userData.request.filter((r) => r.StatusID == 17);
+const RequestDeleted = ({navigation, userData, fetchUser}) => {
+  const Deleted = userData.request.filter((r) => r.IsDeleted == true);
   useEffect(() => {
     fetchUser();
   }, []);
@@ -31,7 +31,7 @@ const Paid = ({navigation, userData, fetchUser}) => {
   ) : (
     <View style={styles.container}>
       <FlatList
-        data={paid}
+        data={Deleted}
         keyExtractor={(delivers) => delivers.RequestID.toString()}
         initialNumToRender={10}
         // ItemSeparatorComponent={ListItemSeperator}
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Paid);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestDeleted);

@@ -10,7 +10,7 @@ import BranchList from '../BranchList';
 // import BranchList from '../BranchList';
 import Accidents from '../Accident/Accidents';
 import AccidentsTopNav from './AccidentsTopNav';
-import History from '../History';
+import History from '../History/History';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
 const Tab = createBottomTabNavigator();
