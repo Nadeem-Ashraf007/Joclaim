@@ -29,6 +29,7 @@ const CardRequests = ({
   printAllOffers,
   viewRequestLog,
   ready,
+  POTotalAmount,
 }) => {
   const Delive = userData.request.filter((r) => r.StatusID == 17);
   return (
@@ -69,7 +70,7 @@ const CardRequests = ({
               width: '40%',
               textAlign: 'center',
               fontSize: 15,
-              borderRadius: 5,
+              borderRadius: 10,
             }}>
             Car is Ready
           </Text>
@@ -154,7 +155,9 @@ const CardRequests = ({
             <Text style={{color: colors.primary, fontSize: 17}}>
               PO Amount:
             </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>----</Text>
+            <Text style={{fontSize: 16, marginHorizontal: 5}}>
+              {POTotalAmount} JOD
+            </Text>
           </View>
           <View
             style={{
@@ -167,35 +170,10 @@ const CardRequests = ({
                 backgroundColor: colors.secondary,
                 color: colors.white,
                 padding: 2,
+                borderTopRightRadius: 10,
+                borderBottomLeftRadius: 10,
               }}>
-              {SerialNo}
-            </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                backgroundColor: colors.secondary,
-                color: colors.white,
-                padding: 2,
-              }}>
-              /
-            </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                backgroundColor: colors.secondary,
-                color: colors.white,
-                padding: 2,
-              }}>
-              {RequestRowNumber}
-            </Text>
-            <Text
-              style={{
-                fontSize: 16,
-                backgroundColor: colors.secondary,
-                color: colors.white,
-                padding: 2,
-              }}>
-              R
+              {SerialNo}/{RequestRowNumber}R
             </Text>
           </View>
 
@@ -227,7 +205,7 @@ const CardRequests = ({
                 <Icon
                   name="file-document-outline"
                   style={{marginHorizontal: 10}}
-                  color={colors.opacity}
+                  color={colors.darkGray}
                   size={24}
                 />
               </TouchableOpacity>

@@ -31,6 +31,7 @@ const Login = ({navigation}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
   // const [state, setstate] = useState(initialState)
   // console.log('nadeem', !changeView);
+
   const changeLanguage = (value) => {
     Strings.setLanguage(value);
   };

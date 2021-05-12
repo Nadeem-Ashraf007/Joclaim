@@ -29,6 +29,7 @@ const WorkshhopFinding = () => {
   const [check, setcheck] = useState();
   const [picker, setpicker] = useState();
   // const accidentid = route.params.id;
+
   useEffect(() => {
     getData();
   });

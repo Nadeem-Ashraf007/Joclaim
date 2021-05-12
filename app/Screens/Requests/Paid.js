@@ -10,7 +10,6 @@ import colors from '../Constants/colors';
 import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Paid = ({navigation, userData, fetchUser}) => {
   const paid = userData.request.filter((r) => r.StatusID == 17);
   useEffect(() => {

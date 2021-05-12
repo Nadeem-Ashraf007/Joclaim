@@ -56,6 +56,7 @@ const RequestClosed = ({userData, fetchUser, navigation}) => {
             PlateNo={item.PlateNo}
             SerialNo={item.SerialNo}
             RequestRowNumber={item.RequestRowNumber}
+            POTotalAmount={item.POTotalAmount}
             viewRequest={() =>
               navigation.navigate('PaidAccident', {
                 params: {
