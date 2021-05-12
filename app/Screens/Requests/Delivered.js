@@ -5,15 +5,14 @@ import {
   FlatList,
   ActivityIndicator,
   StyleSheet,
-  TouchableOpacity,
 } from 'react-native';
 import colors from '../Constants/colors';
 import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const Delivered = ({navigation, userData, fetchUser}) => {
   const Deliver = userData.request.filter((r) => r.StatusID == 11);
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -71,8 +70,9 @@ const Delivered = ({navigation, userData, fetchUser}) => {
               })
             }
             viewQutationsummary={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
+              navigation.navigate('DeliveredQutation', {
+                demandId: item.DemandID,
+                userid: item.UserID,
               })
             }
             printAllOffers={() =>
@@ -91,6 +91,7 @@ const Delivered = ({navigation, userData, fetchUser}) => {
     </View>
   );
 };
+
 const mapStateToProps = (state) => {
   return {
     userData: state.reques,
