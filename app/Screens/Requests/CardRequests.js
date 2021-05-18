@@ -34,32 +34,6 @@ const CardRequests = ({
   const Delive = userData.request.filter((r) => r.StatusID == 17);
   return (
     <View style={[styles.card, style]}>
-      <View>{/* <Text>palte numbert</Text> */}</View>
-
-      {/* <View style={{flexDirection: 'row'}}>
-        {image && (
-          <Image
-            style={styles.imag}
-            source={{uri: 'https://qapi.joclaims.com/' + image}}
-          />
-        )}
-        <Text style={styles.text}>{MakeName}</Text>
-        <Text style={[styles.text, {marginHorizontal: 5}]}>{ModelCode}</Text>
-        <Text style={[styles.text, {marginHorizontal: 5}]}>{YearCode}</Text>
-
-        <View>
-          <Text style={{fontSize: 15, marginBottom: 5}}>{makename}</Text>
-          <View style={{flexDirection: 'row'}}>
-            <Icon
-              style={{marginHorizontal: 5}}
-              name="mail"
-              size={20}
-              color={colors.primary}
-            />
-            <Text style={{marginBottom: 10}}>{BiddingDateTime}</Text>
-          </View>
-        </View>
-      </View> */}
       <View>
         {ready && (
           <Text
@@ -103,7 +77,7 @@ const CardRequests = ({
               }}>
               Created by:
             </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>{makename}</Text>
+            <Text style={styles.innerText}>{makename}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
             <Icon
@@ -120,44 +94,28 @@ const CardRequests = ({
       <View style={styles.container}>
         <View style={styles.lastcontainer}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>
-              Workshome name:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {WorkshopName}
-            </Text>
+            <Text style={styles.headingText}>Workshome name:</Text>
+            <Text style={styles.innerText}>{WorkshopName}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>
-              Request Number:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {RequestNumber}
-            </Text>
+            <Text style={styles.headingText}>Request Number:</Text>
+            <Text style={styles.innerText}>{RequestNumber}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>
-              Accident No:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {AccidentNo}
-            </Text>
+            <Text style={styles.headingText}>Accident No:</Text>
+            <Text style={styles.innerText}>{AccidentNo}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>VIN:</Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>{VIN}</Text>
+            <Text style={styles.headingText}>VIN:</Text>
+            <Text style={styles.innerText}>{VIN}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>Plate NO:</Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>{PlateNo}</Text>
+            <Text style={styles.headingText}>Plate NO:</Text>
+            <Text style={styles.innerText}>{PlateNo}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{color: colors.primary, fontSize: 17}}>
-              PO Amount:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {POTotalAmount} JOD
-            </Text>
+            <Text style={styles.headingText}>PO Amount:</Text>
+            <Text style={styles.innerText}>{POTotalAmount} JOD</Text>
           </View>
           <View
             style={{
@@ -267,6 +225,14 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     width: '100%',
     borderTopColor: colors.darkgray,
+  },
+  innerText: {
+    color: colors.black,
+    fontSize: 17,
+  },
+  headingText: {
+    color: colors.primary,
+    fontSize: 17,
   },
 });
 const mapStateToProps = (state) => {

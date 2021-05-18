@@ -12,7 +12,6 @@ import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
 const Delivered = ({navigation, userData, fetchUser}) => {
   const Deliver = userData.request.filter((r) => r.StatusID == 11);
-
   useEffect(() => {
     fetchUser();
   }, []);
@@ -69,22 +68,22 @@ const Delivered = ({navigation, userData, fetchUser}) => {
                 id: item.AccidentID,
               })
             }
-            viewQutationsummary={() =>
-              navigation.navigate('DeliveredQutation', {
-                demandId: item.DemandID,
-                userid: item.UserID,
-              })
-            }
-            printAllOffers={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
-            viewRequestLog={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
+            // viewQutationsummary={() =>
+            //   navigation.navigate('DeliveredQutation', {
+            //     demandId: item.DemandID,
+            //     userid: item.UserID,
+            //   })
+            // }
+            // printAllOffers={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
+            // viewRequestLog={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
           />
         )}
       />

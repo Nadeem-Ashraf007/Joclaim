@@ -7,10 +7,10 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import PaiddetailCard from './PaiddetailCard';
+import RequestCard from '../RequestCard';
 import colors from '../../Constants/colors';
 import {Global} from '../../Constants/Global';
 const PaidAccidentDetails = ({route, style}) => {
-  const [additionalRequest, setadditionalRequest] = useState([]);
   const [Request, setRequest] = useState([]);
   const [loading, setLoadng] = useState(true);
   const RequestID = route.params.id;
@@ -37,22 +37,16 @@ const PaidAccidentDetails = ({route, style}) => {
       )
         .then((response) => response.json())
         .then((responseJson) => {
-          const responce = responseJson;
-          // const markers = responseJson.AccidentMarkers;
-          setadditionalRequest(responce);
-          setRequest(responce.RequestedParts);
-          // alert(responce.RequestedParts[0].AutomotivePartName);
-          // setPartDetail(responce.RequestedParts);
-          // setPartApprove(responce.PartsApprovedBySignatures);
-          //   setAccidentMarker(responce.AccidentMarkers);
-          // alert(PartDetail[0].AutomotivePartName);
-          //   alert(additionalRequest);
-          setLoadng(false);
-
-          //   console.log('check itt  ttt' + JSON.stringify(data));
+          if (responseJson.ok) {
+            const responce = responseJson;
+            setRequest(responce.RequestedParts);
+            setLoadng(false);
+          } else {
+            alert('HTTP-Error: ' + response.status);
+          }
         });
-    } catch (e) {
-      alert(e);
+    } catch (error) {
+      alert(error);
     }
   };
   if (loading) {
@@ -65,218 +59,27 @@ const PaidAccidentDetails = ({route, style}) => {
 
   return (
     <View style={[styles.card, style]}>
-      <Text style={{color: colors.primary, fontSize: 20, fontWeight: 'bold'}}>
-        Additional Accident Details
-      </Text>
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row', marginBottom: 5}}>
-          {/* <Text style={styles.text}>{MakeName}</Text>
-          <Text style={[styles.text, {marginHorizontal: 5}]}>{ModelCode}</Text>
-          <Text style={[styles.text, {marginHorizontal: 5}]}>{YearCode}</Text> */}
-        </View>
-        {/* <Text style={{fontSize: 15, marginBottom: 5}}>make</Text> */}
-
-        <View style={styles.lastcontainer}>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Vehicle Owner Name:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.VehicleOwnerName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Workshop Detail
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.WorkshopName +
-                additionalRequest.Request.WorkshopAreaName +
-                additionalRequest.Request.WorkshopCityName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Car Details:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.MakeName}
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.ModelCode}
-            </Text>
-            <Text style={{fontSize: 16}}>
-              {additionalRequest.Request.YearCode}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Created By
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.AccidentCreatedBy}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident No
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.AccidentNo}
-            </Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Request Number
-            </Text>
-
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.RequestNumber}
-            </Text>
-            <Text style={{fontSize: 16}}>/</Text>
-            <Text style={{fontSize: 16}}>{additionalRequest.SerialNo}</Text>
-            <Text style={{fontSize: 16}}>R</Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Faulty Company Name
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.FaultyCompanyName}
-            </Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Number of Cars Involved
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.CarsInvolved}
-            </Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Plate No:
-            </Text>
-            <Text style={{color: colors.TextValue, fontSize: 15}}>
-              {additionalRequest.Request.PlateNo}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Number:
-            </Text>
-            <Text
-              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.AccidentNo}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              VIN:
-            </Text>
-            <Text
-              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.VIN}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Body Type:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {additionalRequest.Request.BodyTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Type:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {additionalRequest.Request.AccidentTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Responsibility:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {additionalRequest.Request.ResponsibilityTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Work Shop Name:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {additionalRequest.Request.WorkshopName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Car notes
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 16,
-                marginHorizontal: 5,
-                width: '70%',
-              }}>
-              {additionalRequest.Request.ImportantNote}
-            </Text>
-          </View>
-          <View style={{borderBottomWidth: 1}}>
-            <Text
-              style={{
-                color: colors.primary,
-                fontSize: 18,
-                fontWeight: 'bold',
-              }}>
-              Accident Details
-            </Text>
-          </View>
-          <Text
-            style={{
-              color: colors.primary,
-              fontSize: 18,
-              fontWeight: 'bold',
-            }}>
-            Damage Parts Details
-          </Text>
-        </View>
-        {/* <Text>{additionalRequest.RequestedParts[0].AutomotivePartName}</Text> */}
-      </View>
+      <RequestCard
+        VehicleOwnerName={data.VehicleOwnerName}
+        WorkshopName={data.WorkshopName}
+        AccidentCreatedBy={data.AccidentCreatedBy}
+        WorkshopAreaName={data.WorkshopAreaName}
+        WorkshopCityName={data.WorkshopCityName}
+        MakeName={data.MakeName}
+        ModelCode={data.ModelCode}
+        YearCode={data.YearCode}
+        RequestNumber={data.RequestNumber}
+        SerialNo={data.SerialNo}
+        FaultyCompanyName={data.FaultyCompanyName}
+        CarsInvolved={data.CarsInvolved}
+        PlateNo={data.PlateNo}
+        AccidentNo={data.AccidentNo}
+        VIN={data.VIN}
+        BodyTypeName={data.BodyTypeName}
+        AccidentTypeName={data.AccidentTypeName}
+        ResponsibilityTypeName={data.ResponsibilityTypeName}
+        ImportantNote={data.ImportantNote}
+      />
       <FlatList
         // inverted
         data={Request}

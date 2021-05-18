@@ -12,24 +12,24 @@ import {
 } from 'react-native';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
-import CardAccident from '../Accident/CardAccident';
-const DeliveredQutation = (navigation, route) => {
+import RequestCard from '../Requests/RequestCard';
+import PaiddetailCard from '../Requests/accidentDetails/PaiddetailCard';
+// import CardAccident from '../Accident/CardAccident';
+const DeliveredQutation = ({navigation, route}) => {
   const [data, setdata] = useState([]);
-  const [marker, setmarker] = useState([]);
+  const [requestedPart, setrequestedPart] = useState([]);
   const [loading, setLoading] = useState(true);
   const demandId = route.params.demandId;
   const userid = route.params.userid;
-
-  //   alert(UserId);
   useEffect(() => {
     getData();
   }, []);
   const getData = () => {
     try {
       fetch(
-        ' https://qapi.joclaims.com/api/Company/GetQuotationSummary?DemandID=' +
-          demandId,
-        '&UserID=' + userid,
+        'https://qapi.joclaims.com/api/Company/GetQuotationSummary?DemandID=' +
+          demandId +
+          '&UserID=94',
         {
           method: 'GET',
           headers: {
@@ -44,10 +44,10 @@ const DeliveredQutation = (navigation, route) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson;
-          setdata(responce.Request);
-          //   setmarker(responce.AccidentMarkers);
-          //   setnote(responce.Notes);
           setLoading(false);
+          setdata(responce.Request);
+          setrequestedPart(responce.RequestedParts);
+          alert(requestedPart);
         });
     } catch (e) {
       alert(e);
@@ -62,13 +62,43 @@ const DeliveredQutation = (navigation, route) => {
   }
 
   return (
-    <View>
-      <FlatList
-        data={data}
-        renderItem={({item}) => <CardAccident AccidentNo={item.AccidentNo} />}
+    <View style={styles.mainContainer}>
+      <RequestCard
+        VehicleOwnerName={data.VehicleOwnerName}
+        WorkshopName={data.WorkshopName}
+        AccidentCreatedBy={data.AccidentCreatedBy}
+        WorkshopAreaName={data.WorkshopAreaName}
+        WorkshopCityName={data.WorkshopCityName}
+        MakeName={data.MakeName}
+        ModelCode={data.ModelCode}
+        YearCode={data.YearCode}
+        RequestNumber={data.RequestNumber}
+        SerialNo={data.SerialNo}
+        FaultyCompanyName={data.FaultyCompanyName}
+        CarsInvolved={data.CarsInvolved}
+        PlateNo={data.PlateNo}
+        AccidentNo={data.AccidentNo}
+        VIN={data.VIN}
+        BodyTypeName={data.BodyTypeName}
+        AccidentTypeName={data.AccidentTypeName}
+        ResponsibilityTypeName={data.ResponsibilityTypeName}
+        ImportantNote={data.ImportantNote}
       />
+      {/* <FlatList
+        data={requestedPart}
+        initialNumToRender={10}
+        renderItem={({item}) => (
+        
+        )}
+      /> */}
     </View>
   );
 };
-
+const styles = StyleSheet.create({
+  mainContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    // flex: 1,
+  },
+});
 export default DeliveredQutation;

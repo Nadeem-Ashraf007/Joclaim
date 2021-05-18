@@ -23,8 +23,7 @@ export const fetchUsers = () => {
     )
       .then((response) => response.json())
       .then((responseJson) => {
-        const users = responseJson.Accidents;
-        dispatch(fetchUsersSuccess(users));
+        dispatch(fetchUsersSuccess(responseJson.Accidents));
       })
       .catch((error) => {
         // const errorMsg = error.message;

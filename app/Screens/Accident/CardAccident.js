@@ -68,9 +68,7 @@ const CardAccident = ({
               }}>
               Accident No:
             </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {AccidentNo}
-            </Text>
+            <Text style={styles.responceText}>{AccidentNo}</Text>
           </View>
         </View>
       </View>
@@ -84,52 +82,30 @@ const CardAccident = ({
 
         <View style={styles.lastcontainer}>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Workshome name:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {WorkshopName}
-            </Text>
+            <Text style={styles.headingText}>Workshome name:</Text>
+            <Text style={styles.responceText}>{WorkshopName}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Type:
-            </Text>
+            <Text style={styles.headingText}>Accident Type:</Text>
             <Text style={{color: colors.TextValue, fontSize: 15}}>
               {accidentTypename}
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident No:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {AccidentNo}
-            </Text>
+            <Text style={styles.headingText}>Accident No:</Text>
+            <Text style={styles.responceText}>{AccidentNo}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              VIN:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>{VIN}</Text>
+            <Text style={styles.headingText}>VIN:</Text>
+            <Text style={style.responceText}>{VIN}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Created By:
-            </Text>
+            <Text style={styles.headingText}>Created By:</Text>
 
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>{UserName}</Text>
+            <Text style={styles.responceText}>{UserName}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Vehicle Owner Name:
-            </Text>
+            <Text style={styles.headingText}>Vehicle Owner Name:</Text>
             <Text
               style={{
                 color: colors.mediumgray,
@@ -226,6 +202,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     width: '100%',
     borderTopColor: colors.darkgray,
+  },
+  headingText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  responceText: {
+    fontSize: 16,
+    marginHorizontal: 5,
   },
 });
 

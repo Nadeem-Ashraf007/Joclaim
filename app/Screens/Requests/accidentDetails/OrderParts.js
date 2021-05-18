@@ -1,24 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import {View, Text, ActivityIndicator, Image} from 'react-native';
 import colors from '../../Constants/colors';
 import {Global} from '../../Constants/Global';
-
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 const OrderParts = () => {
   const [Request, setRequest] = useState([]);
   const [loading, setLoadng] = useState(true);
   useEffect(() => {
     getAccidentDetails();
   }, []);
-
   const getAccidentDetails = () => {
     try {
       fetch(
@@ -37,9 +27,14 @@ const OrderParts = () => {
       )
         .then((response) => response.json())
         .then((responseJson) => {
-          const responce = responseJson;
+          if (responseJson.ok) {
+            const responce = responseJson;
+            setRequest(responce.Request);
+            setLoadng(false);
+          } else {
+            alert('HTTP-Error: ' + response.status);
+          }
 
-          setRequest(responce.Request);
           // alert(Request.ESignatureURL);
           // alert(responce.RequestedParts[0].AutomotivePartName);
           // setPartDetail(responce.RequestedParts);
@@ -47,7 +42,6 @@ const OrderParts = () => {
           //   setAccidentMarker(responce.AccidentMarkers);
           // alert(PartDetail[0].AutomotivePartName);
           //   alert(additionalRequest);
-          setLoadng(false);
 
           //   console.log('check itt  ttt' + JSON.stringify(data));
         });

@@ -1,0 +1,192 @@
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import colors from '../Constants/colors';
+const RequestCard = ({
+  VehicleOwnerName,
+  WorkshopName,
+  WorkshopAreaName,
+  WorkshopCityName,
+  MakeName,
+  ModelCode,
+  YearCode,
+  AccidentCreatedBy,
+  RequestNumber,
+  SerialNo,
+  FaultyCompanyName,
+  CarsInvolved,
+  PlateNo,
+  AccidentNo,
+  VIN,
+  BodyTypeName,
+  AccidentTypeName,
+  ResponsibilityTypeName,
+  ImportantNote,
+  partDetail,
+  accidentDetail,
+  style,
+}) => {
+  return (
+    <View style={[styles.card, style]}>
+      <Text style={styles.headingtext}>Additional Accident Details</Text>
+      <View style={styles.container}>
+        <View style={{flexDirection: 'row', marginBottom: 5}}>
+          {/* <Text style={styles.text}>{MakeName}</Text>
+          <Text style={[styles.text, {marginHorizontal: 5}]}>{ModelCode}</Text>
+          <Text style={[styles.text, {marginHorizontal: 5}]}>{YearCode}</Text> */}
+        </View>
+        {/* <Text style={{fontSize: 15, marginBottom: 5}}>make</Text> */}
+
+        <View style={styles.lastcontainer}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Vehicle Owner Name:</Text>
+            <Text style={styles.innerHeadingText}>{VehicleOwnerName}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Workshop Detail</Text>
+
+            <Text style={styles.innerHeadingText}>
+              {WorkshopName + WorkshopAreaName + WorkshopCityName}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Car Details:</Text>
+            <Text style={styles.innerHeadingText}>{MakeName + ModelCode}</Text>
+
+            <Text style={{fontSize: 16}}>{YearCode}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Accident Created By</Text>
+            <Text style={styles.innerHeadingText}>{AccidentCreatedBy}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Accident No</Text>
+            <Text style={styles.innerHeadingText}>{AccidentNo}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Request Number</Text>
+
+            <Text style={styles.innerHeadingText}>{RequestNumber}</Text>
+            <Text style={{fontSize: 16}}>/{SerialNo}R</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Faulty Company Name</Text>
+            <Text style={styles.innerHeadingText}>{FaultyCompanyName}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Number of Cars Involved</Text>
+            <Text style={styles.innerHeadingText}>{CarsInvolved}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Plate No:</Text>
+            <Text style={styles.innerHeadingText}>{PlateNo}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Accident Number:</Text>
+            <Text
+              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
+              {AccidentNo}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>VIN:</Text>
+            <Text
+              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
+              {VIN}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Body Type:</Text>
+            <Text style={styles.innerHeadingText}>{BodyTypeName}</Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Accident Type:</Text>
+            <Text
+              style={{
+                color: colors.black,
+                fontSize: 15,
+              }}>
+              {AccidentTypeName}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Responsibility:</Text>
+            <Text
+              style={{
+                color: colors.black,
+                fontSize: 15,
+              }}>
+              {ResponsibilityTypeName}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Work Shop Name:</Text>
+            <Text
+              style={{
+                color: colors.black,
+                fontSize: 15,
+              }}>
+              {WorkshopName}
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={styles.innerText}>Car notes</Text>
+            <Text
+              style={{
+                color: colors.black,
+                fontSize: 16,
+                marginHorizontal: 5,
+                width: '70%',
+              }}>
+              {ImportantNote}
+            </Text>
+          </View>
+          <View style={{borderBottomWidth: 1}}>
+            {accidentDetail && (
+              <Text style={styles.headingtext}>Accident Details</Text>
+            )}
+          </View>
+          {partDetail && (
+            <Text style={styles.headingtext}>Damage Parts Details</Text>
+          )}
+        </View>
+        {/* <Text>{additionalRequest.RequestedParts[0].AutomotivePartName}</Text> */}
+      </View>
+    </View>
+  );
+};
+const styles = StyleSheet.create({
+  card: {
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 2},
+    shadowRadius: 6,
+    shadowOpacity: 0.26,
+    elevation: 8,
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    width: '95%',
+    marginVertical: '2%',
+    alignSelf: 'center',
+  },
+  container: {
+    alignItems: 'center',
+  },
+  headingtext: {
+    color: colors.primary,
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  innerText: {
+    color: colors.primary,
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  innerHeadingText: {
+    fontSize: 16,
+    marginHorizontal: 5,
+  },
+});
+export default RequestCard;

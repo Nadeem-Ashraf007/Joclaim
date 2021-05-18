@@ -37,19 +37,13 @@ const TaskDetail = () => {
       )
         .then((response) => response.json())
         .then((responseJson) => {
-          const responce = responseJson;
-
-          setRequest(responce.Request);
-          // alert(Request.ESignatureURL);
-          // alert(responce.RequestedParts[0].AutomotivePartName);
-          // setPartDetail(responce.RequestedParts);
-          // setPartApprove(responce.PartsApprovedBySignatures);
-          //   setAccidentMarker(responce.AccidentMarkers);
-          // alert(PartDetail[0].AutomotivePartName);
-          //   alert(additionalRequest);
-          setLoadng(false);
-
-          //   console.log('check itt  ttt' + JSON.stringify(data));
+          if (responseJson.ok) {
+            const responce = responseJson;
+            setRequest(responce.Request);
+            setLoadng(false);
+          } else {
+            alert('HTTP-Error: ' + response.status);
+          }
         });
     } catch (e) {
       alert(e);
