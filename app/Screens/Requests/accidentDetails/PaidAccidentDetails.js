@@ -37,12 +37,15 @@ const PaidAccidentDetails = ({route, style}) => {
       )
         .then((response) => response.json())
         .then((responseJson) => {
-          if (responseJson.ok) {
-            const responce = responseJson;
+          const responce = responseJson;
+          if (
+            responce.RequestedParts !== null &&
+            responce.RequestedParts !== 'undefined'
+          ) {
             setRequest(responce.RequestedParts);
             setLoadng(false);
           } else {
-            alert('HTTP-Error: ' + response.status);
+            alert('HTTP-Error: ' + responce.RequestedParts.status);
           }
         });
     } catch (error) {
@@ -60,25 +63,25 @@ const PaidAccidentDetails = ({route, style}) => {
   return (
     <View style={[styles.card, style]}>
       <RequestCard
-        VehicleOwnerName={data.VehicleOwnerName}
-        WorkshopName={data.WorkshopName}
-        AccidentCreatedBy={data.AccidentCreatedBy}
-        WorkshopAreaName={data.WorkshopAreaName}
-        WorkshopCityName={data.WorkshopCityName}
-        MakeName={data.MakeName}
-        ModelCode={data.ModelCode}
-        YearCode={data.YearCode}
-        RequestNumber={data.RequestNumber}
-        SerialNo={data.SerialNo}
-        FaultyCompanyName={data.FaultyCompanyName}
-        CarsInvolved={data.CarsInvolved}
-        PlateNo={data.PlateNo}
-        AccidentNo={data.AccidentNo}
-        VIN={data.VIN}
-        BodyTypeName={data.BodyTypeName}
-        AccidentTypeName={data.AccidentTypeName}
-        ResponsibilityTypeName={data.ResponsibilityTypeName}
-        ImportantNote={data.ImportantNote}
+        VehicleOwnerName={Request.VehicleOwnerName}
+        WorkshopName={Request.WorkshopName}
+        AccidentCreatedBy={Request.AccidentCreatedBy}
+        WorkshopAreaName={Request.WorkshopAreaName}
+        WorkshopCityName={Request.WorkshopCityName}
+        MakeName={Request.MakeName}
+        ModelCode={Request.ModelCode}
+        YearCode={Request.YearCode}
+        RequestNumber={Request.RequestNumber}
+        SerialNo={Request.SerialNo}
+        FaultyCompanyName={Request.FaultyCompanyName}
+        CarsInvolved={Request.CarsInvolved}
+        PlateNo={Request.PlateNo}
+        AccidentNo={Request.AccidentNo}
+        VIN={Request.VIN}
+        BodyTypeName={Request.BodyTypeName}
+        AccidentTypeName={Request.AccidentTypeName}
+        ResponsibilityTypeName={Request.ResponsibilityTypeName}
+        ImportantNote={Request.ImportantNote}
       />
       <FlatList
         // inverted

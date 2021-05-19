@@ -3,11 +3,11 @@ import {View, StyleSheet, Image, Text} from 'react-native';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const UserCard = ({style, FirstName, PhoneNumber, Email, image}) => {
+const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
   return (
     <View style={[styles.card, style]}>
       <View style={styles.container}>
-        {/* <Image style={styles.img} source={require('')} /> */}
+        <Image style={styles.img} source={{uri: Global.apiurl + image}} />
 
         <View style={{alignItems: 'flex-start', marginBottom: 5}}>
           <Text style={styles.text}>Workshop Owner</Text>
@@ -27,11 +27,15 @@ const UserCard = ({style, FirstName, PhoneNumber, Email, image}) => {
           <View style={{flexDirection: 'row'}}>
             <Text style={styles.text}>E-signature</Text>
             <Icon name="rename-box" color={colors.primary} size={20} />
+            <Image
+              style={styles.sign}
+              source={{uri: Global.apiurl + signature}}
+            />
           </View>
         </View>
       </View>
       <Text style={styles.text}>Employee Permisions</Text>
-      {/*  */}
+
       <View style={{flexDirection: 'row'}}>
         <Icon
           name="stop"
@@ -84,6 +88,12 @@ const styles = StyleSheet.create({
     marginRight: '5%',
     top: -40,
     backgroundColor: colors.black,
+  },
+  sign: {
+    width: 100,
+    height: 50,
+    resizeMode: 'cover',
+    backgroundColor: colors.white,
   },
   text: {
     color: colors.TITLE,

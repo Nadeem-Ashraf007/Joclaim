@@ -5,6 +5,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
+import Moment from 'moment';
 const CardRequests = ({
   style,
   makename,
@@ -86,7 +87,9 @@ const CardRequests = ({
               size={20}
               color={colors.primary}
             />
-            <Text style={{marginBottom: 10}}>{BiddingDateTime}</Text>
+            <Text style={{marginBottom: 10}}>
+              {Moment(BiddingDateTime).format('LL')}
+            </Text>
           </View>
         </View>
       </View>

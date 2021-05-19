@@ -62,6 +62,7 @@ const UserProfile = () => {
         PhoneNumber={profile.PhoneNumber}
         FirstName={profile.FirstName + profile.LastName}
         image={profile.ImgURL}
+        signature={profile.ESignatureURL}
       />
     </View>
     // <View style={styles.container}>

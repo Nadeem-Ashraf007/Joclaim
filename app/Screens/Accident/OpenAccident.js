@@ -12,8 +12,9 @@ import {
 
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
+import Moment from 'moment';
 import AccidentDetail from '../Accident/updateAccident/AccidentDetail';
-
+import RequestCard from '../Requests/RequestCard';
 // import UCard from '../UserCard';
 const OpenAccident = ({navigation, route, style, MakeName}) => {
   const [data, setdata] = useState([]);
@@ -46,9 +47,13 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
         .then((responseJson) => {
           const responce = responseJson;
           // const markers = responseJson.AccidentMarkers;
-          setdata(responce.Accident);
-          setMarker(responce.AccidentMarkers);
-          setLoadng(false);
+          if (responce.Accident !== null && responce.Accident !== 'undefined') {
+            setdata(responce.Accident);
+            setMarker(responce.AccidentMarkers);
+            setLoadng(false);
+          } else {
+            alert('HTTP-Error: ' + responce.Accident.status);
+          }
         });
     } catch (e) {
       alert(e);
@@ -108,196 +113,41 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
               Accident Happened:
             </Text>
             <Text style={{fontSize: 16, marginHorizontal: 5, width: '27%'}}>
-              {data.AccidentHappendOn}
+              {Moment(data.AccidentHappendOn).format('LL')}
             </Text>
           </View>
         </View>
       </View>
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row', marginBottom: 5}}>
-          {/* <Text style={styles.text}>{MakeName}</Text>
-          <Text style={[styles.text, {marginHorizontal: 5}]}>{ModelCode}</Text>
-          <Text style={[styles.text, {marginHorizontal: 5}]}>{YearCode}</Text> */}
-        </View>
-        {/* <Text style={{fontSize: 15, marginBottom: 5}}>make</Text> */}
+      <RequestCard
+        VehicleOwnerName={data.VehicleOwnerName}
+        WorkshopName={data.WorkshopName}
+        AccidentCreatedBy={data.AccidentCreatedBy}
+        WorkshopAreaName={data.WorkshopAreaName}
+        WorkshopCityName={data.WorkshopCityName}
+        MakeName={data.MakeName}
+        ModelCode={data.ModelCode}
+        YearCode={data.YearCode}
+        SerialNo={data.SerialNo}
+        FaultyCompanyName={data.FaultyCompanyName}
+        CarsInvolved={data.CarsInvolved}
+        PlateNo={data.PlateNo}
+        AccidentNo={data.AccidentNo}
+        VIN={data.VIN}
+        BodyTypeName={data.BodyTypeName}
+        AccidentTypeName={data.AccidentTypeName}
+        ResponsibilityTypeName={data.ResponsibilityTypeName}
+        ImportantNote={data.ImportantNote}
+      />
 
-        <View style={styles.lastcontainer}>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Vehicle Owner Name:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {data.VehicleOwnerName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Engine Type:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {data.EngineTypeName}
-            </Text>
-          </View>
-          {/* <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Car Details:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {data.MakeName}
-            </Text>
-          </View> */}
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Number of Cars Involved:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {data.CarsInvolved}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Plate No:
-            </Text>
-            <Text style={{color: colors.TextValue, fontSize: 15}}>
-              {data.PlateNo}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Number:
-            </Text>
-            <Text
-              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
-              {data.AccidentNo}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              VIN:
-            </Text>
-            <Text
-              style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
-              {data.VIN}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Body Type:
-            </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5}}>
-              {data.BodyTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Accident Type:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {data.AccidentTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Responsibility:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {data.ResponsibilityTypeName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Work Shop Name:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {data.WorkshopName}
-            </Text>
-          </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Faulty Company Name:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {data.FaultyCompanyName}
-            </Text>
-          </View>
+      <Text
+        style={{
+          color: colors.primary,
+          fontSize: 18,
+          fontWeight: 'bold',
+        }}>
+        Markers
+      </Text>
 
-          <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Car notes
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 16,
-                marginHorizontal: 5,
-                width: '70%',
-              }}>
-              {data.ImportantNote}
-            </Text>
-          </View>
-          <View style={{borderBottomWidth: 1}}>
-            <Text
-              style={{
-                color: colors.primary,
-                fontSize: 18,
-                fontWeight: 'bold',
-              }}>
-              Accident Details
-            </Text>
-          </View>
-          <Text
-            style={{
-              color: colors.primary,
-              fontSize: 18,
-              fontWeight: 'bold',
-            }}>
-            Markers
-          </Text>
-          {/* <Text>{marker.PointName}</Text> */}
-          {/* <View style={{flexDirection: 'row'}}>
-            <Text
-              style={{color: colors.primary, fontSize: 15, fontWeight: 'bold'}}>
-              Car's notes:
-            </Text>
-            <Text
-              style={{
-                color: colors.black,
-                fontSize: 15,
-              }}>
-              {data.AccidentTypeName}
-            </Text>
-          </View> */}
-        </View>
-      </View>
       <FlatList
         // inverted
         data={marker}

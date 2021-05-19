@@ -29,9 +29,6 @@ const Login = ({navigation}) => {
   const [id, setid] = React.useState(0);
   const [loading, setLoading] = React.useState(false);
   const [changeView, setChangeView] = React.useState(Global.changeView);
-  // const [state, setstate] = useState(initialState)
-  // console.log('nadeem', !changeView);
-
   const changeLanguage = (value) => {
     Strings.setLanguage(value);
   };
@@ -113,9 +110,6 @@ const Login = ({navigation}) => {
       .then((responseJson) => {
         JSON.stringify(responseJson);
         if (responseJson.error === undefined) {
-          // console.log('login response: ' + JSON.stringify(responseJson));
-          // Toast.show('undefined');
-          // ApiUrl.RoleID = responseJson.RoleID;
           if (responseJson.RoleID === '11') {
             if (responseJson.StatusID === '2') {
               Toast.show('Login Successful');

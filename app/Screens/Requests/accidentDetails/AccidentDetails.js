@@ -38,18 +38,9 @@ const AccidentDetails = ({route, style}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson;
-          // const markers = responseJson.AccidentMarkers;
           setadditionalRequest(responce);
           setRequest(responce.AccidentMarkers);
-          // alert(responce.RequestedParts[0].AutomotivePartName);
-          // setPartDetail(responce.RequestedParts);
-          // setPartApprove(responce.PartsApprovedBySignatures);
-          //   setAccidentMarker(responce.AccidentMarkers);
-          // alert(PartDetail[0].AutomotivePartName);
-          //   alert(additionalRequest);
           setLoadng(false);
-
-          //   console.log('check itt  ttt' + JSON.stringify(data));
         });
     } catch (e) {
       alert(e);

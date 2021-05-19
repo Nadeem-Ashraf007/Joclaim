@@ -37,8 +37,8 @@ const TaskDetail = () => {
       )
         .then((response) => response.json())
         .then((responseJson) => {
-          if (responseJson.ok) {
-            const responce = responseJson;
+          const responce = responseJson;
+          if (responce.Request !== null && responce.Request !== 'undefined') {
             setRequest(responce.Request);
             setLoadng(false);
           } else {

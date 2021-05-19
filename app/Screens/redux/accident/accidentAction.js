@@ -6,8 +6,8 @@ import {
 import {Global} from '../../Constants/Global';
 export const fetchUsers = () => {
   return (dispatch) => {
+    debugger;
     dispatch(fetchUsersRequest());
-
     fetch(
       'https://qapi.joclaims.com/api/Company/GetCompanyAccidents?CompanyID=15&WorkshopID=1',
       {
@@ -23,10 +23,12 @@ export const fetchUsers = () => {
     )
       .then((response) => response.json())
       .then((responseJson) => {
+        debugger;
         dispatch(fetchUsersSuccess(responseJson.Accidents));
       })
       .catch((error) => {
         // const errorMsg = error.message;
+        debugger;
         dispatch(fetchUsersFailure(error.message));
       });
   };

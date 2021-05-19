@@ -30,7 +30,6 @@ const ForgetPassword = ({route}) => {
   };
   const [email, setemail] = React.useState();
   const [changeView, setChangeView] = React.useState(Global.changeView);
-  // console.log('again amazinf' + !changeView);
   return (
     <ImageBackground
       style={styles.screen}

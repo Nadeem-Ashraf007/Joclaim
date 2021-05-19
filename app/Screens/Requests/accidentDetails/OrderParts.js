@@ -28,22 +28,13 @@ const OrderParts = () => {
         .then((response) => response.json())
         .then((responseJson) => {
           if (responseJson.ok) {
+            setLoadng(false);
             const responce = responseJson;
             setRequest(responce.Request);
-            setLoadng(false);
           } else {
             alert('HTTP-Error: ' + response.status);
+            setLoadng(false);
           }
-
-          // alert(Request.ESignatureURL);
-          // alert(responce.RequestedParts[0].AutomotivePartName);
-          // setPartDetail(responce.RequestedParts);
-          // setPartApprove(responce.PartsApprovedBySignatures);
-          //   setAccidentMarker(responce.AccidentMarkers);
-          // alert(PartDetail[0].AutomotivePartName);
-          //   alert(additionalRequest);
-
-          //   console.log('check itt  ttt' + JSON.stringify(data));
         });
     } catch (e) {
       alert(e);
