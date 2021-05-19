@@ -35,15 +35,17 @@ const ClearanceSummary = ({route}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson.Request;
-          setSummary(responce);
+          if (responce !== null && responce !== 'undefined') {
+            setSummary(responce);
+          } else {
+            alert('HTTP-Error: ' + responce.status);
+          }
         });
     } catch (e) {
       alert(e);
     }
   };
-
   const uri = Global.apiurl + summary.ClearanceSummaryPdfUr;
-
   return (
     <View style={{flex: 1}}>
       <WebView
