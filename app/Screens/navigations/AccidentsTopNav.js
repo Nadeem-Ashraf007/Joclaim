@@ -7,6 +7,7 @@ import Closed from '../Accident/Closed';
 import colors from '../Constants/colors';
 import Deleted from '../Accident/Deleted';
 import {Global} from '../Constants/Global';
+import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const AccidentsTopNav = ({userData}) => {
   const data = userData.users.filter((r) => r.StatusID == 21);
@@ -40,7 +41,7 @@ const AccidentsTopNav = ({userData}) => {
         name="Opened"
         component={Opened}
         options={{
-          tabBarLabel: 'Opened',
+          tabBarLabel: Strings.open,
           tabBarIcon: () => (
             <View style={styles.openicon}>
               <Text style={styles.badgeicontext}>
@@ -54,7 +55,7 @@ const AccidentsTopNav = ({userData}) => {
         name="Closed"
         component={Closed}
         options={{
-          tabBarLabel: 'Closed',
+          tabBarLabel: Strings.closed,
           tabBarIcon: () => (
             <View style={styles.closeicon}>
               <Text style={styles.badgeicontext}>
@@ -68,7 +69,7 @@ const AccidentsTopNav = ({userData}) => {
         name="Deleted"
         component={Deleted}
         options={{
-          tabBarLabel: 'Deleted',
+          tabBarLabel: Strings.deleted,
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
               <Text style={styles.badgeicontext}>

@@ -112,7 +112,7 @@ const Login = ({navigation}) => {
         if (responseJson.error === undefined) {
           if (responseJson.RoleID === '11') {
             if (responseJson.StatusID === '2') {
-              Toast.show('Login Successful');
+              Toast.show(Strings.logiSuccessful);
               Global.statusId = responseJson.StatusID;
               Global.workshopId = responseJson.ICWorkshopID;
               Global.companyid = responseJson.CompanyID;
@@ -139,7 +139,7 @@ const Login = ({navigation}) => {
           //   navigation.navigate('drawer');
           // }
           else {
-            Toast.show('Invalid Login');
+            Toast.show(Strings.invalidLogin);
             setLoading(false);
           }
         } else {

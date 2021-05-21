@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
+import Strings from '../localization/LocalizedString';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
   return (
@@ -10,12 +11,12 @@ const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
         <Image style={styles.img} source={{uri: Global.apiurl + image}} />
 
         <View style={{alignItems: 'flex-start', marginBottom: 5}}>
-          <Text style={styles.text}>Workshop Owner</Text>
+          <Text style={styles.text}>{Strings.workshopOwner}</Text>
           <Text style={{fontSize: 17}}>{FirstName}</Text>
-          <Text style={styles.text}>phone</Text>
+          <Text style={styles.text}>{Strings.phone}</Text>
           <Text style={{fontSize: 17}}>{PhoneNumber}</Text>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.text}>EMAIL</Text>
+            <Text style={styles.text}>{Strings.email}</Text>
             <Icon
               name="checkbox-marked-circle"
               color={colors.primary}
@@ -25,16 +26,16 @@ const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
 
           <Text style={{fontSize: 17}}>{Email}</Text>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.text}>E-signature</Text>
+            <Text style={styles.text}>{Strings.esignature}</Text>
             <Icon name="rename-box" color={colors.primary} size={20} />
-            <Image
-              style={styles.sign}
-              source={{uri: Global.apiurl + signature}}
-            />
           </View>
+          <Image
+            style={styles.sign}
+            source={{uri: Global.apiurl + signature}}
+          />
         </View>
       </View>
-      <Text style={styles.text}>Employee Permisions</Text>
+      <Text style={styles.text}>{Strings.employeePermisions}</Text>
 
       <View style={{flexDirection: 'row'}}>
         <Icon
@@ -45,21 +46,21 @@ const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
         />
         <Text
           style={[styles.text, {marginLeft: '5%', color: colors.IconValue}]}>
-          Add accident parts
+          {Strings.addaccidentParts}
         </Text>
       </View>
       <View style={{flexDirection: 'row'}}>
         <Icon name="stop" color={colors.primary} size={20} />
         <Text
           style={[styles.text, {marginLeft: '5%', color: colors.IconValue}]}>
-          Receive parts
+          {Strings.receiveParts}
         </Text>
       </View>
       <View style={{flexDirection: 'row'}}>
         <Icon name="stop" color={colors.primary} size={20} />
         <Text
           style={[styles.text, {marginLeft: '5%', color: colors.IconValue}]}>
-          Repair car
+          {Strings.repairCar}
         </Text>
       </View>
       {/*  */}
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   sign: {
     width: 100,
-    height: 50,
+    height: 45,
     resizeMode: 'cover',
     backgroundColor: colors.white,
   },

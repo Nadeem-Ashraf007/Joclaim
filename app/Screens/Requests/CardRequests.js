@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Strings from '../localization/LocalizedString';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
 import Moment from 'moment';
@@ -32,6 +33,7 @@ const CardRequests = ({
   ready,
   POTotalAmount,
 }) => {
+  const [changeView, setChangeView] = React.useState(Global.changeView);
   const Delive = userData.request.filter((r) => r.StatusID == 17);
   return (
     <View style={[styles.card, style]}>
@@ -47,7 +49,7 @@ const CardRequests = ({
               fontSize: 15,
               borderRadius: 10,
             }}>
-            Car is Ready
+            {Strings.CarIsReady}
           </Text>
         )}
       </View>
@@ -96,28 +98,28 @@ const CardRequests = ({
 
       <View style={styles.container}>
         <View style={styles.lastcontainer}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Workshome name:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.workshomeName}</Text>
             <Text style={styles.innerText}>{WorkshopName}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Request Number:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.requestNumber}</Text>
             <Text style={styles.innerText}>{RequestNumber}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Accident No:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.accidentNo}</Text>
             <Text style={styles.innerText}>{AccidentNo}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>VIN:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.VIN}</Text>
             <Text style={styles.innerText}>{VIN}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Plate NO:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.plateNO}</Text>
             <Text style={styles.innerText}>{PlateNo}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>PO Amount:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.poAmount}</Text>
             <Text style={styles.innerText}>{POTotalAmount} JOD</Text>
           </View>
           <View
@@ -208,8 +210,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-    width: '98%',
-    justifyContent: 'center',
   },
   container: {
     alignItems: 'center',
@@ -235,7 +235,8 @@ const styles = StyleSheet.create({
   },
   headingText: {
     color: colors.primary,
-    fontSize: 17,
+    fontSize: 15,
+    fontWeight: 'bold',
   },
 });
 const mapStateToProps = (state) => {

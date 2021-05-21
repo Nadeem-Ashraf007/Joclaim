@@ -9,12 +9,12 @@ import {
   ScrollView,
   ActivityIndicator,
 } from 'react-native';
-
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
 import Moment from 'moment';
 import AccidentDetail from '../Accident/updateAccident/AccidentDetail';
 import RequestCard from '../Requests/RequestCard';
+import Strings from '../localization/LocalizedString';
 // import UCard from '../UserCard';
 const OpenAccident = ({navigation, route, style, MakeName}) => {
   const [data, setdata] = useState([]);
@@ -145,7 +145,7 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
           fontSize: 18,
           fontWeight: 'bold',
         }}>
-        Markers
+        {Strings.markers}
       </Text>
 
       <FlatList

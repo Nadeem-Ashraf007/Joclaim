@@ -11,9 +11,6 @@ const UserProfile = () => {
       getData();
     })();
   }, []);
-
-  // alert(Global.employeeid);
-
   const getData = async () => {
     try {
       fetch(
@@ -35,8 +32,12 @@ const UserProfile = () => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson.EmployeeObj;
-          setProfile(responce);
-          setloading(false);
+          if (responce !== null && responce !== 'undefined') {
+            setProfile(responce);
+            setloading(false);
+          } else {
+            alert('HTTP-Error: ' + responce.Accident.status);
+          }
         });
     } catch (e) {
       alert(e);
@@ -65,21 +66,6 @@ const UserProfile = () => {
         signature={profile.ESignatureURL}
       />
     </View>
-    // <View style={styles.container}>
-    //   <FlatList
-    //     data={profile}
-    //     keyExtractor={(emp) => emp.EmployeeID.toString()}
-    //     initialNumToRender={10}
-    //     renderItem={({item}) => (
-    //       <UserCard
-    //         Email={item.Email}
-    //         PhoneNumber={item.PhoneNumber}
-    //         FirstName={item.FirstName + item.LastName}
-    //         image={item.ImgURL}
-    //       />
-    //     )}
-    //   />
-    // </View>
   );
 };
 
@@ -96,5 +82,4 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
 });
-
 export default UserProfile;

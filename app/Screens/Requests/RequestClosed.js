@@ -70,21 +70,21 @@ const RequestClosed = ({userData, fetchUser, navigation}) => {
                 id: item.AccidentID,
               })
             }
-            viewQutationsummary={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
-            printAllOffers={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
-            viewRequestLog={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
+            // viewQutationsummary={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
+            // printAllOffers={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
+            // viewRequestLog={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
           />
         )}
       />

@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import colors from '../Constants/colors';
+import Strings from '../localization/LocalizedString';
 const RequestCard = ({
   VehicleOwnerName,
   WorkshopName,
@@ -38,18 +39,18 @@ const RequestCard = ({
 
         <View style={styles.lastcontainer}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Vehicle Owner Name:</Text>
+            <Text style={styles.innerText}>{Strings.VehicleOwnerName}</Text>
             <Text style={styles.innerHeadingText}>{VehicleOwnerName}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Workshop Detail</Text>
+            <Text style={styles.innerText}>{Strings.WorkshopDetail}</Text>
 
             <Text style={styles.innerHeadingText}>
               {WorkshopName + WorkshopAreaName + WorkshopCityName}
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Car Details:</Text>
+            <Text style={styles.innerText}>{Strings.carDetails}</Text>
             <Text style={styles.innerHeadingText}>{MakeName + ModelCode}</Text>
 
             <Text style={{fontSize: 16}}>{YearCode}</Text>
@@ -59,7 +60,7 @@ const RequestCard = ({
             <Text style={styles.innerHeadingText}>{AccidentCreatedBy}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Accident No</Text>
+            <Text style={styles.innerText}>{Strings.accidentNumber}</Text>
             <Text style={styles.innerHeadingText}>{AccidentNo}</Text>
           </View>
 
@@ -70,39 +71,39 @@ const RequestCard = ({
             <Text style={{fontSize: 16}}>/{SerialNo}R</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Faulty Company Name</Text>
+            <Text style={styles.innerText}>{Strings.faultyCompanyName}</Text>
             <Text style={styles.innerHeadingText}>{FaultyCompanyName}</Text>
           </View>
 
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Number of Cars Involved</Text>
+            <Text style={styles.innerText}>{Strings.numberofCarsInvolved}</Text>
             <Text style={styles.innerHeadingText}>{CarsInvolved}</Text>
           </View>
 
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Plate No:</Text>
+            <Text style={styles.innerText}>{Strings.plateNO}</Text>
             <Text style={styles.innerHeadingText}>{PlateNo}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Accident Number:</Text>
+            <Text style={styles.innerText}>{Strings.accidentNumber}</Text>
             <Text
               style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
               {AccidentNo}
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>VIN:</Text>
+            <Text style={styles.innerText}>{Strings.VIN}</Text>
             <Text
               style={{color: colors.black, fontSize: 16, marginHorizontal: 5}}>
               {VIN}
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Body Type:</Text>
+            <Text style={styles.innerText}>{Strings.bodyType}</Text>
             <Text style={styles.innerHeadingText}>{BodyTypeName}</Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Accident Type:</Text>
+            <Text style={styles.innerText}>{Strings.AccidentType}</Text>
             <Text
               style={{
                 color: colors.black,
@@ -112,7 +113,7 @@ const RequestCard = ({
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Responsibility:</Text>
+            <Text style={styles.innerText}>{Strings.responsibility}</Text>
             <Text
               style={{
                 color: colors.black,
@@ -122,7 +123,7 @@ const RequestCard = ({
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Work Shop Name:</Text>
+            <Text style={styles.innerText}>{Strings.workShopName}</Text>
             <Text
               style={{
                 color: colors.black,
@@ -132,7 +133,7 @@ const RequestCard = ({
             </Text>
           </View>
           <View style={{flexDirection: 'row'}}>
-            <Text style={styles.innerText}>Car notes</Text>
+            <Text style={styles.innerText}>{Strings.carNotes}</Text>
             <Text
               style={{
                 color: colors.black,

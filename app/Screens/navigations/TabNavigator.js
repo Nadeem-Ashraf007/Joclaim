@@ -84,7 +84,7 @@ const HistoryTab = ({navigation}) => (
             color={colors.white}
           />
         ),
-        title: 'History',
+        title: Strings.history,
         headerStyle: {
           backgroundColor: colors.secondary,
         },
@@ -123,7 +123,7 @@ const AccidentTab = ({navigation}) => (
             color={colors.white}
           />
         ),
-        title: 'Accident',
+        title: Strings.accidents,
         headerStyle: {
           backgroundColor: colors.secondary,
         },
@@ -155,7 +155,7 @@ const TabNavigator = () => {
         name="Request"
         component={topStack}
         options={{
-          tabBarLabel: 'Request',
+          tabBarLabel: Strings.request,
           tabBarIcon: ({color}) => (
             <Icons name="desktop-mac-dashboard" color={color} size={25} />
           ),
@@ -165,7 +165,7 @@ const TabNavigator = () => {
         name="History"
         component={HistoryTab}
         options={{
-          tabBarLabel: 'History',
+          tabBarLabel: Strings.history,
           tabBarIcon: ({color}) => (
             <Icons name="bullhorn" color={color} size={25} />
           ),
@@ -176,9 +176,9 @@ const TabNavigator = () => {
         name="Accidents"
         component={AccidentTab}
         options={{
-          tabBarLabel: 'Accidents',
+          tabBarLabel: Strings.accidents,
           tabBarIcon: ({color}) => (
-            <Icons name="format-list-checkbox" color={color} size={25} />
+            <Icons name="alert-outline" color={color} size={25} />
           ),
         }}
       />
@@ -187,9 +187,9 @@ const TabNavigator = () => {
         name="BranchList"
         component={BranchList}
         options={{
-          tabBarLabel: 'Ic List',
+          tabBarLabel: Strings.accidentHistory,
           tabBarIcon: ({color}) => (
-            <Icons name="clipboard-list" color={color} size={25} />
+            <Icons name="alert-outline" color={color} size={25} />
           ),
         }}
       />

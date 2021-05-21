@@ -67,11 +67,11 @@ const RequestDeleted = ({navigation, userData, fetchUser}) => {
                 id: item.AccidentID,
               })
             }
-            viewRequestLog={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
-              })
-            }
+            // viewRequestLog={() =>
+            //   navigation.navigate('OpenAccident', {
+            //     id: item.AccidentID,
+            //   })
+            // }
           />
         )}
       />

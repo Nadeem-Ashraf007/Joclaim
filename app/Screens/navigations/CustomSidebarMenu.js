@@ -56,7 +56,7 @@ const CustomSidebarMenu = (props) => {
                 icon={({color, size}) => (
                   <Icon name="person" color={colors.TITLE} size={size} />
                 )}
-                label="User Profile"
+                label={Strings.userprofile}
                 onPress={() => props.navigation.navigate('UserProfile')}
               />
               {/* 

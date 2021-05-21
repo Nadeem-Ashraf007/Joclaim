@@ -5,6 +5,7 @@ import Canceled from '../Requests/Cancelled';
 import Closed from '../Accident/Closed';
 import colors from '../Constants/colors';
 import Deleted from '../Accident/Deleted';
+import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const HistoryTopNav = () => {
   return (
@@ -32,7 +33,7 @@ const HistoryTopNav = () => {
         name="Canceled"
         component={Canceled}
         options={{
-          tabBarLabel: 'Cancelled',
+          tabBarLabel: Strings.cancelled,
           tabBarIcon: () => (
             <View style={styles.cancleicon}>
               <Text style={styles.badgeicontext}>0</Text>
@@ -44,7 +45,7 @@ const HistoryTopNav = () => {
         name="Closed"
         component={Closed}
         options={{
-          tabBarLabel: 'Closed',
+          tabBarLabel: Strings.closed,
           tabBarIcon: () => (
             <View style={styles.closeicon}>
               <Text style={styles.badgeicontext}>0</Text>
@@ -56,7 +57,7 @@ const HistoryTopNav = () => {
         name="Deleted"
         component={Deleted}
         options={{
-          tabBarLabel: 'Deleted',
+          tabBarLabel: Strings.deleted,
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
               <Text style={styles.badgeicontext}>0</Text>

@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
-
+import Strings from '../localization/LocalizedString';
 const CardAccident = ({
   style,
   image,
@@ -27,6 +27,7 @@ const CardAccident = ({
   updateAccident,
   InprogressRequestCount,
 }) => {
+  const [changeView, setChangeView] = React.useState(Global.changeView);
   return (
     <View style={[styles.card, style]}>
       <Text
@@ -81,31 +82,31 @@ const CardAccident = ({
         {/* <Text style={{fontSize: 15, marginBottom: 5}}>make</Text> */}
 
         <View style={styles.lastcontainer}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Workshome name:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.workshomeName}</Text>
             <Text style={styles.responceText}>{WorkshopName}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Accident Type:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.AccidentType}</Text>
             <Text style={{color: colors.TextValue, fontSize: 15}}>
               {accidentTypename}
             </Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Accident No:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.accidentNo}</Text>
             <Text style={styles.responceText}>{AccidentNo}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>VIN:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.VIN}</Text>
             <Text style={style.responceText}>{VIN}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Created By:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.CreatedBy}</Text>
 
             <Text style={styles.responceText}>{UserName}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.headingText}>Vehicle Owner Name:</Text>
+          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+            <Text style={styles.headingText}>{Strings.CreatedBy}</Text>
             <Text
               style={{
                 color: colors.mediumgray,

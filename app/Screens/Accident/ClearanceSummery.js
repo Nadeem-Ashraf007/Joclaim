@@ -3,7 +3,6 @@ import {View, Text, StyleSheet, Image} from 'react-native';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
 import {WebView} from 'react-native-webview';
-
 const ClearanceSummary = ({route}) => {
   const [summary, setSummary] = useState([]);
   const accidentid = route.params.id;
