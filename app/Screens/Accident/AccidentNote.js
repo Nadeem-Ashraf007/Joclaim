@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import Strings from '../localization/LocalizedString';
 import colors from '../Constants/colors';
 const AccidentNote = ({TextValue}) => {
   return (
     <View>
-      <Text style={{color: colors.primary, fontSize: 16}}>Note</Text>
+      <Text style={{color: colors.primary, fontSize: 16}}>{Strings.note}</Text>
       <Text
         style={{
           borderWidth: 0.5,

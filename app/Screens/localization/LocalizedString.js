@@ -1,10 +1,7 @@
-import React from 'react';
 import LocalizedStrings from 'react-native-localization';
 // export const DEFAULT_LANGUAGE = 'ar';
-
 // import en from './en.js';
 // import ar from './ar.js';
-
 const Strings = new LocalizedStrings({
   ar: {
     loginbutton: 'دخول',
@@ -55,12 +52,12 @@ const Strings = new LocalizedStrings({
     receiveParts: ' تلقي أجزاء:',
     repairCar: ' يصلح السيارة:',
     //Accident tab Strings
-    AccidentType: 'نوع الحادث:',
+    accidentType: 'نوع الحادث:',
     CreatedBy: 'انشأ من قبل:',
-    VehicleOwnerName: ':اسم مالك المركب:',
+    VehicleOwnerName: 'اسم مالك المركب:',
     //open Accident strings
-    WorkshopOwner: '',
-    carDetails: 'تفاصيل السيارة:',
+    WorkShopOwner: 'صاحب الورشة',
+    carDetails: 'تفاصيل السيارة',
     additionalAccidentDetails: '',
     WorkshopDetail: '',
     faultyCompanyName: 'اسم الشركة المتسببه:',
@@ -75,6 +72,20 @@ const Strings = new LocalizedStrings({
     accidentHappendOn: 'تاريخ وقوع الحادث:',
     engineType: 'نوع المحرك:',
     markers: 'علامات:',
+    //updateAccident
+    updateAccident: 'تحديث حادث',
+    comprehensive: 'تأمين شامل',
+    thirdPartyLiability: 'تامين الزامي',
+    faulty: 'متسبب',
+    nonFaulty: 'متضرر',
+    mutualResponsibility: 'مشترك',
+    pricingType: 'نوع التسعير',
+    pricingAndProviding: 'تسعير و توفير',
+    pricingOnly: 'تسعير فقط',
+    accidentMarker: 'علامات الحوادث',
+    accidentContainer: 'ملاحظات الحادث',
+    workShopFinding: 'تقرير الكراج',
+    note: 'ملاحظة',
   },
   en: {
     loginbutton: 'Login',
@@ -124,12 +135,12 @@ const Strings = new LocalizedStrings({
     receiveParts: 'Receive parts',
     repairCar: 'Repair car',
     //Accident tab Strings
-    AccidentType: ' Accident Type:',
+    accidentType: ' Accident Type:',
     CreatedBy: 'Created By:',
     VehicleOwnerName: 'Vehicle Owner Name:',
     //open Accident Detail
-    workshopOwner: '',
-    carDetails: 'Car Details:',
+    // workshopOwner: '',
+    carDetails: 'Car Details',
     additionalAccidentDetails: 'Additional Accident Details:',
     WorkshopDetail: 'Workshop Detail:',
     faultyCompanyName: 'Faulty Company Name:',
@@ -144,6 +155,20 @@ const Strings = new LocalizedStrings({
     accidentHappendOn: 'Accident Happend On:',
     engineType: 'Engine Type:',
     markers: 'Markers',
+    //updateAccident
+    updateAccident: 'Update Accident',
+    comprehensive: 'Comprehensive',
+    thirdPartyLiability: ' Third Party Liability',
+    faulty: ' Faulty',
+    nonFaulty: ' Non-Faulty',
+    mutualResponsibility: ' Mutual Responsibility',
+    pricingType: ' Pricing Type',
+    pricingAndProviding: ' pricing and providing',
+    pricingOnly: ' pricing only',
+    accidentMarker: 'Accident Marker',
+    accidentContainer: 'Accident Container',
+    workShopFinding: 'WorkShop Finding',
+    note: 'Note',
   },
 });
 

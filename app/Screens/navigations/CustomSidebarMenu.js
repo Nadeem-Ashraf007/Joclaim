@@ -22,7 +22,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import AsyncStorage from '@react-native-community/async-storage';
 import {AuthContext} from '../Constants/context';
-
+import Settings from '../Settings';
 import {Global} from '../Constants/Global';
 import Strings from '../localization/LocalizedString';
 
@@ -59,16 +59,16 @@ const CustomSidebarMenu = (props) => {
                 label={Strings.userprofile}
                 onPress={() => props.navigation.navigate('UserProfile')}
               />
-              {/* 
+
               <DrawerItem
                 icon={({color, size}) => (
                   <Icon name="settings-outline" color={color} size={size} />
                 )}
                 label="Setting"
-                onPress={() => props.navigation.navigate('Request')}
+                onPress={() => props.navigation.navigate('Settings')}
               />
 
-              <DrawerItem
+              {/* <DrawerItem
                 icon={({color, size}) => (
                   <Icon name="home" color={color} size={size} />
                 )}

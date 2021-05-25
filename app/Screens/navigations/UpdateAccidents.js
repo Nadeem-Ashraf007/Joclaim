@@ -4,6 +4,7 @@ import UpdateAccident from '../Accident/updateAccident/UpdateAccident';
 import WorkshhopFinding from '../Accident/updateAccident/WorkshhopFinding';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
+import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const UpdateAccidents = () => {
   return (
@@ -30,7 +31,7 @@ const UpdateAccidents = () => {
         name="UpdateAccident"
         component={UpdateAccident}
         options={{
-          tabBarLabel: 'Update Accidents',
+          tabBarLabel: Strings.updateAccident,
           //   tabBarIcon: () => (
           //     <View style={styles.deleteicon}>
           //       <Text style={styles.badgeicontext}>0</Text>
@@ -43,7 +44,7 @@ const UpdateAccidents = () => {
         name="WorkshhopFinding"
         component={WorkshhopFinding}
         options={{
-          tabBarLabel: 'Workshhop Findig',
+          tabBarLabel: Strings.workShopFinding,
           //   tabBarIcon: () => (
           //     <View style={styles.openicon}>
           //       <Text style={styles.badgeicontext}>

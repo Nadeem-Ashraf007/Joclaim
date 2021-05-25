@@ -28,6 +28,7 @@ import OpenAccident from '../Accident/OpenAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
 import DeliveredQutation from '../Requests/DeliveredQutation';
 import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
+import Strings from '../localization/LocalizedString';
 const Stack = createStackNavigator();
 const Routes = () => {
   const [isDarkTheme, setIsDarkTheme] = React.useState(false);
@@ -129,7 +130,7 @@ const Routes = () => {
               name="UpdateAccidents"
               component={UpdateAccidents}
               options={{
-                title: 'Update Accident',
+                title: Strings.updateAccident,
                 headerStyle: {
                   backgroundColor: colors.secondary,
                 },

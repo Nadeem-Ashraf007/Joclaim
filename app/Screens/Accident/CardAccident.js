@@ -87,7 +87,7 @@ const CardAccident = ({
             <Text style={styles.responceText}>{WorkshopName}</Text>
           </View>
           <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
-            <Text style={styles.headingText}>{Strings.AccidentType}</Text>
+            <Text style={styles.headingText}>{Strings.accidentType}</Text>
             <Text style={{color: colors.TextValue, fontSize: 15}}>
               {accidentTypename}
             </Text>

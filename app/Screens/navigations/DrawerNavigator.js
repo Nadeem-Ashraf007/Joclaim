@@ -4,6 +4,7 @@ import TabNavigator from './TabNavigator';
 import colors from '../Constants/colors';
 import UserProfile from '../Profile/UserProfile';
 import CustomSidebarMenu from './CustomSidebarMenu';
+import Settings from '../Settings';
 const Drawer = createDrawerNavigator();
 const DrawerNavigator = ({navigation}) => {
   return (
@@ -16,6 +17,7 @@ const DrawerNavigator = ({navigation}) => {
       drawerContent={(props) => <CustomSidebarMenu {...props} />}>
       <Drawer.Screen name="Home" component={TabNavigator} />
       <Drawer.Screen name="UserProfile" component={UserProfile} />
+      <Drawer.Screen name="Settings" component={Settings} />
     </Drawer.Navigator>
   );
 };

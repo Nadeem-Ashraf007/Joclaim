@@ -5,7 +5,6 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  Modal,
   ActivityIndicator,
 } from 'react-native';
 import {fetchUsers} from '../redux/accident/accidentAction';

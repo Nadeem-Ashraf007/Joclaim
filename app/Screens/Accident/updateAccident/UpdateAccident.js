@@ -15,13 +15,15 @@ import colors from '../../Constants/colors';
 import {Global} from '../../Constants/Global';
 import AccidentDetail from './AccidentDetail';
 import AccidentNote from '../AccidentNote';
+import Moment from 'moment';
+import Strings from '../../localization/LocalizedString';
 const UpdateAccident = ({route, style}) => {
   const [data, setdata] = useState([]);
   const [marker, setmarker] = useState([]);
   const [loading, setLoading] = useState(true);
   const [note, setnote] = useState([]);
   const accidentid = route.params.id;
-
+  const [changeView, setChangeView] = React.useState(Global.changeView);
   // const companyid = route.params.companyid;
   // alert(text);
 
@@ -78,7 +80,7 @@ const UpdateAccident = ({route, style}) => {
                   styles.text,
                   {marginHorizontal: 5, fontWeight: 'bold'},
                 ]}>
-                Update Accident
+                {Strings.updateAccident}
               </Text>
             </View>
           </View>
@@ -92,7 +94,7 @@ const UpdateAccident = ({route, style}) => {
                   fontSize: 15,
                   fontWeight: 'bold',
                 }}>
-                Accident Type
+                {Strings.accidentType}
               </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
@@ -108,7 +110,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  Comprehensive
+                  {Strings.comprehensive}
                 </Text>
                 <RadioButton
                   value="Third Party Liability"
@@ -124,7 +126,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  Third Party Liability
+                  {Strings.thirdPartyLiability}
                 </Text>
               </View>
               <Text
@@ -133,7 +135,7 @@ const UpdateAccident = ({route, style}) => {
                   fontSize: 15,
                   fontWeight: 'bold',
                 }}>
-                Responsibility
+                {Strings.responsibility}
               </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
@@ -149,7 +151,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  Faulty
+                  {Strings.faulty}
                 </Text>
                 <RadioButton
                   value="Non-Faulty"
@@ -165,7 +167,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  Non-Faulty
+                  {Strings.nonFaulty}
                 </Text>
 
                 <RadioButton
@@ -182,7 +184,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  Mutual Responsibility
+                  {Strings.mutualResponsibility}
                 </Text>
               </View>
 
@@ -192,7 +194,7 @@ const UpdateAccident = ({route, style}) => {
                   fontSize: 15,
                   fontWeight: 'bold',
                 }}>
-                Pricing Type
+                {Strings.pricingType}
               </Text>
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <RadioButton
@@ -208,7 +210,7 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  pricing and providing
+                  {Strings.pricingAndProviding}
                 </Text>
                 <RadioButton
                   value="pricing Only"
@@ -224,67 +226,47 @@ const UpdateAccident = ({route, style}) => {
                     color: colors.black,
                     fontSize: 15,
                   }}>
-                  pricing only
+                  {Strings.pricingOnly}
                 </Text>
               </View>
             </View>
 
             <View>
-              <Text style={styles.text}>Number of Cars involved</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.CarsInvolved}
+              <Text style={styles.text}>{Strings.numberofCarsInvolved}</Text>
+              <Text style={styles.textInput}>{data.CarsInvolved}</Text>
+              <Text style={styles.text}>{Strings.accidentHappendOn}</Text>
+              <Text style={styles.textInput}>
+                {Moment(data.AccidentHappendOn).format('LL')}
               </Text>
-              <Text style={styles.text}>Accident Happened on</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.AccidentHappendOn}
-              </Text>
-              <Text style={styles.text}>VIN</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.VIN}
-              </Text>
-              <Text style={styles.text}>Acccident No</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.AccidentNo}
-              </Text>
-              <Text style={styles.text}>Vehicle Owner Name</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.VehicleOwnerName}
-              </Text>
+              <Text style={styles.text}>{Strings.VIN}</Text>
+              <Text style={styles.textInput}>{data.VIN}</Text>
+              <Text style={styles.text}></Text>
+              <Text style={styles.textInput}>{data.AccidentNo}</Text>
+              <Text style={styles.text}>{Strings.VehicleOwnerName}</Text>
+              <Text style={styles.textInput}>{data.VehicleOwnerName}</Text>
               <Text style={styles.text}>Model</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.ModelCode}
-              </Text>
+              <Text style={styles.textInput}>{data.ModelCode}</Text>
               <Text style={styles.text}>Year</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.YearCode}
-              </Text>
-              <Text style={styles.text}>Body Type</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.BodyTypeName}
-              </Text>
-              <Text style={styles.text}>Cars notes</Text>
+              <Text style={styles.textInput}>{data.YearCode}</Text>
+              <Text style={styles.text}>{Strings.bodyType}</Text>
+              <Text style={styles.textInput}>{data.BodyTypeName}</Text>
+              <Text style={styles.text}>{Strings.carNotes}</Text>
+              <Text style={styles.textInput}>{data.ImportantNote}</Text>
+              {/* <Text style={styles.text}>Plate No</Text>
               <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
                 {data.ImportantNote}
-              </Text>
-              <Text style={styles.text}>Plate No</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.ImportantNote}
-              </Text>
-              <Text style={styles.text}>Workshop Name</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.PlateNo}
-              </Text>
+              </Text> */}
+              <Text style={styles.text}>{Strings.plateNO}</Text>
+              <Text style={styles.textInput}>{data.PlateNo}</Text>
 
-              <Text style={styles.text}>Engine Type</Text>
-              <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
-                {data.EngineTypeName}
-              </Text>
+              <Text style={styles.text}>{Strings.engineType}</Text>
+              <Text style={styles.textInput}>{data.EngineTypeName}</Text>
             </View>
           </View>
         </View>
       </ScrollView>
       <Text style={{color: colors.primary, fontSize: 16}}>
-        Accident Markers
+        {Strings.accidentMarker}
       </Text>
       <FlatList
         data={marker}
@@ -292,7 +274,7 @@ const UpdateAccident = ({route, style}) => {
         renderItem={({item}) => (
           <AccidentDetail
             DamagePointID={item.DamagePointID}
-            PointName={item.PointName}
+            PointName={!changeView ? item.PointNameArabic : item.PointName}
             dissable={item.IsDamage}
           />
         )}
@@ -304,7 +286,7 @@ const UpdateAccident = ({route, style}) => {
           fontWeight: 'bold',
           color: colors.primary,
         }}>
-        Accident Container
+        {Strings.accidentContainer}
       </Text>
 
       <FlatList
@@ -347,6 +329,11 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     width: '100%',
     borderTopColor: colors.darkgray,
+  },
+  textInput: {
+    borderWidth: 0.5,
+    borderRadius: 10,
+    padding: 5,
   },
 });
 

@@ -20,10 +20,10 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
   const [data, setdata] = useState([]);
   const [marker, setMarker] = useState([]);
   const [loading, setLoadng] = useState(true);
+  const [changeView, setChangeView] = React.useState(Global.changeView);
   const accidentid = route.params.id;
   const companyid = route.params.companyid;
   // alert(companyid);
-
   useEffect(() => {
     getAccidentDetails();
   }, []);
@@ -119,6 +119,7 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
         </View>
       </View>
       <RequestCard
+        carDetail
         VehicleOwnerName={data.VehicleOwnerName}
         WorkshopName={data.WorkshopName}
         AccidentCreatedBy={data.AccidentCreatedBy}
@@ -158,7 +159,7 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
           <AccidentDetail
             dissable={item.IsDamage}
             DamagePointID={item.DamagePointID}
-            PointName={item.PointName}
+            PointName={!changeView ? item.PointNameArabic : item.PointName}
           />
         )}
       />
