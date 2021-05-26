@@ -62,9 +62,13 @@ const CustomSidebarMenu = (props) => {
 
               <DrawerItem
                 icon={({color, size}) => (
-                  <Icon name="settings-outline" color={color} size={size} />
+                  <Icon
+                    name="settings-outline"
+                    color={colors.TITLE}
+                    size={size}
+                  />
                 )}
-                label="Setting"
+                label={Strings.settings}
                 onPress={() => props.navigation.navigate('Settings')}
               />
 
@@ -96,7 +100,7 @@ const CustomSidebarMenu = (props) => {
         <DrawerItem
           label={Strings.signoutbutton}
           icon={({color, size}) => (
-            <Icon name="log-out-outline" color={colors.secondary} size={size} />
+            <Icon name="log-out-outline" color={colors.TITLE} size={size} />
           )}
           onPress={() => {
             props.navigation.toggleDrawer();

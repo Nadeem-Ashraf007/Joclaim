@@ -21,8 +21,8 @@ const CardAccident = ({
   accidentTypename,
   CreatedOn,
   ArabicModelName,
-  onPress,
-  onpress,
+  Search,
+  viewAccident,
   summary,
   updateAccident,
   InprogressRequestCount,
@@ -143,7 +143,7 @@ const CardAccident = ({
                 size={24}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onPress}>
+            <TouchableOpacity onPress={Search}>
               <Icon
                 name="search"
                 style={{marginHorizontal: 10}}
@@ -159,7 +159,7 @@ const CardAccident = ({
                 size={24}
               />
             </TouchableOpacity>
-            <TouchableOpacity onPress={onpress}>
+            <TouchableOpacity onPress={viewAccident}>
               <Icon
                 name="eye"
                 style={{marginHorizontal: 10}}

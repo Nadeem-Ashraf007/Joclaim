@@ -34,8 +34,9 @@ const Strings = new LocalizedStrings({
     //drawer
     home: 'بيت',
     userprofile: 'ملف شخصي',
+    settings: 'الإعدادات',
     //Request Tab strings
-    CarIsReady: 'المركبه جاهزه:',
+    CarIsReady: 'المركبه جاهزه',
     workshomeName: 'اسم ورشة العمل:',
     requestNumber: 'رقم الطلب:',
     accidentNo: 'رقم الحادث:',
@@ -59,7 +60,7 @@ const Strings = new LocalizedStrings({
     WorkShopOwner: 'صاحب الورشة',
     carDetails: 'تفاصيل السيارة',
     additionalAccidentDetails: '',
-    WorkshopDetail: '',
+    WorkshopDetail: 'ورشة عمل التفاصيل',
     faultyCompanyName: 'اسم الشركة المتسببه:',
     numberofCarsInvolved: 'عدد المركبات المتضرره في الحادث:',
     accidentNumber: 'رقم الحادث:',
@@ -86,6 +87,15 @@ const Strings = new LocalizedStrings({
     accidentContainer: 'ملاحظات الحادث',
     workShopFinding: 'تقرير الكراج',
     note: 'ملاحظة',
+    //workshopFinding
+    name: 'الاسم',
+    quantity: 'العدد',
+    condition: 'الحالة',
+    new: 'جديد',
+    used: 'مستعمل',
+    any: 'أيهما',
+    original: 'الأصلي',
+    afterMarket: 'تجاري',
   },
   en: {
     loginbutton: 'Login',
@@ -115,8 +125,10 @@ const Strings = new LocalizedStrings({
     areyousure: 'Are you sure? Do you want to logout?',
     wanttologout: 'Do you want to logout?',
     confirm: 'Confirm',
+    //drawer
     home: 'Home',
     userprofile: 'User Profile',
+    settings: 'Settings',
     //Request Tab strings
     CarIsReady: 'Car Is Ready',
     workshomeName: 'Workshome name:',
@@ -169,6 +181,15 @@ const Strings = new LocalizedStrings({
     accidentContainer: 'Accident Container',
     workShopFinding: 'WorkShop Finding',
     note: 'Note',
+    //workshopFinding
+    name: 'Name',
+    quantity: 'Quantity',
+    condition: 'Condition',
+    new: 'New',
+    used: 'Used',
+    any: 'Any',
+    original: 'Origional',
+    afterMarket: 'Aftermarket',
   },
 });
 

@@ -73,7 +73,7 @@ const UpdateAccident = ({route, style}) => {
         <View style={{flexDirection: 'row'}}>
           {/* <Image style={styles.imag} source={require('../images/car.jpg')} /> */}
 
-          <View>
+          {/* <View>
             <View style={{flexDirection: 'row'}}>
               <Text
                 style={[
@@ -83,7 +83,7 @@ const UpdateAccident = ({route, style}) => {
                 {Strings.updateAccident}
               </Text>
             </View>
-          </View>
+          </View> */}
         </View>
         <View style={styles.container}>
           <View style={styles.lastcontainer}>
@@ -233,34 +233,98 @@ const UpdateAccident = ({route, style}) => {
 
             <View>
               <Text style={styles.text}>{Strings.numberofCarsInvolved}</Text>
-              <Text style={styles.textInput}>{data.CarsInvolved}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.CarsInvolved}
+              </Text>
               <Text style={styles.text}>{Strings.accidentHappendOn}</Text>
-              <Text style={styles.textInput}>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
                 {Moment(data.AccidentHappendOn).format('LL')}
               </Text>
               <Text style={styles.text}>{Strings.VIN}</Text>
-              <Text style={styles.textInput}>{data.VIN}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.VIN}
+              </Text>
               <Text style={styles.text}></Text>
-              <Text style={styles.textInput}>{data.AccidentNo}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.AccidentNo}
+              </Text>
               <Text style={styles.text}>{Strings.VehicleOwnerName}</Text>
-              <Text style={styles.textInput}>{data.VehicleOwnerName}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.VehicleOwnerName}
+              </Text>
               <Text style={styles.text}>Model</Text>
-              <Text style={styles.textInput}>{data.ModelCode}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.ModelCode}
+              </Text>
               <Text style={styles.text}>Year</Text>
-              <Text style={styles.textInput}>{data.YearCode}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.YearCode}
+              </Text>
               <Text style={styles.text}>{Strings.bodyType}</Text>
-              <Text style={styles.textInput}>{data.BodyTypeName}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.BodyTypeName}
+              </Text>
               <Text style={styles.text}>{Strings.carNotes}</Text>
-              <Text style={styles.textInput}>{data.ImportantNote}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.ImportantNote}
+              </Text>
               {/* <Text style={styles.text}>Plate No</Text>
               <Text style={{borderWidth: 0.5, borderRadius: 10, padding: 5}}>
                 {data.ImportantNote}
               </Text> */}
               <Text style={styles.text}>{Strings.plateNO}</Text>
-              <Text style={styles.textInput}>{data.PlateNo}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.PlateNo}
+              </Text>
 
               <Text style={styles.text}>{Strings.engineType}</Text>
-              <Text style={styles.textInput}>{data.EngineTypeName}</Text>
+              <Text
+                style={[
+                  styles.textInput,
+                  {textAlign: !changeView ? 'right' : 'left'},
+                ]}>
+                {data.EngineTypeName}
+              </Text>
             </View>
           </View>
         </View>
@@ -326,7 +390,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   lastcontainer: {
-    borderTopWidth: 1,
+    // borderTopWidth: 1,
     width: '100%',
     borderTopColor: colors.darkgray,
   },

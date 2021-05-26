@@ -112,7 +112,7 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
               }}>
               Accident Happened:
             </Text>
-            <Text style={{fontSize: 16, marginHorizontal: 5, width: '27%'}}>
+            <Text style={{fontSize: 16, marginHorizontal: 5}}>
               {Moment(data.AccidentHappendOn).format('LL')}
             </Text>
           </View>

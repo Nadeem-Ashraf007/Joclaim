@@ -18,9 +18,11 @@ import {RadioButton} from 'react-native-paper';
 import colors from '../../Constants/colors';
 import {Global} from '../../Constants/Global';
 import CardAccident from '../CardAccident';
+import Strings from '../../localization/LocalizedString';
 import {CustomPicker} from 'react-native-custom-picker';
 import icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const WorkshhopFinding = () => {
+  const [changeView, setChangeView] = React.useState(Global.changeView);
   const [loading, setLoading] = useState(true);
   const [workShopFind, setworkShopFind] = useState([]);
   const [quantity, setquantity] = useState('');
@@ -77,7 +79,7 @@ const WorkshhopFinding = () => {
       }}>
       <ScrollView style={styles.container}>
         <CustomPicker
-          placeholder={'Name'}
+          placeholder={Strings.name}
           options={workShopFind}
           getLabel={(item) => item.PartName}
           onValueChange={(value) => {
@@ -85,30 +87,31 @@ const WorkshhopFinding = () => {
             setpicker(value.PartName);
           }}
         />
-        <Text style={styles.text}>Quantity</Text>
+        <Text style={styles.text}>{Strings.quantity}</Text>
         <TextInput
           // defaultValue={quantity}
           // defaultValue={'quantity'}
           style={styles.textinput}
           onChangeText={(quantity) => setquantity(quantity)}
           value={quantity}
+          textAlign={!changeView ? 'right' : 'left'}
         />
 
-        <Text style={styles.text}>Condition</Text>
+        <Text style={styles.text}>{Strings.condition}</Text>
         <View style={{alignItems: 'flex-start'}}>
           <View
             style={{
-              flexDirection: 'row',
+              flexDirection: !changeView ? 'row-reverse' : 'row',
               alignItems: 'center',
             }}>
-            <Text>New</Text>
+            <Text>{Strings.new}</Text>
             <RadioButton
               value="New"
               status={checked === 'New' ? 'checked' : 'unchecked'}
               onPress={() => setChecked('New')}
             />
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text>Used</Text>
+              <Text>{Strings.used}</Text>
               <RadioButton
                 value="Used"
                 status={checked === 'Used' ? 'checked' : 'unchecked'}
@@ -116,7 +119,7 @@ const WorkshhopFinding = () => {
               />
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text>Any</Text>
+              <Text>{Strings.any}</Text>
               <RadioButton
                 value="Any"
                 status={checked === 'Any' ? 'checked' : 'unchecked'}
@@ -131,14 +134,14 @@ const WorkshhopFinding = () => {
               alignItems: 'center',
               justifyContent: 'center',
             }}>
-            <Text>Origional</Text>
+            <Text>{Strings.original}</Text>
             <RadioButton
               value="Origional"
               status={check === 'Origional' ? 'checked' : 'unchecked'}
               onPress={() => setcheck('Origional')}
             />
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text>Aftermarket</Text>
+              <Text>{Strings.afterMarket}</Text>
               <RadioButton
                 value="Aftermarket"
                 status={check === 'Aftermarket' ? 'checked' : 'unchecked'}
@@ -146,7 +149,7 @@ const WorkshhopFinding = () => {
               />
             </View>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text>Any</Text>
+              <Text>{Strings.any}</Text>
               <RadioButton
                 value="Any"
                 status={check === 'Any' ? 'checked' : 'unchecked'}
@@ -157,10 +160,11 @@ const WorkshhopFinding = () => {
         </View>
         <TextInput
           // defaultValue={quantity}
-          placeholder="Note"
+          placeholder={Strings.note}
           style={styles.textinput}
           onChangeText={(note) => setNote(note)}
           value={note}
+          textAlign={!changeView ? 'right' : 'left'}
         />
         <UploadImage />
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>

@@ -52,8 +52,8 @@ const Opened = ({navigation, userData, fetchUsers}) => {
             VehicleOwnerName={item.VehicleOwnerName}
             VIN={item.VIN}
             PlateNo={item.PlateNo}
-            onPress={() => navigation.navigate('Request')}
-            onpress={() =>
+            Search={() => navigation.navigate('Request')}
+            viewAccident={() =>
               navigation.navigate('OpenAccident', {
                 id: item.AccidentID,
               })
