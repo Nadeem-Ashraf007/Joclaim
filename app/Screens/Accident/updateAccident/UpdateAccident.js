@@ -272,7 +272,7 @@ const UpdateAccident = ({route, style}) => {
                 ]}>
                 {data.VehicleOwnerName}
               </Text>
-              <Text style={styles.text}>Model</Text>
+              <Text style={styles.text}>{Strings.model}</Text>
               <Text
                 style={[
                   styles.textInput,
@@ -280,7 +280,7 @@ const UpdateAccident = ({route, style}) => {
                 ]}>
                 {data.ModelCode}
               </Text>
-              <Text style={styles.text}>Year</Text>
+              <Text style={styles.text}>{Strings.quotation_Detail_Year}</Text>
               <Text
                 style={[
                   styles.textInput,

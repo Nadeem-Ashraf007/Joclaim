@@ -178,7 +178,7 @@ const RequestCard = ({
 };
 const styles = StyleSheet.create({
   card: {
-    shadowColor: 'black',
+    // shadowColor: 'black',
     shadowOffset: {width: 0, height: 2},
     shadowRadius: 6,
     shadowOpacity: 0.26,

@@ -24,7 +24,7 @@ import {
 // import Settings from '../Settings';
 import Paid from '../Requests/Paid';
 import CardAccident from '../Accident/CardAccident';
-import OpenAccident from '../Accident/OpenAccident';
+import ViewAccident from './ViewAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
 import DeliveredQutation from '../Requests/DeliveredQutation';
 import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
@@ -108,10 +108,10 @@ const Routes = () => {
               options={{headerShown: false}}
             />
             <Stack.Screen
-              name="OpenAccident"
-              component={OpenAccident}
+              name="ViewAccident"
+              component={ViewAccident}
               options={{
-                title: 'View Accident',
+                title: Strings.viewAccidentInfo,
                 headerStyle: {
                   backgroundColor: colors.secondary,
                 },

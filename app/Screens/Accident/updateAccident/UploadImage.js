@@ -7,40 +7,46 @@ import {
   Text,
   PermissionsAndroid,
 } from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
-
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../../Constants/colors';
-// import {
-//   ImagePicker,
-//   launchCamera,
-//   launchImageLibrary,
-// } from 'react-native-image-picker';
+import Strings from '../../localization/LocalizedString';
+import {
+  ImagePicker,
+  launchCamera,
+  launchImageLibrary,
+} from 'react-native-image-picker';
 const UploadImage = () => {
-  const takePics = () => {
-    ImagePicker.openPicker({
-      width: 200,
-      height: 200,
-      cropping: true,
-      multiple: true,
-    }).then((response) => {
-      let tempArray = [];
-      console.log('responseimage-------' + response);
-      setFilePath({ImageSource: response});
-      console.log('responseimagearray' + filePath.ImageSource);
-      response.forEach((item) => {
-        let image = {
-          uri: item.path,
-          width: item.width,
-          height: item.height,
-        };
+  const chooseFile = (type) => {
+    let options = {
+      mediaType: type,
+      maxWidth: 300,
+      maxHeight: 550,
+      quality: 1,
+    };
+    ImagePicker(options, (response) => {
+      console.log('Response = ', response);
 
-        console.log('imagpath==========' + image);
-        tempArray.push(image);
-        setFilePath({ImageSourceviewarray: tempArray});
-        console.log('savedimageuri=====' + item.path);
-        console.log('imagpath==========' + image);
-      });
+      if (response.didCancel) {
+        alert('User cancelled camera picker');
+        return;
+      } else if (response.errorCode == 'camera_unavailable') {
+        alert('Camera not available on device');
+        return;
+      } else if (response.errorCode == 'permission') {
+        alert('Permission not satisfied');
+        return;
+      } else if (response.errorCode == 'others') {
+        alert(response.errorMessage);
+        return;
+      }
+      console.log('base64 -> ', response.base64);
+      console.log('uri -> ', response.uri);
+      console.log('width -> ', response.width);
+      console.log('height -> ', response.height);
+      console.log('fileSize -> ', response.fileSize);
+      console.log('type -> ', response.type);
+      console.log('fileName -> ', response.fileName);
+      setFilePath(response);
     });
   };
   const [filePath, setFilePath] = useState({});
@@ -50,8 +56,8 @@ const UploadImage = () => {
       <TouchableOpacity
         activeOpacity={0.5}
         style={styles.buttonStyle}
-        onPress={() => takePics('image')}>
-        <Text style={styles.textStyle}>Upload image</Text>
+        onPress={() => chooseFile('photo')}>
+        <Text style={styles.textStyle}>{Strings.uploadImage}</Text>
       </TouchableOpacity>
       <Image source={{uri: filePath.uri}} style={styles.imageStyle} />
       {/* <Text style={styles.textStyle}>{filePath.uri}</Text> */}

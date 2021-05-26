@@ -106,7 +106,7 @@ const CardAccident = ({
             <Text style={styles.responceText}>{UserName}</Text>
           </View>
           <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
-            <Text style={styles.headingText}>{Strings.CreatedBy}</Text>
+            <Text style={styles.headingText}>{Strings.VehicleOwnerName}</Text>
             <Text
               style={{
                 color: colors.mediumgray,

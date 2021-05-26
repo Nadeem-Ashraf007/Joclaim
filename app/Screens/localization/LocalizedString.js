@@ -96,6 +96,12 @@ const Strings = new LocalizedStrings({
     any: 'أيهما',
     original: 'الأصلي',
     afterMarket: 'تجاري',
+    addparts: 'إضافة قطعة',
+    uploadImage: 'تحميل الصورة',
+    model: 'الصنف',
+    quotationDetailYear: 'سنة الصنع',
+    Year: 'سنة',
+    viewAccidentInfo: 'مشاهده معلومات الحادث',
   },
   en: {
     loginbutton: 'Login',
@@ -190,6 +196,12 @@ const Strings = new LocalizedStrings({
     any: 'Any',
     original: 'Origional',
     afterMarket: 'Aftermarket',
+    addparts: 'Add Parts',
+    uploadImage: 'Upload Image',
+    model: 'Model',
+    quotationDetailYear: 'Year',
+    Year: 'Year',
+    viewAccidentInfo: 'View AccidentInfo',
   },
 });
 

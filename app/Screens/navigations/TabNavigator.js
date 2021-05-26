@@ -157,7 +157,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: Strings.request,
           tabBarIcon: ({color}) => (
-            <Icons name="desktop-mac-dashboard" color={color} size={25} />
+            <Icons name="desktop-mac-dashboard" color={color} size={20} />
           ),
         }}
       />
@@ -167,7 +167,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: Strings.history,
           tabBarIcon: ({color}) => (
-            <Icons name="bullhorn" color={color} size={25} />
+            <Icons name="bullhorn" color={color} size={20} />
           ),
         }}
       />
@@ -178,7 +178,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: Strings.accidents,
           tabBarIcon: ({color}) => (
-            <Icons name="alert-outline" color={color} size={25} />
+            <Icons name="alert-outline" color={color} size={20} />
           ),
         }}
       />
@@ -189,7 +189,7 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: Strings.accidentHistory,
           tabBarIcon: ({color}) => (
-            <Icons name="alert-outline" color={color} size={25} />
+            <Icons name="alert-outline" color={color} size={20} />
           ),
         }}
       />

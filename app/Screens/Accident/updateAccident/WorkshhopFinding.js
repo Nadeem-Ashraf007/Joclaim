@@ -169,7 +169,7 @@ const WorkshhopFinding = () => {
         <UploadImage />
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <TouchableOpacity style={styles.opacity}>
-            <Text style={styles.opacityText}>Add Parts</Text>
+            <Text style={styles.opacityText}>{Strings.addparts}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.opacity}>
             <Text style={styles.opacityText}>Clear</Text>

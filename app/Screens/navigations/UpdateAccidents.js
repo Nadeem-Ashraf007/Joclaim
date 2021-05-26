@@ -13,7 +13,7 @@ const UpdateAccidents = () => {
         scrollEnabled: true,
         showIcon: true,
         tabStyle: {
-          alignSelf: 'center',
+          alignSelf: 'flex-end',
           // paddingBottom: '22%',
         },
         activeTintColor: colors.primary,

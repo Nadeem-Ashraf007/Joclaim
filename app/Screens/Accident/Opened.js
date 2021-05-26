@@ -54,8 +54,11 @@ const Opened = ({navigation, userData, fetchUsers}) => {
             PlateNo={item.PlateNo}
             Search={() => navigation.navigate('Request')}
             viewAccident={() =>
-              navigation.navigate('OpenAccident', {
-                id: item.AccidentID,
+              navigation.navigate('ViewAccident', {
+                params: {
+                  id: item.AccidentID,
+                },
+                screen: 'OpenAccident',
               })
             }
             summary={() =>
