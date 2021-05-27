@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
 import {Global} from './Constants/Global';
 import Strings from './localization/LocalizedString';
+import colors from './Constants/colors';
 const getToken = async () => {
   try {
     AsyncStorage.multiGet([
@@ -56,6 +57,13 @@ const Splash = ({navigation}) => {
           source={require('./images/Splash.png')}
         />
       )}
+      {!changeView ? (
+        <Text style={styles.text}>حلول إلكترونية لمطالبات شركات التأمين</Text>
+      ) : (
+        <Text style={styles.text}>
+          Automated solutions for auto insurance accident claims.
+        </Text>
+      )}
     </ImageBackground>
   );
 };
@@ -82,6 +90,10 @@ const styles = StyleSheet.create({
     fontSize: 45,
     alignSelf: 'center',
     color: 'white',
+  },
+  text: {
+    color: colors.white,
+    fontSize: 20,
   },
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Splash);

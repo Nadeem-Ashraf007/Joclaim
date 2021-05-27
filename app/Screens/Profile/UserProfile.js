@@ -6,6 +6,7 @@ import UserCard from './UserCard';
 const UserProfile = () => {
   const [profile, setProfile] = useState([]);
   const [loading, setloading] = useState(true);
+  const [error, seterror] = useState(null);
   useEffect(() => {
     (async () => {
       getData();
@@ -55,10 +56,21 @@ const UserProfile = () => {
       </View>
     );
   }
+  if (error) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <Text>Data not found</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <UserCard
-        style={styles.card}
         Email={profile.Email}
         PhoneNumber={profile.PhoneNumber}
         FirstName={profile.FirstName + profile.LastName}

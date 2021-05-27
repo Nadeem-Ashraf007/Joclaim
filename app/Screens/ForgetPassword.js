@@ -22,7 +22,7 @@ const ForgetPassword = ({route}) => {
     let reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
     if (!reg.test(email)) {
-      Toast.show('invalid email');
+      Toast.show(Strings.toastInvalidEmail);
       return false;
     } else {
       return true;

@@ -23,7 +23,7 @@ const UploadImage = () => {
       maxHeight: 550,
       quality: 1,
     };
-    ImagePicker(options, (response) => {
+    launchImageLibrary(options, (response) => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
@@ -53,13 +53,17 @@ const UploadImage = () => {
 
   return (
     <View style={{flexDirection: 'column'}}>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={styles.buttonStyle}
-        onPress={() => chooseFile('photo')}>
-        <Text style={styles.textStyle}>{Strings.uploadImage}</Text>
+      <TouchableOpacity activeOpacity={0.5} onPress={() => chooseFile('photo')}>
+        {filePath.uri ? (
+          <Image source={{uri: filePath.uri}} style={styles.imageStyle} />
+        ) : (
+          <Image
+            style={styles.imageStyle}
+            source={require('../../images/car.jpg')}
+          />
+        )}
       </TouchableOpacity>
-      <Image source={{uri: filePath.uri}} style={styles.imageStyle} />
+
       {/* <Text style={styles.textStyle}>{filePath.uri}</Text> */}
     </View>
   );

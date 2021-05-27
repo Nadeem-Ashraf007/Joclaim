@@ -125,11 +125,12 @@ const Login = ({navigation}) => {
                 responseJson.ICWorkshopID,
                 responseJson.CompanyID,
                 responseJson.AssidentID,
+                responseJson.EmployeeID,
               );
               navigation.replace('drawer');
               setLoading(false);
             } else {
-              Toast.show('Invalid Login');
+              Toast.show(Strings.invalidLogin);
               setLoading(false);
             }
           }
@@ -143,7 +144,7 @@ const Login = ({navigation}) => {
             setLoading(false);
           }
         } else {
-          Toast.show('Invalid Login Credential');
+          Toast.show(Strings.TostInvalidLoginCredential);
           setLoading(false);
         }
       })
@@ -159,7 +160,7 @@ const Login = ({navigation}) => {
     // let empty = / ^(?:(\d*)(?:\.(\d*))?|\s*)$/;
 
     if (!reg.test(email)) {
-      Toast.show('invalid email');
+      Toast.show(Strings.toastInvalidEmail);
       setLoading(false);
       return false;
     }

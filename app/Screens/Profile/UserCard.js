@@ -2,6 +2,7 @@ import React from 'react';
 import {View, StyleSheet, Image, Text} from 'react-native';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
+import UploadImage from '../Accident/updateAccident/UploadImage';
 import Strings from '../localization/LocalizedString';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
@@ -9,7 +10,7 @@ const UserCard = ({style, FirstName, PhoneNumber, Email, image, signature}) => {
     <View style={[styles.card, style]}>
       <View style={styles.container}>
         <Image style={styles.img} source={{uri: Global.apiurl + image}} />
-
+        {/* <UploadImage /> */}
         <View style={{alignItems: 'flex-start', marginBottom: 5}}>
           <Text style={styles.text}>{Strings.workshopOwner}</Text>
           <Text style={{fontSize: 17}}>{FirstName}</Text>

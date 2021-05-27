@@ -25,6 +25,7 @@ import {
 import Paid from '../Requests/Paid';
 import CardAccident from '../Accident/CardAccident';
 import ViewAccident from './ViewAccident';
+import OpenAccident from '../Accident/OpenAccident';
 import ClearanceSummary from '../Accident/ClearanceSummery';
 import DeliveredQutation from '../Requests/DeliveredQutation';
 import PaidAccidentDetails from '../Requests/accidentDetails/PaidAccidentDetails';
@@ -124,6 +125,11 @@ const Routes = () => {
               }}
             />
             <Stack.Screen name="CardAccident" component={CardAccident} />
+            <Stack.Screen
+              name="OpenAccident"
+              component={OpenAccident}
+              options={{headerShown: false}}
+            />
             <Stack.Screen name="Paid" component={Paid} />
 
             <Stack.Screen

@@ -280,7 +280,7 @@ const UpdateAccident = ({route, style}) => {
                 ]}>
                 {data.ModelCode}
               </Text>
-              <Text style={styles.text}>{Strings.quotation_Detail_Year}</Text>
+              <Text style={styles.text}>{Strings.quotationDetailYear}</Text>
               <Text
                 style={[
                   styles.textInput,
