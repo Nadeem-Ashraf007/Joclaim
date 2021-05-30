@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "603108179261",
+    "project_id": "joclaims-7aeb5",
+    "storage_bucket": "joclaims-7aeb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603108179261:android:e5ec25c04677eb2f935954",
+        "android_client_info": {
+          "package_name": "com.joclaims"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603108179261-ibmm76jvq50jfd6pjkc5br8b6dpble8k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdzckX4EqfniR6vQUYO2hMsiL4e4EB5G8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603108179261-ibmm76jvq50jfd6pjkc5br8b6dpble8k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

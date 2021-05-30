@@ -19,7 +19,7 @@ import {
   DefaultTheme as PaperDefaultTheme,
 } from 'react-native-paper';
 // import Opened from '../Profile/Accident/Opened';
-// import Parts from '../Parts';
+import Parts from '../Parts';
 // import Cars from '../Cars';
 // import Settings from '../Settings';
 import Paid from '../Requests/Paid';
@@ -125,6 +125,7 @@ const Routes = () => {
               }}
             />
             <Stack.Screen name="CardAccident" component={CardAccident} />
+            <Stack.Screen name="Parts" component={Parts} />
             <Stack.Screen
               name="OpenAccident"
               component={OpenAccident}

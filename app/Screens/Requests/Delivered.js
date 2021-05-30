@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   card: {
     // height: '65%',
+    width: '98%',
     marginVertical: 5,
   },
 });
