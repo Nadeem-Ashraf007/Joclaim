@@ -19,6 +19,7 @@ import Opacity from './Constants/Opacity';
 import colors from './Constants/colors';
 import Icon from 'react-native-vector-icons/Entypo';
 import Toast from 'react-native-simple-toast';
+// import AsyncStorage from '@react-native-community/async-storage';
 import AsyncStorage from '@react-native-community/async-storage';
 import Strings from './localization/LocalizedString';
 import {Global} from './Constants/Global';

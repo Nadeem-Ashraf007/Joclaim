@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import Delivered from '../Requests/Delivered';
 import Paid from '../Requests/Paid';
 import Cancelled from '../Requests/Cancelled';
+import Parts from '../Parts';
 import Closed from '../Accident/Closed';
 import Deleted from '../Accident/Deleted';
 import RequetClosed from '../Requests/RequestClosed';
@@ -127,6 +128,21 @@ const topTabNavigator = ({userData, userRequest}) => {
           ),
         }}
       />
+
+      {/* <TopTab.Screen
+        name="Parts"
+        component={Parts}
+        options={{
+          tabBarLabel: 'Parts',
+          tabBarIcon: () => (
+            <View style={styles.deleteicon}>
+              <Text style={styles.badgeicontext}>
+                {deleteIcon ? deleteIcon : 0}
+              </Text>
+            </View>
+          ),
+        }}
+      /> */}
     </TopTab.Navigator>
   );
 };

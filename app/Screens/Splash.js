@@ -1,9 +1,12 @@
 import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Image, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
 import {Global} from './Constants/Global';
 import Strings from './localization/LocalizedString';
+import {fcmService} from '../Screens/PushNotification/FCMService';
+import {localNotificationService} from '../Screens/PushNotification/LocalNotificationService';
 import colors from './Constants/colors';
 const getToken = async () => {
   try {
@@ -33,7 +36,34 @@ const getToken = async () => {
 
 const Splash = ({navigation}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
-
+  React.useEffect(() => {
+    fcmService.registerAppWithFCM();
+    fcmService.register(onRegister, onNotification, onOpenNotification);
+    localNotificationService.configure(onOpenNotification);
+    async function onRegister(token) {
+      console.log('token: ', token);
+    }
+    function onNotification(notify) {
+      const options = {
+        soundName: 'default',
+        playSound: true,
+      };
+      localNotificationService.showNotification(
+        0,
+        notify.title,
+        notify.body,
+        notify,
+        options,
+      );
+    }
+    function onOpenNotification(notify) {
+      console.log('onOpenNotification: ', notify);
+    }
+    return () => {
+      fcmService.unRegister();
+      localNotificationService.unregister();
+    };
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       AsyncStorage.getItem('accessToken').then((value) =>
