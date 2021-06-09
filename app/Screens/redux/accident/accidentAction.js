@@ -22,7 +22,7 @@ export const fetchUsers = () => {
     )
       .then((response) => response.json())
       .then((responseJson) => {
-        dispatch(fetchUsersSuccess(responseJson.Accidents));
+        dispatch(fetchUsersSuccess(responseJson));
       })
       .catch((error) => {
         // const errorMsg = error.message;

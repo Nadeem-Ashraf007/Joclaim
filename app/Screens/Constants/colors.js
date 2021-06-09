@@ -1,5 +1,5 @@
 export default {
-  primary: '#1779ba',
+  primary: '#1c6fc4',
   primaryDark: '#1D6FC4',
   TextLabel: '#1C6FC4',
   TextValue: '#141414',

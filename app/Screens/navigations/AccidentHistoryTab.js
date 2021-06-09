@@ -12,9 +12,9 @@ import {Global} from '../Constants/Global';
 import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const AccidentHistoryTap = ({userData}) => {
-  const data = userData.users.filter((r) => r.StatusID == 21);
-  const opened = userData.users.filter((r) => r.StatusID == 20);
-  const Delete = userData.users.filter((r) => r.IsDeleted == true);
+  const data = userData.users.Accidents.filter((r) => r.StatusID == 21);
+  const opened = userData.users.Accidents.filter((r) => r.StatusID == 20);
+  const Delete = userData.users.Accidents.filter((r) => r.IsDeleted == true);
   const closeIcon = data.length;
   const openedIcon = opened.length;
   const deleteIcon = Delete.length;
@@ -47,7 +47,7 @@ const AccidentHistoryTap = ({userData}) => {
           tabBarIcon: () => (
             <View style={styles.openicon}>
               <Text style={styles.badgeicontext}>
-                {openedIcon ? openedIcon : 0}
+                {Global.accidentHistoryIcon ? Global.accidentHistoryIcon : 0}
               </Text>
             </View>
           ),

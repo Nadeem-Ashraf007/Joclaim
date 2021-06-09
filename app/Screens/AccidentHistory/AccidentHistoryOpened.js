@@ -14,25 +14,21 @@ import {CustomPicker} from 'react-native-custom-picker';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
 import {TextInput} from 'react-native';
-const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
+const AccidentHistoryOpened = ({navigation, userData}) => {
   const [yearCod, setYearCode] = useState();
   const [yearId, setYearId] = useState(null);
   const [ModelCode, setModelCode] = useState(null);
   const [ModelId, setModelId] = useState(null);
-  const [makeName, setmakeName] = useState();
+  const [makeName, setmakeName] = useState(null);
   const [makeid, setMakeId] = useState(null);
   const [searchQuery, setsearchQuery] = useState(null);
   const [searchAccident, setsearchAccident] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [Responce, setResponce] = useState([]);
-  const [Makes, setMakes] = useState([]);
-  const [Models, setModels] = useState([]);
-  const [Years, setYears] = useState([]);
+  const [icon, setIcon] = useState();
+  const MetaData = userData.users;
+  const Models = userData.users.Models;
   const Model = Models.filter((r) => r.MakeID == makeid);
-
-  useEffect(() => {
-    getmetaData();
-  }, []);
+  Global.accidentHistoryIcon = icon;
   const getMakeName = (MakeName, MakeID) => {
     setmakeName(MakeName);
     setMakeId(MakeID);
@@ -45,37 +41,6 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
     setYearCode(YearCode);
     setYearId(YearID);
   };
-
-  const getmetaData = () => {
-    try {
-      fetch(
-        'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=' +
-          15,
-        {
-          method: 'GET',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            authorization: Global.accessToken
-              ? `Bearer ${Global.accessToken}`
-              : '',
-          },
-        },
-      )
-        .then((response) => response.json())
-        .then((responseJson) => {
-          const responce = responseJson;
-          setLoading(false);
-          setMakes(responce.Makes);
-          setModels(responce.Models);
-          setYears(responce.Years);
-          setResponce(responce);
-        });
-    } catch (e) {
-      alert(e);
-    }
-  };
-
   const getAccidentHistory = () => {
     debugger;
     try {
@@ -106,8 +71,9 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           debugger;
-          const responce = responseJson;
-          setsearchAccident(responce.Accidents);
+          const responce = responseJson.Accidents;
+          setsearchAccident(responce);
+          setIcon(responce.length);
           setLoading(false);
         });
     } catch (e) {
@@ -120,7 +86,7 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
       <View style={styles.card}>
         <View style={{flexDirection: 'row'}}>
           <CustomPicker
-            options={Makes}
+            options={MetaData.Makes}
             placeholder="Make"
             getLabel={(item) => item.MakeName}
             onValueChange={(value) => {
@@ -138,7 +104,7 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
             }}
           />
           <CustomPicker
-            options={Years}
+            options={MetaData.Years}
             placeholder="Year"
             getLabel={(item) => item.YearCode}
             onValueChange={(value) => {

@@ -11,7 +11,7 @@ import {fetchUsers} from '../redux/accident/accidentAction';
 import CardAccident from './CardAccident';
 import colors from '../Constants/colors';
 const Opened = ({navigation, userData, fetchUsers}) => {
-  const data = userData.users.filter((r) => r.StatusID == 20);
+  const data = userData.users.Accidents.filter((r) => r.StatusID == 20);
   useEffect(() => {
     fetchUsers();
   }, []);
