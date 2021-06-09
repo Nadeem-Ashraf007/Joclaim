@@ -17,26 +17,34 @@ import {TextInput} from 'react-native';
 const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
   const [yearCod, setYearCode] = useState();
   const [yearId, setYearId] = useState(null);
-  const [ModelCode, setModelCode] = useState();
+  const [ModelCode, setModelCode] = useState(null);
   const [ModelId, setModelId] = useState(null);
   const [makeName, setmakeName] = useState();
   const [makeid, setMakeId] = useState(null);
-  const [searchAccident, setsearchAccident] = useState([]);
   const [searchQuery, setsearchQuery] = useState(null);
+  const [searchAccident, setsearchAccident] = useState([]);
   const [loading, setLoading] = useState(false);
-  //   const [Responce, setResponce] = useState([]);
+  const [Responce, setResponce] = useState([]);
   const [Makes, setMakes] = useState([]);
   const [Models, setModels] = useState([]);
   const [Years, setYears] = useState([]);
-
   const Model = Models.filter((r) => r.MakeID == makeid);
 
   useEffect(() => {
     getmetaData();
   }, []);
-
-  //   alert('makeid', makeid);
-  //   alert('yearid', yearId);
+  const getMakeName = (MakeName, MakeID) => {
+    setmakeName(MakeName);
+    setMakeId(MakeID);
+  };
+  const getModelCode = (ModelCode, ModelID) => {
+    setModelCode(ModelCode);
+    setModelId(ModelID);
+  };
+  const getYearCode = (YearCode, YearID) => {
+    setYearCode(YearCode);
+    setYearId(YearID);
+  };
 
   const getmetaData = () => {
     try {
@@ -57,10 +65,11 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
         .then((response) => response.json())
         .then((responseJson) => {
           const responce = responseJson;
+          setLoading(false);
           setMakes(responce.Makes);
           setModels(responce.Models);
           setYears(responce.Years);
-          setLoading(false);
+          setResponce(responce);
         });
     } catch (e) {
       alert(e);
@@ -71,7 +80,11 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
     debugger;
     try {
       fetch(
-        'https://qapi.joclaims.com/api/Company/GetCompanyHistoryAccidents?CompanyID=15&WorkshopID=1&StartRow=1&RowsPerPage=8&MakeID=' +
+        'https://qapi.joclaims.com/api/Company/GetCompanyHistoryAccidents?CompanyID=' +
+          Global.companyid +
+          '&WorkshopID=' +
+          Global.workshopId +
+          '&StartRow=1&RowsPerPage=8&MakeID=' +
           makeid +
           '&ModelID=' +
           ModelId +
@@ -102,15 +115,8 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
     }
   };
   debugger;
-  //   if (loading) {
-  //     return (
-  //       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-  //         <ActivityIndicator size="large" color={colors.secondary} />
-  //       </View>
-  //     );
-  //   }
   return (
-    <View>
+    <View style={{flex: 1}}>
       <View style={styles.card}>
         <View style={{flexDirection: 'row'}}>
           <CustomPicker
@@ -118,9 +124,7 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
             placeholder="Make"
             getLabel={(item) => item.MakeName}
             onValueChange={(value) => {
-              value ? JSON.stringify(value) : setmakeName('');
-              setMakeId(value.MakeID);
-              setmakeName(value.MakeName);
+              value ? getMakeName(value.MakeName, value.MakeID) : null;
             }}
           />
           <CustomPicker
@@ -128,9 +132,9 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
             placeholder="Model"
             getLabel={(item) => item.ModelCode}
             onValueChange={(value) => {
-              value ? JSON.stringify(value) : setModelCode('');
-              setModelCode(value.ModelCode);
-              setModelId(value.ModelID);
+              value
+                ? getModelCode(value.ModelCode, value.ModelID)
+                : setModelId(null);
             }}
           />
           <CustomPicker
@@ -138,10 +142,9 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
             placeholder="Year"
             getLabel={(item) => item.YearCode}
             onValueChange={(value) => {
-              value ? JSON.stringify(value) : setYearCode('');
-              setYearCode(value.YearCode);
-              setYearId(value.YearID);
-              //   alert(value.YearID);
+              value
+                ? getYearCode(value.YearCode, value.YearID)
+                : setYearId(null);
             }}
           />
         </View>
@@ -159,6 +162,17 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
           }}>
           <Text style={styles.opacityText}>Search</Text>
         </TouchableOpacity>
+        {loading ? (
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'flex-end',
+              alignItems: 'center',
+              // marginHorizontal: '10%',
+            }}>
+            <ActivityIndicator size="large" color={colors.secondary} />
+          </View>
+        ) : null}
       </View>
 
       <FlatList
@@ -206,17 +220,6 @@ const AccidentHistoryOpened = ({navigation, userData, fetchUsers}) => {
           />
         )}
       />
-      {loading ? (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            marginTop: '10%',
-          }}>
-          <ActivityIndicator size="large" color={colors.secondary} />
-        </View>
-      ) : null}
     </View>
   );
 };
