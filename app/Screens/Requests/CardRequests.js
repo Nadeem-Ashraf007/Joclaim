@@ -210,9 +210,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
+    flex: 1,
   },
   container: {
     alignItems: 'center',
+    flex: 1,
   },
   imag: {
     width: '35%',

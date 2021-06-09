@@ -18,10 +18,13 @@ import {RadioButton} from 'react-native-paper';
 import colors from '../../Constants/colors';
 import {Global} from '../../Constants/Global';
 import CardAccident from '../CardAccident';
+import {launchImageLibrary} from 'react-native-image-picker';
 import Strings from '../../localization/LocalizedString';
 import {CustomPicker} from 'react-native-custom-picker';
 import icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const WorkshhopFinding = () => {
+  // const accidentid = route.params.id;
   const [changeView, setChangeView] = React.useState(Global.changeView);
   const [loading, setLoading] = useState(true);
   const [workShopFind, setworkShopFind] = useState([]);
@@ -30,16 +33,104 @@ const WorkshhopFinding = () => {
   const [checked, setChecked] = React.useState();
   const [check, setcheck] = useState();
   const [picker, setpicker] = useState();
-  // const accidentid = route.params.id;
+  const [photo, setPhoto] = React.useState([]);
+  const [part, setAutomotivePart] = useState([]);
+  // const [state, setstate] = useState(initialState)
+
+  const handleChoosePhoto = () => {
+    launchImageLibrary({noData: true}, (response) => {
+      // console.log(response);
+      if (response) {
+        setPhoto(response);
+        updateProfile(response);
+      }
+    });
+  };
 
   useEffect(() => {
     getData();
   });
+
+  // const updataAccident = () => {
+  //   var formData = new FormData();
+
+  //   DataCue.formData.append('AutomotivePartName', picker);
+  //   formData.append('NoteInfo', note);
+  //   formData.append('Quantity', quantity);
+  //   formData.append('NoteInfo', note);
+  //   try {
+  //     fetch('https://qapi.joclaims.com/api/Company/UpdateAccident', {
+  //       method: 'POST',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         authorization: Global.accessToken
+  //           ? `Bearer ${Global.accessToken}`
+  //           : '',
+  //       },
+  //       body:
+  //         'AutomotivePartName=' +
+  //         picker +
+  //         '&NoteInfo=' +
+  //         note +
+  //         '&Quantity' +
+  //         quantity,
+  //     })
+  //       .then((response) => response.json())
+  //       .then((response) => {
+  //         console.log('upload succes', response);
+  //         alert('Upload success!');
+  //       })
+  //       .catch((error) => {
+  //         console.log('upload error', error);
+  //         alert('Upload failed!');
+  //       });
+  //   } catch (e) {
+  //     alert(e.message);
+  //   }
+  // };
+
+  const updateProfile = async (response) => {
+    var formData = new FormData();
+    formData.append('OriginalName,imageDataUrl', {
+      uri: response.uri.replace('file://', ''),
+      name: 'image-name.png',
+      type: 'image/png', // it may be necessary in Android.
+    });
+    try {
+      fetch(
+        'https://qapi.joclaims.com/api/Common/SaveAllImage',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            authorization: Global.accessToken
+              ? `Bearer ${Global.accessToken}`
+              : '',
+          },
+        },
+        {formData},
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          console.log('upload succes', response);
+          alert('Upload success!');
+        })
+        .catch((error) => {
+          console.log('upload error', error);
+          alert('Upload failed!');
+        });
+    } catch (e) {
+      alert(e.message);
+    }
+  };
+
   const getData = () => {
     try {
       fetch(
         'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=' +
-          Global.companyid,
+          15,
         {
           method: 'GET',
           headers: {
@@ -166,7 +257,17 @@ const WorkshhopFinding = () => {
           value={note}
           textAlign={!changeView ? 'right' : 'left'}
         />
-        <UploadImage />
+        <TouchableOpacity onPress={handleChoosePhoto}>
+          {photo ? (
+            <Image style={styles.img} source={{uri: photo.uri}} />
+          ) : (
+            <Image
+              style={styles.img}
+              source={{uri: Global.apiurl + workShopFind.ImageURL}}
+            />
+          )}
+        </TouchableOpacity>
+
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <TouchableOpacity style={styles.opacity}>
             <Text style={styles.opacityText}>{Strings.addparts}</Text>
@@ -175,6 +276,12 @@ const WorkshhopFinding = () => {
             <Text style={styles.opacityText}>Clear</Text>
           </TouchableOpacity>
         </View>
+        <View>
+          <TouchableOpacity style={[styles.opacity, {marginTop: 10}]}>
+            <Text style={styles.opacityText}>Update</Text>
+          </TouchableOpacity>
+        </View>
+
         <Text>{picker}</Text>
         <Text>{checked}</Text>
         <Text>{check}</Text>
@@ -207,6 +314,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.opacity,
     borderRadius: 5,
     padding: 8,
+  },
+  img: {
+    width: 150,
+    height: 150,
+    borderRadius: 50,
+    marginRight: '5%',
   },
 });
 export default WorkshhopFinding;

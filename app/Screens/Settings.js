@@ -5,6 +5,7 @@ import colors from './Constants/colors';
 import {Global} from './Constants/Global';
 const Settings = () => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
+
   const changeLanguage = (value) => {
     Strings.setLanguage(value);
   };

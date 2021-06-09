@@ -6,17 +6,19 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import HistoryTopNav from './HistoryTopNav';
 import Strings from '../localization/LocalizedString';
 import Request from '../Request';
-import BranchList from '../BranchList';
+import BranchList from '../AccidentHistory/BranchList';
 // import BranchList from '../BranchList';
 import Accidents from '../Accident/Accidents';
 import AccidentsTopNav from './AccidentsTopNav';
 import History from '../History/History';
 import colors from '../Constants/colors';
 import {Global} from '../Constants/Global';
+import AccidentHistoryTap from './AccidentHistoryTab';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const HistoryStack = createStackNavigator();
 const AccidentStack = createStackNavigator();
+const AccidentHistoryStack = createStackNavigator();
 
 const topStack = ({navigation}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
@@ -137,6 +139,45 @@ const AccidentTab = ({navigation}) => (
   </AccidentStack.Navigator>
 );
 
+const AccidentHistoryTabNav = ({navigation}) => (
+  <AccidentHistoryStack.Navigator>
+    <AccidentHistoryStack.Screen
+      name="Accident History"
+      component={AccidentHistoryTap}
+      options={{
+        // headerStatusBarHeight: 0,
+        headerLeft: () => (
+          <Icons
+            onPress={() => navigation.openDrawer()}
+            style={{marginLeft: 10}}
+            name={'menu'}
+            size={25}
+            color={colors.white}
+          />
+        ),
+        headerRight: () => (
+          <Icons
+            // onPress={() => navigation.pop()}
+            style={{marginRight: 10}}
+            name={'bell'}
+            size={25}
+            color={colors.white}
+          />
+        ),
+        title: Strings.accidentHistory,
+        headerStyle: {
+          backgroundColor: colors.secondary,
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          alignItems: 'center',
+          textAlign: 'center',
+        },
+      }}
+    />
+  </AccidentHistoryStack.Navigator>
+);
+
 const TabNavigator = () => {
   return (
     <Tab.Navigator
@@ -185,7 +226,7 @@ const TabNavigator = () => {
 
       <Tab.Screen
         name="BranchList"
-        component={BranchList}
+        component={AccidentHistoryTabNav}
         options={{
           tabBarLabel: Strings.accidentHistory,
           tabBarIcon: ({color}) => (

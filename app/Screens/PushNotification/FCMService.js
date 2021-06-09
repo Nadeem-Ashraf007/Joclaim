@@ -1,6 +1,6 @@
-import firebase from "@react-native-firebase/app";
-import { Platform, Alert } from "react-native";
-import messaging from "@react-native-firebase/messaging";
+import firebase from '@react-native-firebase/app';
+import {Platform, Alert} from 'react-native';
+import messaging from '@react-native-firebase/messaging';
 
 class FCMService {
   register = (onRegister, onNotification, onOpenNotification) => {
@@ -8,11 +8,11 @@ class FCMService {
     this.createNotificationListners(
       onRegister,
       onNotification,
-      onOpenNotification
+      onOpenNotification,
     );
   };
   registerAppWithFCM = async () => {
-    if (Platform.OS === "ios") {
+    if (Platform.OS === 'ios') {
       await messaging().registerDeviceForRemoteMessages();
       await messaging().setAutoInitEnabled(true);
     }
@@ -35,11 +35,11 @@ class FCMService {
         if (fcmToken) {
           onRegister(fcmToken);
         } else {
-          console.log("user does not have device token");
+          console.log('user does not have device token');
         }
       })
       .catch((error) => {
-        console.log("get token rejected", error);
+        console.log('get token rejected', error);
       });
   };
 
@@ -50,21 +50,21 @@ class FCMService {
         this.getToken(onRegister);
       })
       .catch((error) => {
-        console.log("request permission rejected", error);
+        console.log('request permission rejected', error);
       });
   };
   deleteToken = () => {
     messaging()
       .deleteToken()
       .catch((error) => {
-        console.log("delete token error", error);
+        console.log('delete token error', error);
       });
   };
 
   createNotificationListners = (
     onRegister,
     onNotification,
-    onOpenNotification
+    onOpenNotification,
   ) => {
     messaging().onNotificationOpenedApp((message) => {
       if (message) {
@@ -85,8 +85,8 @@ class FCMService {
     this.messageListener = messaging().onMessage(async (message) => {
       if (message) {
         let notification = null;
-        console.log("message: ", message);
-        if (Platform.OS === "ios") {
+        console.log('message: ', message);
+        if (Platform.OS === 'ios') {
           notification = message.data.notification;
         } else {
           notification = message.notification;
@@ -96,7 +96,7 @@ class FCMService {
     });
 
     messaging().onTokenRefresh((fcmToken) => {
-      console.log("new token refresh", fcmToken);
+      console.log('new token refresh', fcmToken);
       onRegister(fcmToken);
     });
   };

@@ -151,7 +151,7 @@ const Strings = new LocalizedStrings({
     request: 'Request',
     history: 'History',
     accidents: 'Accidents',
-    accidentHistory: 'ACCIDENT HISTORY',
+    accidentHistory: 'Accident History',
     //Screentabs
     orderplaced: 'Order Placed',
     delivered: 'Delivered',

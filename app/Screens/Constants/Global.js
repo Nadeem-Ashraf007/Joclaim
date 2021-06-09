@@ -17,6 +17,6 @@ export const Global = {
   parameter: null,
   appversion: null,
   mobileid: null,
-
+  AccidentID: null,
   apiurl: 'https://qapi.joclaims.com/',
 };

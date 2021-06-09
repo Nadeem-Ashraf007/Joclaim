@@ -1,20 +1,48 @@
-import React, {useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   FlatList,
   ActivityIndicator,
   StyleSheet,
+  TextInput,
 } from 'react-native';
 import colors from '../Constants/colors';
 import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
+import filter from 'lodash.filter';
 const Paid = ({navigation, userData, fetchUser}) => {
+  const [query, setQuery] = useState('');
+  const [fullData, setFullData] = useState([]);
   const paid = userData.request.filter((r) => r.StatusID == 17);
+  const [data, setData] = useState();
   useEffect(() => {
     fetchUser();
+    setData(paid);
+    setFullData(paid);
   }, []);
+
+  const handleSearch = (text) => {
+    const formattedQuery = text.toLowerCase();
+    const filteredData = filter(fullData, (user) => {
+      return contains(user, formattedQuery);
+    });
+    setData(filteredData);
+    setQuery(text);
+  };
+
+  const contains = ({MakeName, VehicleOwnerName, YearCode}, query) => {
+    if (
+      MakeName.toLowerCase().includes(query) ||
+      VehicleOwnerName.toLowerCase().includes(query) ||
+      YearCode.toString().includes(query)
+    ) {
+      return true;
+    }
+    return false;
+  };
+
   return userData.loading ? (
     <View
       style={{
@@ -29,8 +57,15 @@ const Paid = ({navigation, userData, fetchUser}) => {
     <Text>{userData.error}</Text>
   ) : (
     <View style={styles.container}>
+      <TextInput
+        style={{width: '98%'}}
+        value={query}
+        onChangeText={(queryText) => handleSearch(queryText)}
+        placeholder="Search"
+      />
       <FlatList
-        data={paid}
+        data={data}
+        ListHeaderComponent={() => handleSearch}
         keyExtractor={(delivers) => delivers.RequestID.toString()}
         initialNumToRender={10}
         // ItemSeparatorComponent={ListItemSeperator}
@@ -90,6 +125,7 @@ const mapDispatchToProps = (dispatch) => {
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    flex: 1,
   },
   card: {
     // height: '65%',

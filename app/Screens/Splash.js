@@ -10,7 +10,7 @@ import {localNotificationService} from '../Screens/PushNotification/LocalNotific
 import colors from './Constants/colors';
 const getToken = async () => {
   try {
-    AsyncStorage.multiGet([
+    await AsyncStorage.multiGet([
       'accessToken',
       'workshopId',
       'companyid',
@@ -34,6 +34,7 @@ const getToken = async () => {
   }
 };
 
+console.log('Checking Storage ', Global.companyid);
 const Splash = ({navigation}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
   React.useEffect(() => {
@@ -64,14 +65,13 @@ const Splash = ({navigation}) => {
       localNotificationService.unregister();
     };
   }, []);
+
   useEffect(() => {
-    setTimeout(() => {
-      AsyncStorage.getItem('accessToken').then((value) =>
-        navigation.replace(value === null ? 'Auth' : 'drawer'),
-      );
-      Strings.setLanguage('ar');
-    }, 2000);
     getToken();
+    Strings.setLanguage('ar');
+    setTimeout(() => {
+      navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
+    }, 2000);
   }, []);
   return (
     <ImageBackground

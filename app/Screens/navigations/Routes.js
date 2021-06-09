@@ -11,7 +11,7 @@ import colors from '../Constants/colors';
 import Auth from './Auth';
 import Splash from '../Splash';
 import PaidAccident from './PaidAccident';
-import UpdateAccidents from './UpdateAccidents';
+import UpdateAccident from '../Accident/updateAccident/UpdateAccident';
 import {AuthContext} from '../Constants/context';
 import {
   Provider as PaperProvider,
@@ -135,7 +135,7 @@ const Routes = () => {
 
             <Stack.Screen
               name="UpdateAccidents"
-              component={UpdateAccidents}
+              component={UpdateAccident}
               options={{
                 title: Strings.updateAccident,
                 headerStyle: {

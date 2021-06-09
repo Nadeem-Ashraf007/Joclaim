@@ -69,10 +69,7 @@ const Opened = ({navigation, userData, fetchUsers}) => {
             }
             updateAccident={() =>
               navigation.navigate('UpdateAccidents', {
-                params: {
-                  id: item.AccidentID,
-                },
-                screen: 'UpdateAccident',
+                id: item.AccidentID,
               })
             }
           />

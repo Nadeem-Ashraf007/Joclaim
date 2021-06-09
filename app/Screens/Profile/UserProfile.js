@@ -35,7 +35,7 @@ const UserProfile = () => {
 
   const updateProfile = async (response) => {
     var formData = new FormData();
-    formData.append('ImgURL', {
+    formData.append('OriginalName,imageDataUrl', {
       uri: response.uri.replace('file://', ''),
       name: 'image-name.png',
       type: 'image/png', // it may be necessary in Android.
