@@ -86,8 +86,7 @@ const UpdateAccident = ({route, style}) => {
   const getWorkshopName = () => {
     try {
       fetch(
-        'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=' +
-          Global.companyid,
+        'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=15',
         {
           method: 'GET',
           headers: {
@@ -111,7 +110,7 @@ const UpdateAccident = ({route, style}) => {
       alert(e);
     }
   };
-
+  console.log('tokennnnnnnnnnnnnnnnnnnnnnnnnnnnnn', Global.accessToken);
   const getData = () => {
     try {
       fetch(

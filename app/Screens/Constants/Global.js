@@ -10,6 +10,7 @@ export const Global = {
   badgeicon: null,
   requestid: null,
   employeeid: null,
+  accidentid: null,
   statusId: null,
   accident: null,
   closedApi: null,

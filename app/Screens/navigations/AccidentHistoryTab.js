@@ -12,12 +12,11 @@ import {Global} from '../Constants/Global';
 import Strings from '../localization/LocalizedString';
 const TopTab = createMaterialTopTabNavigator();
 const AccidentHistoryTap = ({userData}) => {
-  const data = userData.users.Accidents.filter((r) => r.StatusID == 21);
-  const opened = userData.users.Accidents.filter((r) => r.StatusID == 20);
-  const Delete = userData.users.Accidents.filter((r) => r.IsDeleted == true);
-  const closeIcon = data.length;
-  const openedIcon = opened.length;
-  const deleteIcon = Delete.length;
+  // const data = userData.users.Accidents.filter((r) => r.StatusID == 21);
+  // const Delete = userData.users.Accidents.filter((r) => r.IsDeleted == true);
+  // const closeIcon = data.length;
+  // const openedIcon = opened.length;
+  // const deleteIcon = Delete.length;
   return (
     <TopTab.Navigator
       tabBarOptions={{
@@ -60,9 +59,7 @@ const AccidentHistoryTap = ({userData}) => {
           tabBarLabel: Strings.closed,
           tabBarIcon: () => (
             <View style={styles.closeicon}>
-              <Text style={styles.badgeicontext}>
-                {closeIcon ? closeIcon : 0}
-              </Text>
+              <Text style={styles.badgeicontext}>0</Text>
             </View>
           ),
         }}
@@ -74,9 +71,7 @@ const AccidentHistoryTap = ({userData}) => {
           tabBarLabel: Strings.deleted,
           tabBarIcon: () => (
             <View style={styles.deleteicon}>
-              <Text style={styles.badgeicontext}>
-                {deleteIcon ? deleteIcon : 0}
-              </Text>
+              <Text style={styles.badgeicontext}>0</Text>
             </View>
           ),
         }}

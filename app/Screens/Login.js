@@ -43,35 +43,28 @@ const Login = ({navigation}) => {
       changeLanguage('ar');
     }
   };
+  AsyncStorage.setItem('LanguageSet', changeView);
+  alert(changeView);
   const mobileid = 64;
   const appversion = 15;
-  const companyid = 15;
-  const workshopId = 1;
+  // const companyid = 15;
+  // const workshopId = 1;
+  debugger;
   const storeToken = async (
-    accessToken,
-    workshopId,
-    companyid,
-    changeView,
-    statusId,
-    employeeid,
-    accidentid,
-    parameter,
-    mobileid,
-    appversion,
+    access_token,
+    ICWorkshopID,
+    CompanyID,
+    StatusID,
+    EmployeeID,
   ) => {
     try {
       await AsyncStorage.multiSet(
         [
-          ['accessToken', accessToken],
-          ['workshopId', workshopId],
-          ['companyid', companyid],
-          ['changeView', changeView],
-          ['statusId', statusId],
-          ['employeeid', employeeid],
-          ['accidentid', accidentid],
-          ['parameter', parameter],
-          ['mobileid', mobileid],
-          ['appversion', appversion],
+          ['accessToken', access_token],
+          ['workshopId', ICWorkshopID],
+          ['companyid', CompanyID],
+          ['statusId', StatusID],
+          ['employeeId', EmployeeID],
         ],
         (res) => {
           console.log('login store token func:' + res);
@@ -112,6 +105,16 @@ const Login = ({navigation}) => {
         if (responseJson.error === undefined) {
           if (responseJson.RoleID === '11') {
             if (responseJson.StatusID === '2') {
+              debugger;
+              storeToken(
+                responseJson.access_token,
+                responseJson.ICWorkshopID,
+                responseJson.CompanyID,
+                responseJson.StatusID,
+                responseJson.EmployeeID,
+
+                // responseJson.EmployeeID,
+              );
               Toast.show(Strings.logiSuccessful);
               Global.statusId = responseJson.StatusID;
               Global.workshopId = responseJson.ICWorkshopID;
@@ -119,14 +122,7 @@ const Login = ({navigation}) => {
               Global.accessToken = responseJson.access_token;
               Global.employeeid = responseJson.EmployeeID;
               Global.accidentid = responseJson.AssidentID;
-              AsyncStorage.setItem('accessToken', responseJson.access_token);
-              storeToken(
-                responseJson.access_token,
-                responseJson.ICWorkshopID,
-                responseJson.CompanyID,
-                responseJson.AssidentID,
-                responseJson.EmployeeID,
-              );
+
               navigation.replace('drawer');
               setLoading(false);
             } else {

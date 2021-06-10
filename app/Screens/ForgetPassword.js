@@ -18,6 +18,7 @@ import Toast from 'react-native-simple-toast';
 import {Global} from './Constants/Global';
 import Strings from './localization/LocalizedString';
 const ForgetPassword = ({route}) => {
+  const [id, setid] = React.useState(0);
   const validate = () => {
     let reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -27,6 +28,9 @@ const ForgetPassword = ({route}) => {
     } else {
       return true;
     }
+  };
+  const onFocused = (id) => {
+    setid(id);
   };
   const [email, setemail] = React.useState();
   const [changeView, setChangeView] = React.useState(Global.changeView);
@@ -49,18 +53,26 @@ const ForgetPassword = ({route}) => {
           <Text
             style={[
               styles.labelText,
-              {textAlign: !changeView ? 'right' : 'left'},
+              {
+                textAlign: !changeView ? 'right' : 'left',
+                color: id == 1 ? 'green' : colors.primary,
+              },
             ]}>
             {Strings.emailphone}
           </Text>
           <View
             style={[
               styles.container,
-              {flexDirection: !changeView ? 'row-reverse' : 'row'},
+              {
+                flexDirection: !changeView ? 'row-reverse' : 'row',
+                borderColor: id == 1 ? 'green' : colors.primary,
+              },
             ]}>
             <TextInput
               textAlign={!changeView ? 'right' : 'left'}
               style={styles.txtinput}
+              onFocus={() => onFocused(1)}
+              onBlur={() => onFocused(2)}
               placeholder={Strings.emailphone}
               keyboardType="email-address"
               autoCapitalize="none"

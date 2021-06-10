@@ -8,33 +8,29 @@ import Strings from './localization/LocalizedString';
 import {fcmService} from '../Screens/PushNotification/FCMService';
 import {localNotificationService} from '../Screens/PushNotification/LocalNotificationService';
 import colors from './Constants/colors';
+
 const getToken = async () => {
   try {
     await AsyncStorage.multiGet([
       'accessToken',
       'workshopId',
       'companyid',
-      'language',
-      'employeeid',
-      'parameter',
-      'mobileid',
-      'appversion',
+      'statusId',
+      'employeeId',
     ]).then((response) => {
+      debugger;
       Global.accessToken = response[0][1];
       Global.workshopId = response[1][1];
       Global.companyid = response[2][1];
-      Global.changeView = response[3][1];
+      Global.statusId = response[3][1];
       Global.employeeid = response[4][1];
-      Global.parameter = response[5][1];
-      Global.mobileid = response[6][1];
-      Global.appversion = response[7][1];
     });
   } catch (error) {
     console.log('something went wrong' + error);
   }
 };
 
-console.log('Checking Storage ', Global.companyid);
+console.log('Checking Storage Compny d ', Global.workshopId, Global.companyid);
 const Splash = ({navigation}) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
   React.useEffect(() => {
@@ -65,13 +61,16 @@ const Splash = ({navigation}) => {
       localNotificationService.unregister();
     };
   }, []);
-
+  AsyncStorage.getItem('LanguageSet').then(
+    (value) => (Global.changeView = value),
+  );
+  alert(Global.changeView);
   useEffect(() => {
     getToken();
-    Strings.setLanguage('ar');
-    setTimeout(() => {
-      navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
-    }, 2000);
+    Strings.setLanguage('ar'),
+      setTimeout(() => {
+        navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
+      }, 2000);
   }, []);
   return (
     <ImageBackground

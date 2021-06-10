@@ -1,14 +1,16 @@
 import {
-  FETCH_USERS_REQUEST,
-  FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE,
-} from '../accident/accidentTypes';
+  METADATA_REQUEST,
+  METADATA_SUCCESS,
+  METADATA_FAILURE,
+} from './metaDataTypes';
 import {Global} from '../../Constants/Global';
+
 export const fetchUsers = () => {
   return (dispatch) => {
-    dispatch(fetchUsersRequest());
+    dispatch(fetchMetaDataReqest());
     fetch(
-      'https://qapi.joclaims.com/api/Company/GetCompanyAccidents?CompanyID=15&WorkshopID=1',
+      'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=' +
+        Global.companyid,
       {
         method: 'GET',
         headers: {
@@ -22,31 +24,31 @@ export const fetchUsers = () => {
     )
       .then((response) => response.json())
       .then((responseJson) => {
-        dispatch(fetchUsersSuccess(responseJson.Accidents));
+        dispatch(fetchMetaDataSucces(responseJson));
       })
       .catch((error) => {
         // const errorMsg = error.message;
 
-        dispatch(fetchUsersFailure(error.message));
+        dispatch(fetchMetaDataFailre(error.message));
       });
   };
 };
-export const fetchUsersRequest = () => {
+export const fetchMetaDataReqest = () => {
   return {
-    type: FETCH_USERS_REQUEST,
+    type: METADATA_REQUEST,
   };
 };
 
-export const fetchUsersSuccess = (users) => {
+export const fetchMetaDataSucces = (metaData) => {
   return {
-    type: FETCH_USERS_SUCCESS,
-    payload: users,
+    type: METADATA_SUCCESS,
+    paylod: metaData,
   };
 };
 
-export const fetchUsersFailure = (error) => {
+export const fetchMetaDataFailre = (error) => {
   return {
-    type: FETCH_USERS_FAILURE,
-    payload: error,
+    type: METADATA_FAILURE,
+    paylod: error,
   };
 };

@@ -8,13 +8,13 @@ import {
   ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-import {fetchUsers} from '../redux/accident/accidentAction';
+import {fetchUsers} from '../redux/metaData/metaDataActions';
 import CardAccident from '../Accident/CardAccident';
 import {CustomPicker} from 'react-native-custom-picker';
 import {Global} from '../Constants/Global';
 import colors from '../Constants/colors';
 import {TextInput} from 'react-native';
-const AccidentHistoryOpened = ({navigation, userData}) => {
+const AccidentHistoryOpened = ({navigation, userData, fetchMetaData}) => {
   const [yearCod, setYearCode] = useState();
   const [yearId, setYearId] = useState(null);
   const [ModelCode, setModelCode] = useState(null);
@@ -25,9 +25,14 @@ const AccidentHistoryOpened = ({navigation, userData}) => {
   const [searchAccident, setsearchAccident] = useState([]);
   const [loading, setLoading] = useState(false);
   const [icon, setIcon] = useState();
-  const MetaData = userData.users;
-  const Models = userData.users.Models;
-  const Model = Models.filter((r) => r.MakeID == makeid);
+  useEffect(() => {
+    fetchMetaData();
+  }, []);
+
+  alert(fetchMetaData());
+  const MetaData = userData.metaData;
+  const Models = userData.metaData.Models;
+  const Model = Models.filter((model) => model.MakeID == makeid);
   Global.accidentHistoryIcon = icon;
   const getMakeName = (MakeName, MakeID) => {
     setmakeName(MakeName);
@@ -41,6 +46,7 @@ const AccidentHistoryOpened = ({navigation, userData}) => {
     setYearCode(YearCode);
     setYearId(YearID);
   };
+
   const getAccidentHistory = () => {
     debugger;
     try {
@@ -191,12 +197,12 @@ const AccidentHistoryOpened = ({navigation, userData}) => {
 };
 const mapStateToProps = (state) => {
   return {
-    userData: state.user,
+    userData: state.getMetaData,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUsers: () => dispatch(fetchUsers()),
+    fetchMetaData: () => dispatch(fetchUsers()),
   };
 };
 const styles = StyleSheet.create({

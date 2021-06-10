@@ -8,14 +8,16 @@ import colors from '../Constants/colors';
 import Deleted from '../Accident/Deleted';
 import {Global} from '../Constants/Global';
 import Strings from '../localization/LocalizedString';
+
 const TopTab = createMaterialTopTabNavigator();
 const AccidentsTopNav = ({userData}) => {
-  const data = userData.users.Accidents.filter((r) => r.StatusID == 21);
-  const opened = userData.users.Accidents.filter((r) => r.StatusID == 20);
-  const Delete = userData.users.Accidents.filter((r) => r.IsDeleted == true);
+  const data = userData.users.filter((r) => r.StatusID == 21);
+  const opened = userData.users.filter((r) => r.StatusID == 20);
+  const Delete = userData.users.filter((r) => r.IsDeleted == true);
   const closeIcon = data.length;
   const openedIcon = opened.length;
   const deleteIcon = Delete.length;
+
   return (
     <TopTab.Navigator
       tabBarOptions={{
