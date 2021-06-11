@@ -130,7 +130,7 @@ const WorkshhopFinding = () => {
     try {
       fetch(
         'https://qapi.joclaims.com/api/Company/GetAccidentMetaData?CompanyID=' +
-          15,
+          Global.companyid,
         {
           method: 'GET',
           headers: {

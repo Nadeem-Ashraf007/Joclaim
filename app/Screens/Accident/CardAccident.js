@@ -135,22 +135,22 @@ const CardAccident = ({
               }}>
               {InprogressRequestCount}R
             </Text>
-            <TouchableOpacity onPress={summary}>
+            {/* <TouchableOpacity onPress={summary}>
               <Icon
                 name="navicon"
                 color={colors.darkGray}
                 style={{marginHorizontal: 10}}
                 size={24}
               />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={Search}>
+            </TouchableOpacity> */}
+            {/* <TouchableOpacity onPress={Search}>
               <Icon
                 name="search"
                 style={{marginHorizontal: 10}}
                 color={colors.darkGray}
                 size={24}
               />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity onPress={updateAccident}>
               <Icon
                 name="edit"

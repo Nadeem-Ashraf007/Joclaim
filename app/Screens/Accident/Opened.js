@@ -13,9 +13,10 @@ import colors from '../Constants/colors';
 const Opened = ({navigation, userData, fetchUsers}) => {
   const data = userData.users.filter((r) => r.StatusID == 20);
   useEffect(() => {
+    debugger;
     fetchUsers();
   }, []);
-
+  debugger;
   return userData.loading ? (
     <View
       style={{
@@ -52,7 +53,7 @@ const Opened = ({navigation, userData, fetchUsers}) => {
             VehicleOwnerName={item.VehicleOwnerName}
             VIN={item.VIN}
             PlateNo={item.PlateNo}
-            Search={() => navigation.navigate('Request')}
+            // Search={() => navigation.navigate('Request')}
             viewAccident={() =>
               navigation.navigate('ViewAccident', {
                 params: {
@@ -61,12 +62,12 @@ const Opened = ({navigation, userData, fetchUsers}) => {
                 screen: 'OpenAccident',
               })
             }
-            summary={() =>
-              navigation.navigate('ClearanceSummary', {
-                id: item.AccidentID,
-                companyid: item.CompanyID,
-              })
-            }
+            // summary={() =>
+            //   navigation.navigate('ClearanceSummary', {
+            //     id: item.AccidentID,
+            //     companyid: item.CompanyID,
+            //   })
+            // }
             updateAccident={() =>
               navigation.navigate('UpdateAccidents', {
                 id: item.AccidentID,

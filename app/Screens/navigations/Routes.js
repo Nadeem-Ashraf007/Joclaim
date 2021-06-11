@@ -11,6 +11,7 @@ import colors from '../Constants/colors';
 import Auth from './Auth';
 import Splash from '../Splash';
 import PaidAccident from './PaidAccident';
+import settings from '../Settings';
 import UpdateAccident from '../Accident/updateAccident/UpdateAccident';
 import {AuthContext} from '../Constants/context';
 import {
@@ -125,6 +126,7 @@ const Routes = () => {
               }}
             />
             <Stack.Screen name="CardAccident" component={CardAccident} />
+            <Stack.Screen name="Settings" component={settings} />
             <Stack.Screen name="Parts" component={Parts} />
             <Stack.Screen
               name="OpenAccident"

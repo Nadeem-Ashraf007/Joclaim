@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Login from '../Login';
 import ForgetPassword from '../ForgetPassword';
 import Strings from '../localization/LocalizedString';
+import Settings from '../Settings';
 const Stack = createStackNavigator();
 const Auth = () => {
   return (
@@ -15,6 +16,20 @@ const Auth = () => {
       <Stack.Screen
         name="ForgetPassword"
         component={ForgetPassword}
+        options={{
+          headerTransparent: true,
+          title: Strings.forgetpassword,
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          // headerTitleStyle: {
+          //   width: '90%',
+          //   textAlign: 'center',
+          // },
+        }}
+      />
+      <Stack.Screen
+        name="settings"
+        component={Settings}
         options={{
           headerTransparent: true,
           title: Strings.forgetpassword,

@@ -47,6 +47,7 @@ const OpenAccident = ({navigation, route, style, MakeName}) => {
         .then((responseJson) => {
           const responce = responseJson;
           // const markers = responseJson.AccidentMarkers;
+          debugger;
           if (responce.Accident !== null && responce.Accident !== 'undefined') {
             setdata(responce.Accident);
             setMarker(responce.AccidentMarkers);

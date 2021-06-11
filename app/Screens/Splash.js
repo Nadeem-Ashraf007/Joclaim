@@ -1,38 +1,42 @@
 import React, {useEffect} from 'react';
 import {ImageBackground, StyleSheet, Image, Text} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-// import AsyncStorage from '@react-native-community/async-storage';
 import {connect} from 'react-redux';
 import {Global} from './Constants/Global';
 import Strings from './localization/LocalizedString';
 import {fcmService} from '../Screens/PushNotification/FCMService';
 import {localNotificationService} from '../Screens/PushNotification/LocalNotificationService';
 import colors from './Constants/colors';
-
-const getToken = async () => {
+import {View} from 'react-native';
+const getToken = () => {
+  debugger;
   try {
-    await AsyncStorage.multiGet([
+    AsyncStorage.multiGet([
       'accessToken',
       'workshopId',
       'companyid',
       'statusId',
       'employeeId',
+      'changeLanguage',
     ]).then((response) => {
-      debugger;
       Global.accessToken = response[0][1];
       Global.workshopId = response[1][1];
       Global.companyid = response[2][1];
       Global.statusId = response[3][1];
       Global.employeeid = response[4][1];
+      Global.changeView = JSON.parse(response[5][1]);
+
+      if (Global.changeView == true) {
+        Strings.setLanguage('en');
+      } else {
+        Strings.setLanguage('ar');
+      }
     });
   } catch (error) {
     console.log('something went wrong' + error);
   }
 };
-
-console.log('Checking Storage Compny d ', Global.workshopId, Global.companyid);
 const Splash = ({navigation}) => {
-  const [changeView, setChangeView] = React.useState(Global.changeView);
   React.useEffect(() => {
     fcmService.registerAppWithFCM();
     fcmService.register(onRegister, onNotification, onOpenNotification);
@@ -61,37 +65,34 @@ const Splash = ({navigation}) => {
       localNotificationService.unregister();
     };
   }, []);
-  AsyncStorage.getItem('LanguageSet').then(
-    (value) => (Global.changeView = value),
-  );
-  alert(Global.changeView);
+
   useEffect(() => {
     getToken();
-    Strings.setLanguage('ar'),
-      setTimeout(() => {
-        navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
-      }, 2000);
+    setTimeout(() => {
+      navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
+    }, 3000);
   }, []);
   return (
     <ImageBackground
       style={styles.background}
       source={require('./images/background.png')}>
-      {!changeView ? (
-        <Text style={styles.imageJoclaims}>جوكليمز</Text>
-      ) : (
+      {Global.changeView == true ? (
         <Image
           resizeMode="center"
           resizeMethod="scale"
           style={styles.image}
           source={require('./images/Splash.png')}
         />
-      )}
-      {!changeView ? (
-        <Text style={styles.text}>حلول إلكترونية لمطالبات شركات التأمين</Text>
       ) : (
-        <Text style={styles.text}>
-          Automated solutions for auto insurance accident claims.
-        </Text>
+        <Text style={styles.imageJoclaims}>جوكليمز</Text>
+      )}
+      {Global.changeView == null ? (
+        <View>
+          <Text style={styles.textEnglish}>Automated solutions for auto</Text>
+          <Text style={styles.textEnglish}>insurance accident claims.</Text>
+        </View>
+      ) : (
+        <Text style={styles.text}>حلول إلكترونية لمطالبات شركات التأمين</Text>
       )}
     </ImageBackground>
   );
@@ -121,6 +122,10 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   text: {
+    color: colors.white,
+    fontSize: 20,
+  },
+  textEnglish: {
     color: colors.white,
     fontSize: 20,
   },

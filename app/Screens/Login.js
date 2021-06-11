@@ -32,7 +32,6 @@ const Login = ({navigation}) => {
   const changeLanguage = (value) => {
     Strings.setLanguage(value);
   };
-
   const toggleFunction = () => {
     if (!changeView) {
       setChangeView(true);
@@ -43,20 +42,21 @@ const Login = ({navigation}) => {
       changeLanguage('ar');
     }
   };
-  AsyncStorage.setItem('LanguageSet', changeView);
-  alert(changeView);
+  // alert('alerttt' + changeView);
+
+  AsyncStorage.setItem('Language', JSON.stringify(changeView));
   const mobileid = 64;
   const appversion = 15;
-  // const companyid = 15;
-  // const workshopId = 1;
-  debugger;
+
   const storeToken = async (
     access_token,
     ICWorkshopID,
     CompanyID,
     StatusID,
     EmployeeID,
+    ChangeLanguage,
   ) => {
+    // debugger;
     try {
       await AsyncStorage.multiSet(
         [
@@ -65,6 +65,7 @@ const Login = ({navigation}) => {
           ['companyid', CompanyID],
           ['statusId', StatusID],
           ['employeeId', EmployeeID],
+          ['changeLanguage', JSON.stringify(ChangeLanguage)],
         ],
         (res) => {
           console.log('login store token func:' + res);
@@ -105,14 +106,14 @@ const Login = ({navigation}) => {
         if (responseJson.error === undefined) {
           if (responseJson.RoleID === '11') {
             if (responseJson.StatusID === '2') {
-              debugger;
+              // debugger;
               storeToken(
                 responseJson.access_token,
                 responseJson.ICWorkshopID,
                 responseJson.CompanyID,
                 responseJson.StatusID,
                 responseJson.EmployeeID,
-
+                changeView,
                 // responseJson.EmployeeID,
               );
               Toast.show(Strings.logiSuccessful);
@@ -154,7 +155,7 @@ const Login = ({navigation}) => {
     let reg = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     let regg = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     // let empty = / ^(?:(\d*)(?:\.(\d*))?|\s*)$/;
-
+    setLoading(true);
     if (!reg.test(email)) {
       Toast.show(Strings.toastInvalidEmail);
       setLoading(false);
@@ -165,6 +166,7 @@ const Login = ({navigation}) => {
     //   return false;
     // }
     else {
+      Signin();
       return true;
     }
   };
@@ -309,10 +311,7 @@ const Login = ({navigation}) => {
                 style={styles.opacitymargin}
                 title={Strings.loginbutton}
                 onPress={() => {
-                  setLoading(true);
-                  if (validate()) {
-                    Signin();
-                  }
+                  validate();
                   // navigation.replace('drawer');
                 }}
               />

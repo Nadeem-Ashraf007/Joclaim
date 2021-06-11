@@ -8,7 +8,10 @@ export const fetchUser = () => {
   return (dispatch) => {
     dispatch(fetchUserRequest());
     fetch(
-      'https://qapi.joclaims.com/api/Company/GetCompanyRequests?CompanyID=15&WorkshopID=1',
+      'https://qapi.joclaims.com/api/Company/GetCompanyRequests?CompanyID=' +
+        Global.companyid +
+        '&WorkshopID=' +
+        Global.workshopId,
       {
         method: 'GET',
         headers: {

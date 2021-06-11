@@ -1,5 +1,5 @@
 import LocalizedStrings from 'react-native-localization';
-// export const DEFAULT_LANGUAGE = 'ar';
+export const DEFAULT_LANGUAGE = 'ar';
 // import en from './en.js';
 // import ar from './ar.js';
 const Strings = new LocalizedStrings({

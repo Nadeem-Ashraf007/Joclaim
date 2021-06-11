@@ -13,7 +13,8 @@ import {connect} from 'react-redux';
 import {fetchUser} from '../redux/request/requestAction';
 import CardRequests from '../Requests/CardRequests';
 import {CustomPicker} from 'react-native-custom-picker';
-import {Alert} from 'react-native';
+
+import {Global} from '../Constants/Global';
 const Delivered = ({navigation, userData, fetchUser}) => {
   const Deliver = userData.request.filter((r) => r.StatusID == 11);
   const pickData = userData.request;
@@ -23,17 +24,17 @@ const Delivered = ({navigation, userData, fetchUser}) => {
   const [makeNamepick, setmakeNamepick] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState();
   const [masterDataSource, setMasterDataSource] = useState([]);
-
   useEffect(() => {
     fetchUser();
-
     setFilteredDataSource(Deliver);
     setMasterDataSource(Deliver);
   }, []);
   const makeName = (MakeName) => {
+    // debugger;
     setmakeNamepick(MakeName);
   };
   const yearCode = (YearCode) => {
+    // debugger;
     setYearCode(YearCode);
   };
   // alert(yearCodepick);
@@ -78,9 +79,8 @@ const Delivered = ({navigation, userData, fetchUser}) => {
     // ModelCode,
     // vehicleOwner,
   ) => {
+    // debugger;
     if (yearCodepick && makeNamepick) {
-      alert(yearCodepick);
-      alert(makeNamepick);
       const newData = masterDataSource.filter(
         (item) =>
           // item.ModelCode.toLowerCase() == ModelCode.toLowerCase() &&
@@ -111,6 +111,8 @@ const Delivered = ({navigation, userData, fetchUser}) => {
 
   //
   const ItemView = ({item}) => {
+    // debugger;
+
     return (
       <CardRequests
         style={styles.card}

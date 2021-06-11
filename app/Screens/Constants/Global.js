@@ -18,6 +18,7 @@ export const Global = {
   parameter: null,
   appversion: null,
   mobileid: null,
+  changeLanguage: null,
   AccidentID: null,
   accidentHistoryIcon: null,
   apiurl: 'https://qapi.joclaims.com/',
