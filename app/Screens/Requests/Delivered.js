@@ -123,7 +123,8 @@ const Delivered = ({navigation, userData, fetchUser}) => {
         ModelCode={item.ModelCode}
         makename={item.VehicleOwnerName}
         // makename={item.MakeID}
-        arabicmakename={item.ArabicMakeName}
+        ArabicMakeName={item.ArabicMakeName}
+        ArabicModelName={item.ArabicModelName}
         RequestNumber={item.RequestNumber}
         createdon={item.BiddingDateTime}
         AccidentNo={item.AccidentNo}
@@ -227,13 +228,19 @@ const Delivered = ({navigation, userData, fetchUser}) => {
         //   yearCodepick.length == 0
         // }
       />
-      <FlatList
-        data={filteredDataSource}
-        keyExtractor={(delivers) => delivers.RequestID.toString()}
-        initialNumToRender={10}
-        // ItemSeparatorComponent={ListItemSeperator}
-        renderItem={ItemView}
-      />
+      {Deliver == '' ? (
+        <View>
+          <Text>Record not Found</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={filteredDataSource}
+          keyExtractor={(delivers) => delivers.RequestID.toString()}
+          initialNumToRender={10}
+          // ItemSeparatorComponent={ListItemSeperator}
+          renderItem={ItemView}
+        />
+      )}
     </View>
   );
 };

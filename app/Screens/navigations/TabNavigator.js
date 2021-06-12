@@ -29,6 +29,7 @@ const topStack = ({navigation}) => {
         component={topTabNavigator}
         options={{
           // headerStatusBarHeight: 0,
+
           headerLeft: () => (
             <Icons
               onPress={() => navigation.openDrawer()}
@@ -47,6 +48,7 @@ const topStack = ({navigation}) => {
               color={colors.white}
             />
           ),
+
           title: Strings.orderplaced,
           headerStyle: {
             backgroundColor: colors.secondary,

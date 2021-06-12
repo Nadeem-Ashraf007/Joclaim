@@ -9,7 +9,6 @@ import {localNotificationService} from '../Screens/PushNotification/LocalNotific
 import colors from './Constants/colors';
 import {View} from 'react-native';
 const getToken = () => {
-  debugger;
   try {
     AsyncStorage.multiGet([
       'accessToken',
@@ -18,6 +17,7 @@ const getToken = () => {
       'statusId',
       'employeeId',
       'changeLanguage',
+      'languageChange',
     ]).then((response) => {
       Global.accessToken = response[0][1];
       Global.workshopId = response[1][1];
@@ -25,7 +25,8 @@ const getToken = () => {
       Global.statusId = response[3][1];
       Global.employeeid = response[4][1];
       Global.changeView = JSON.parse(response[5][1]);
-
+      Global.changeLanguage = JSON.parse(response[6][1]);
+      debugger;
       if (Global.changeView == true) {
         Strings.setLanguage('en');
       } else {
@@ -36,6 +37,14 @@ const getToken = () => {
     console.log('something went wrong' + error);
   }
 };
+debugger;
+// AsyncStorage.getItem('languageChange').then((value) =>
+//   JSON.parse(value) == true
+//     ? Strings.setLanguage('en')
+//     : Strings.setLanguage('ar'),
+// );
+
+debugger;
 const Splash = ({navigation}) => {
   React.useEffect(() => {
     fcmService.registerAppWithFCM();
@@ -67,6 +76,8 @@ const Splash = ({navigation}) => {
   }, []);
 
   useEffect(() => {
+    debugger;
+    // getLanguage();
     getToken();
     setTimeout(() => {
       navigation.replace(Global.accessToken == null ? 'Auth' : 'drawer');
@@ -86,8 +97,8 @@ const Splash = ({navigation}) => {
       ) : (
         <Text style={styles.imageJoclaims}>جوكليمز</Text>
       )}
-      {Global.changeView == null ? (
-        <View>
+      {Global.changeView == true ? (
+        <View style={{flexWrap: 'wrap'}}>
           <Text style={styles.textEnglish}>Automated solutions for auto</Text>
           <Text style={styles.textEnglish}>insurance accident claims.</Text>
         </View>

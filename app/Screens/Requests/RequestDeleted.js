@@ -47,6 +47,8 @@ const RequestDeleted = ({navigation, userData, fetchUser}) => {
             arabicmakename={item.ArabicMakeName}
             RequestNumber={item.RequestNumber}
             createdon={item.BiddingDateTime}
+            ArabicMakeName={item.ArabicMakeName}
+            ArabicModelName={item.ArabicModelName}
             AccidentNo={item.AccidentNo}
             WorkshopName={item.WorkshopName}
             BiddingDateTime={item.BiddingDateTime}

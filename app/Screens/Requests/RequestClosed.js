@@ -50,6 +50,8 @@ const RequestClosed = ({userData, fetchUser, navigation}) => {
             RequestNumber={item.RequestNumber}
             createdon={item.BiddingDateTime}
             AccidentNo={item.AccidentNo}
+            ArabicMakeName={item.ArabicMakeName}
+            ArabicModelName={item.ArabicModelName}
             WorkshopName={item.WorkshopName}
             BiddingDateTime={item.BiddingDateTime}
             VIN={item.VIN}

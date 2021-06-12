@@ -43,6 +43,8 @@ const Opened = ({navigation, userData, fetchUsers}) => {
             YearCode={item.YearCode}
             ModelCode={item.ModelCode}
             MakeName={item.MakeName}
+            ArabicMakeName={item.ArabicMakeName}
+            ArabicModelName={item.ArabicModelName}
             WorkshopName={item.WorkshopName}
             AccidentNo={item.AccidentNo}
             accidentTypename={item.AccidentTypeName}

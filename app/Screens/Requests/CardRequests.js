@@ -32,20 +32,25 @@ const CardRequests = ({
   viewRequestLog,
   ready,
   POTotalAmount,
+  ArabicModelName,
+  ArabicMakeName,
 }) => {
   const [changeView, setChangeView] = React.useState(Global.changeView);
   const Delive = userData.request.filter((r) => r.StatusID == 17);
   return (
     <View style={[styles.card, style]}>
-      <View>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+        }}>
         {ready && (
           <Text
             style={{
-              backgroundColor: colors.primaryDark,
+              backgroundColor: colors.primary,
               color: colors.white,
               padding: 5,
-              width: '40%',
-              textAlign: 'center',
               fontSize: 15,
               borderRadius: 10,
             }}>
@@ -58,18 +63,30 @@ const CardRequests = ({
         {image && (
           <Image style={styles.imag} source={{uri: Global.apiurl + image}} />
         )}
-        <View style={{marginHorizontal: 10}}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={[styles.text, {marginHorizontal: 5}]}>{MakeName}</Text>
+        <View style={{marginHorizontal: 10, flexWrap: 'wrap'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+              marginRight: 5,
+              // width:'55%'
+            }}>
             <Text style={[styles.text, {marginHorizontal: 5}]}>
-              {ModelCode}
+              {!changeView ? ArabicMakeName : MakeName}
+            </Text>
+            <Text style={[styles.text, {marginHorizontal: 5}]}>
+              {!changeView ? ArabicModelName : ModelCode}
             </Text>
             <Text style={styles.text}>{YearCode}</Text>
 
             {/* <Text style={[styles.text, {marginHorizontal: 5}]}>{YearCode}</Text> */}
           </View>
 
-          <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text
               style={{
                 color: colors.primary,
@@ -78,11 +95,15 @@ const CardRequests = ({
                 alignItems: 'center',
                 marginHorizontal: 5,
               }}>
-              Created by:
+              {Strings.CreatedBy}
             </Text>
             <Text style={styles.innerText}>{makename}</Text>
           </View>
-          <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Icon
               style={{marginHorizontal: 5}}
               name="mail"
@@ -98,27 +119,51 @@ const CardRequests = ({
 
       <View style={styles.container}>
         <View style={styles.lastcontainer}>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.workshomeName}</Text>
             <Text style={styles.innerText}>{WorkshopName}</Text>
           </View>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.requestNumber}</Text>
             <Text style={styles.innerText}>{RequestNumber}</Text>
           </View>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.accidentNo}</Text>
             <Text style={styles.innerText}>{AccidentNo}</Text>
           </View>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.VIN}</Text>
             <Text style={styles.innerText}>{VIN}</Text>
           </View>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.plateNO}</Text>
             <Text style={styles.innerText}>{PlateNo}</Text>
           </View>
-          <View style={{flexDirection: !changeView ? 'row-reverse' : 'row'}}>
+          <View
+            style={{
+              flexDirection: !changeView ? 'row-reverse' : 'row',
+              flexWrap: 'wrap',
+            }}>
             <Text style={styles.headingText}>{Strings.poAmount}</Text>
             <Text style={styles.innerText}>{POTotalAmount} JOD</Text>
           </View>
@@ -210,21 +255,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-    flex: 1,
+    // flex: 1,
   },
   container: {
     alignItems: 'center',
     flex: 1,
+    flexWrap: 'wrap',
   },
   imag: {
-    width: '35%',
-    height: 90,
-    resizeMode: 'cover',
+    // flex: 1,
+    // width: null,
+    // height: null,
+    width: 90,
+    height: 75,
+    resizeMode: 'contain',
     borderRadius: 30,
   },
   text: {
     color: colors.primary,
     fontSize: 20,
+    flexWrap: 'wrap',
+    // width: '25%',
   },
   lastcontainer: {
     borderTopWidth: 1,
@@ -234,6 +285,7 @@ const styles = StyleSheet.create({
   innerText: {
     color: colors.black,
     fontSize: 17,
+    flexWrap: 'wrap',
   },
   headingText: {
     color: colors.primary,

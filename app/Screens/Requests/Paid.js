@@ -76,6 +76,8 @@ const Paid = ({navigation, userData, fetchUser}) => {
             YearCode={item.YearCode}
             MakeName={item.MakeName}
             ModelCode={item.ModelCode}
+            ArabicMakeName={item.ArabicMakeName}
+            ArabicModelName={item.ArabicModelName}
             makename={item.VehicleOwnerName}
             // makename={item.MakeID}
             arabicmakename={item.ArabicMakeName}

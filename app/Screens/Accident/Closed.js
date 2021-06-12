@@ -1,5 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, FlatList, ActivityIndicator, Text} from 'react-native';
+import {
+  View,
+  FlatList,
+  ActivityIndicator,
+  Text,
+  StyleSheet,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {fetchUsers} from '../redux/accident/accidentAction';
 import CardAccident from './CardAccident';
@@ -29,7 +35,7 @@ const Closed = ({userData, fetchUsers, navigation}) => {
         keyExtractor={(close) => close.AccidentID.toString()}
         renderItem={({item}) => (
           <CardAccident
-            style={{marginVertical: 5}}
+            style={styles.card}
             image={item.ImgURL}
             YearCode={item.YearCode}
             ModelCode={item.ModelCode}
@@ -37,6 +43,8 @@ const Closed = ({userData, fetchUsers, navigation}) => {
             WorkshopName={item.WorkshopName}
             AccidentNo={item.AccidentNo}
             accidentTypename={item.AccidentTypeName}
+            ArabicMakeName={item.ArabicMakeName}
+            ArabicModelName={item.ArabicModelName}
             UserName={item.UserName}
             accidentid={item.AccidentID}
             companyid={item.CompanyID}
@@ -45,17 +53,17 @@ const Closed = ({userData, fetchUsers, navigation}) => {
             VIN={item.VIN}
             PlateNo={item.PlateNo}
             onPress={() => navigation.navigate('Request')}
-            onpress={() =>
+            viewAccident={() =>
               navigation.navigate('OpenAccident', {
                 id: item.AccidentID,
               })
             }
-            summary={() =>
-              navigation.navigate('ClearanceSummary', {
-                id: item.AccidentID,
-                companyid: item.CompanyID,
-              })
-            }
+            // summary={() =>
+            //   navigation.navigate('ClearanceSummary', {
+            //     id: item.AccidentID,
+            //     companyid: item.CompanyID,
+            //   })
+            // }
             updateAccident={() =>
               navigation.navigate('UpdateAccidents', {
                 params: {
@@ -80,4 +88,9 @@ const mapDispatchToProps = (dispatch) => {
     fetchUsers: () => dispatch(fetchUsers()),
   };
 };
+const styles = StyleSheet.create({
+  card: {
+    marginVertical: 5,
+  },
+});
 export default connect(mapStateToProps, mapDispatchToProps)(Closed);

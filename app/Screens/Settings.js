@@ -3,23 +3,62 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Strings from '../Screens/localization/LocalizedString';
 import colors from './Constants/colors';
 import {Global} from './Constants/Global';
-const Settings = () => {
-  const [changeView, setChangeView] = React.useState(Global.changeView);
-  const changeLanguage = (value) => {
-    Strings.setLanguage(value);
-  };
+
+const storeToken = async (
+  access_token,
+  ICWorkshopID,
+  CompanyID,
+  StatusID,
+  EmployeeID,
+  ChangeLanguage,
+  languageChange,
+) => {
+  // debugger;
+  try {
+    await AsyncStorage.multiSet(
+      [
+        ['accessToken', access_token],
+        ['workshopId', ICWorkshopID],
+        ['companyid', CompanyID],
+        ['statusId', StatusID],
+        ['employeeId', EmployeeID],
+        ['changeLanguage', JSON.stringify(ChangeLanguage)],
+        ['languageChange', JSON.stringify(languageChange)],
+      ],
+      (res) => {
+        console.log('login store token func:' + res);
+      },
+    );
+  } catch (error) {
+    console.log('something went wrong');
+  }
+};
+const Settings = ({navigation}) => {
+  debugger;
+  const [changeView, setchangeView] = React.useState(Global.changeView);
+  Global.changeView = changeView;
+  // const changeLanguage = (value) => {
+  //   Strings.setLanguage(value);
+  // };
+
   const toggleFunction = () => {
     if (!changeView) {
-      setChangeView(true);
-      changeLanguage('en');
+      setchangeView(true);
+      // changeLanguage('en');
+      navigation.navigate('Splash');
     }
     if (changeView) {
-      setChangeView(false);
-      changeLanguage('ar');
+      setchangeView(false);
+      // changeLanguage('ar');
+      navigation.navigate('Splash');
     }
   };
+  debugger;
+  storeToken(changeView);
+  // alert(changeView);
   return (
     <View style={styles.languageContainer}>
+      <Text style={styles.text}>Select Language</Text>
       <TouchableOpacity onPress={() => toggleFunction()}>
         <Text style={styles.languagetext}>
           {!changeView ? 'English' : 'العربية'}
@@ -31,13 +70,19 @@ const Settings = () => {
 const styles = StyleSheet.create({
   languageContainer: {
     // backgroundColor: colors.opacity,
-    alignSelf: 'flex-end',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: 5,
   },
   languagetext: {
-    fontSize: 15,
+    fontSize: 25,
     fontWeight: 'bold',
     color: colors.opacity,
+  },
+  text: {
+    fontSize: 25,
+    fontWeight: 'bold',
   },
 });
 export default Settings;

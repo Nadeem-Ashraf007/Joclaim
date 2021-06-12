@@ -21,7 +21,9 @@ import Icon from 'react-native-vector-icons/Entypo';
 import Toast from 'react-native-simple-toast';
 import AsyncStorage from '@react-native-community/async-storage';
 import Strings from './localization/LocalizedString';
+import Settings from './Settings';
 import {Global} from './Constants/Global';
+
 const Login = ({navigation}) => {
   const [email, setemail] = React.useState('wo1@joclaims.com');
   const [password, setPassword] = React.useState('123456');
@@ -42,9 +44,7 @@ const Login = ({navigation}) => {
       changeLanguage('ar');
     }
   };
-  // alert('alerttt' + changeView);
 
-  AsyncStorage.setItem('Language', JSON.stringify(changeView));
   const mobileid = 64;
   const appversion = 15;
 
@@ -189,6 +189,7 @@ const Login = ({navigation}) => {
           </Text>
         </TouchableOpacity>
       </View>
+      {/* <Settings /> */}
       <TouchableWithoutFeedback
         onPress={() => {
           Keyboard.dismiss();
@@ -417,4 +418,5 @@ const styles = StyleSheet.create({
     color: colors.opacity,
   },
 });
+
 export default Login;
